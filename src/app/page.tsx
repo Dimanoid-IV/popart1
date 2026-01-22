@@ -107,7 +107,7 @@ export default function Home() {
             
             <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
               {/* Sofa Background */}
-              <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
+              <div className="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/10]">
                 <Image 
                   src="/divan.png" 
                   alt="Living room setup" 
@@ -116,7 +116,7 @@ export default function Home() {
                 />
                 
                 {/* Portraits on the wall */}
-                <div className="absolute top-[5%] left-0 w-full h-[60%] flex items-end justify-center gap-4 md:gap-12 px-4">
+                <div className="absolute top-[8%] left-0 w-full h-[65%] flex items-end justify-center gap-4 md:gap-12 px-4">
                   {[
                     { size: '45x30', price: '45', scale: 0.5 },
                     { size: '60x40', price: '55', scale: 0.67 },
@@ -135,7 +135,7 @@ export default function Home() {
                         className="relative w-full aspect-[2/3] bg-gray-200 border-[3px] md:border-[6px] border-white shadow-2xl rounded-sm overflow-hidden mb-2"
                       >
                         <Image 
-                          src={`/pic${(i % 4) + 1}.jpg`}
+                          src={`/pic${i + 1}${i + 1}.JPG`}
                           alt={p.size}
                           fill
                           className="object-cover"
