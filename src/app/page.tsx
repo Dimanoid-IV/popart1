@@ -100,6 +100,59 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Pricing Section with Sofa */}
+        <section id="pricing" className="py-24 bg-white overflow-hidden">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16 italic">{t.nav.pricing}</h2>
+            
+            <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+              {/* Sofa Background */}
+              <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
+                <Image 
+                  src="/divan.png" 
+                  alt="Living room setup" 
+                  fill 
+                  className="object-cover"
+                />
+                
+                {/* Portraits on the wall */}
+                <div className="absolute top-[5%] left-0 w-full h-[60%] flex items-end justify-center gap-4 md:gap-12 px-4">
+                  {[
+                    { size: '45x30', price: '45', scale: 0.5 },
+                    { size: '60x40', price: '55', scale: 0.67 },
+                    { size: '80x54', price: '68', scale: 0.89 },
+                    { size: '90x60', price: '75', scale: 1.0 },
+                  ].map((p, i) => (
+                    <div 
+                      key={p.size} 
+                      className="flex flex-col items-center group transition-all hover:-translate-y-2"
+                      style={{ 
+                        width: `${p.scale * 20}%`,
+                        minWidth: '60px'
+                      }}
+                    >
+                      <div 
+                        className="relative w-full aspect-[2/3] bg-gray-200 border-[3px] md:border-[6px] border-white shadow-2xl rounded-sm overflow-hidden mb-2"
+                      >
+                        <Image 
+                          src={`/pic${(i % 4) + 1}.jpg`}
+                          alt={p.size}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="bg-white/95 backdrop-blur-sm px-2 py-1 rounded-md shadow-lg border border-gray-100">
+                        <p className="text-[8px] md:text-xs font-bold text-gray-900 whitespace-nowrap">{p.size} cm</p>
+                        <p className="text-[8px] md:text-xs font-black text-indigo-600">€{p.price}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Order Flow Section */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
