@@ -11,33 +11,58 @@ export default function Home() {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-[1.1]">
+        <section className="relative py-32 overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
+          {/* Background Gallery */}
+          <div className="absolute inset-0 z-0 flex items-center overflow-hidden opacity-50 hover:opacity-100 transition-opacity duration-700">
+            <div className="animate-marquee flex gap-8 py-10">
+              {/* Double the set for seamless loop */}
+              {[...Array(2)].map((_, groupIndex) => (
+                <div key={groupIndex} className="flex gap-8">
+                  {['/pic1.jpg', '/pic2.jpg', '/pic3.jpg', '/pic4.jpg'].map((src, i) => (
+                    <div key={`${groupIndex}-${i}`} className="relative w-[300px] h-[450px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 transform rotate-2">
+                      <Image 
+                        src={src} 
+                        alt={`Art example ${i + 1}`} 
+                        fill 
+                        sizes="300px"
+                        className="object-cover"
+                        priority={groupIndex === 0 && i === 0}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
+            <div className="text-center max-w-4xl mx-auto pointer-events-auto">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 mb-8 leading-[1]">
                 Your Photos. <br />
-                <span className="text-indigo-600">Pure Art.</span>
+                <span className="text-indigo-600 drop-shadow-sm">Pure Art.</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-2xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
                 Turn your favorite memories into professional digital painting portraits. 
                 Choose a size, upload your photo, and let our AI create something magical.
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <a 
                   href="#order-now" 
-                  className="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-indigo-700 transition-all hover:scale-105"
+                  className="bg-indigo-600 text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95"
                 >
                   Create My Portrait
                 </a>
                 <a 
                   href="#how-it-works" 
-                  className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-4 rounded-full font-bold text-lg hover:border-indigo-600 hover:text-indigo-600 transition-all"
+                  className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-12 py-5 rounded-full font-bold text-xl hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-lg"
                 >
                   How it Works
                 </a>
               </div>
             </div>
           </div>
+
           
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
