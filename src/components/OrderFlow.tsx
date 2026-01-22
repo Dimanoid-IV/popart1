@@ -67,21 +67,41 @@ export default function OrderFlow() {
 
   const pollTask = async (taskId: string): Promise<string> => {
     const startTime = Date.now();
-    const maxWaitTime = 120000; // 2 minutes
+    const maxWaitTime = 300000; // 5 minutes
 
     while (Date.now() - startTime < maxWaitTime) {
-      const response = await fetch(`/api/generate/status?taskId=${taskId}`);
-      const data = await response.json();
+      try {
+        const response = await fetch(`/api/generate/status?taskId=${taskId}`);
+        const data = await response.json();
 
-      if (data.successFlag === 1) {
-        return data.response.resultImageUrl;
-      } else if (data.successFlag === 2 || data.successFlag === 3) {
-        throw new Error(data.errorMessage || 'AI Generation failed');
+        // Debug log
+        console.log(`Polling task ${taskId}:`, data);
+
+        // Check if the API returned an error code
+        if (data.code && data.code !== 200) {
+          throw new Error(data.msg || `API Error ${data.code}`);
+        }
+
+        // The successFlag can be at the top level or inside a data object depending on the specific API version
+        const successFlag = data.successFlag !== undefined ? data.successFlag : data.data?.successFlag;
+        const resultResponse = data.response || data.data?.response;
+
+        if (successFlag === 1) {
+          if (!resultResponse?.resultImageUrl) {
+            throw new Error('Result image URL missing in API response');
+          }
+          return resultResponse.resultImageUrl;
+        } else if (successFlag === 2 || successFlag === 3) {
+          throw new Error(data.errorMessage || data.data?.errorMessage || 'AI Generation failed');
+        }
+      } catch (e) {
+        console.error(`Poll error for ${taskId}:`, e);
+        // Don't throw immediately, maybe it's a temporary network issue
       }
 
-      await new Promise(r => setTimeout(r, 3000));
+      await new Promise(r => setTimeout(r, 5000)); // Poll every 5 seconds
     }
-    throw new Error('Timeout waiting for AI results');
+    throw new Error('Timeout waiting for AI results (5 minutes exceeded)');
   };
 
   const [email, setEmail] = useState('');
