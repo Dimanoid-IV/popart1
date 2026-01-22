@@ -49,13 +49,16 @@ export async function POST(req: NextRequest) {
             prompt: fullPrompt,
             type: 'IMAGETOIAMGE',
             numImages: 1,
-            imageUrls: [image], // Supports base64 or URL
+            imageUrls: [image],
+            image_size: "2:3",
+            callBackUrl: "https://popart.ee/api/webhooks/dummy" // Required parameter
           })
         });
 
         const genData = await genRes.json();
-        if (genData.code !== 200) {
-          throw new Error(genData.msg || 'Generation initiation failed');
+        if (genRes.status !== 200 || genData.code !== 200) {
+          console.error('NanoBanana API Error Response:', genData);
+          throw new Error(genData.msg || `Generation initiation failed with status ${genRes.status}`);
         }
 
         const taskId = genData.data.taskId;
