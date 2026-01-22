@@ -4,14 +4,10 @@ import Replicate from 'replicate';
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
-  const token = process.env.REPLICATE_API_TOKEN;
+  const token = process.env.NANOBANANA_API_KEY;
   if (!token) {
-    return NextResponse.json({ error: 'REPLICATE_API_TOKEN is missing' }, { status: 500 });
+    return NextResponse.json({ error: 'NANOBANANA_API_KEY is missing' }, { status: 500 });
   }
-
-  const replicate = new Replicate({
-    auth: token,
-  });
 
   try {
     const { image } = await req.json();
@@ -26,8 +22,6 @@ export async function POST(req: NextRequest) {
     Painterly hair shapes, simplified clothing with brushstroke effects. 
     Soft glowing outlines.`;
 
-    const negativePrompt = "photorealism, sharp background, detailed scenery, city, room, nature details, hard edges, anime, cartoon, plastic skin, hyper-realistic eyes";
-
     const backgroundTypes = [
       "Pastel gradient with soft light",
       "Watercolor washes, light and airy",
@@ -39,29 +33,57 @@ export async function POST(req: NextRequest) {
     // Select 2 random backgrounds
     const selectedBackgrounds = backgroundTypes.sort(() => 0.5 - Math.random()).slice(0, 2);
 
-    const predictions = await Promise.all(
+    const baseUrl = 'https://api.nanobananaapi.ai/api/v1/nanobanana';
+
+    const results = await Promise.all(
       selectedBackgrounds.map(async (bg) => {
-        // Using SDXL with image-to-image or a similar model
-        // For simplicity and quality, we can use stability-ai/sdxl
-        return replicate.run(
-          "stability-ai/sdxl:da77452306f715723660619c56145a551366140ad9d576b95110da480f6ad680",
-          {
-            input: {
-              prompt: `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`,
-              negative_prompt: negativePrompt,
-              image: image,
-              prompt_strength: 0.7,
-              num_inference_steps: 50,
-              refine: "expert_ensemble_refiner",
-              apply_watermark: false,
-              high_noise_frac: 0.8,
-            }
+        const fullPrompt = `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`;
+        
+        // 1. Generate task
+        const genRes = await fetch(`${baseUrl}/generate`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            prompt: fullPrompt,
+            type: 'IMAGETOIAMGE',
+            numImages: 1,
+            imageUrls: [image], // Supports base64 or URL
+          })
+        });
+
+        const genData = await genRes.json();
+        if (genData.code !== 200) {
+          throw new Error(genData.msg || 'Generation initiation failed');
+        }
+
+        const taskId = genData.data.taskId;
+
+        // 2. Poll for completion
+        const startTime = Date.now();
+        const maxWaitTime = 60000; // 60 seconds
+
+        while (Date.now() - startTime < maxWaitTime) {
+          const statusRes = await fetch(`${baseUrl}/record-info?taskId=${taskId}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const statusData = await statusRes.json();
+
+          if (statusData.successFlag === 1) {
+             return statusData.response.resultImageUrl;
+          } else if (statusData.successFlag === 2 || statusData.successFlag === 3) {
+             throw new Error(statusData.errorMessage || 'Generation failed');
           }
-        );
+
+          await new Promise(r => setTimeout(r, 3000));
+        }
+        throw new Error('Timeout waiting for AI results');
       })
     );
 
-    return NextResponse.json({ results: predictions });
+    return NextResponse.json({ results });
   } catch (error: any) {
     console.error('AI Generation Error:', error);
     return NextResponse.json({ error: error.message || 'Failed to generate images' }, { status: 500 });
