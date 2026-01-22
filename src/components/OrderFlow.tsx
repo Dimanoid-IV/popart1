@@ -48,19 +48,40 @@ export default function OrderFlow() {
       
       const data = await response.json();
       
-      if (data.results) {
-        setAiResults(data.results);
+      if (data.taskIds) {
+        // Start polling for results
+        const results = await Promise.all(data.taskIds.map((id: string) => pollTask(id)));
+        setAiResults(results);
         setStep('selection');
       } else {
-        throw new Error(data.error || 'Failed to generate');
+        throw new Error(data.error || 'Failed to start generation');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('Something went wrong with AI processing. Please try again.');
+      alert('Error: ' + error.message);
       setStep('size');
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const pollTask = async (taskId: string): Promise<string> => {
+    const startTime = Date.now();
+    const maxWaitTime = 120000; // 2 minutes
+
+    while (Date.now() - startTime < maxWaitTime) {
+      const response = await fetch(`/api/generate/status?taskId=${taskId}`);
+      const data = await response.json();
+
+      if (data.successFlag === 1) {
+        return data.response.resultImageUrl;
+      } else if (data.successFlag === 2 || data.successFlag === 3) {
+        throw new Error(data.errorMessage || 'AI Generation failed');
+      }
+
+      await new Promise(r => setTimeout(r, 3000));
+    }
+    throw new Error('Timeout waiting for AI results');
   };
 
   const [email, setEmail] = useState('');

@@ -34,12 +34,10 @@ export async function POST(req: NextRequest) {
 
     const baseUrl = 'https://api.nanobananaapi.ai/api/v1/nanobanana';
 
-    const results = await Promise.all(
+    const tasks = await Promise.all(
       selectedBackgrounds.map(async (bg) => {
         const fullPrompt = `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`;
         
-        // 1. If image is base64, we might need to host it first.
-        // For now, let's try to improve the request and logging.
         let processedImage = image;
         
         // ImgBB Upload (Optional but recommended if base64 fails)
@@ -62,7 +60,7 @@ export async function POST(req: NextRequest) {
            }
         }
 
-        // 2. Generate task
+        // Generate task
         const genRes = await fetch(`${baseUrl}/generate`, {
           method: 'POST',
           headers: {
@@ -85,31 +83,11 @@ export async function POST(req: NextRequest) {
           throw new Error(genData.msg || `Generation initiation failed (Status ${genRes.status})`);
         }
 
-        const taskId = genData.data.taskId;
-
-        // 2. Poll for completion
-        const startTime = Date.now();
-        const maxWaitTime = 60000; // 60 seconds
-
-        while (Date.now() - startTime < maxWaitTime) {
-          const statusRes = await fetch(`${baseUrl}/record-info?taskId=${taskId}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-          });
-          const statusData = await statusRes.json();
-
-          if (statusData.successFlag === 1) {
-             return statusData.response.resultImageUrl;
-          } else if (statusData.successFlag === 2 || statusData.successFlag === 3) {
-             throw new Error(statusData.errorMessage || 'Generation failed');
-          }
-
-          await new Promise(r => setTimeout(r, 3000));
-        }
-        throw new Error('Timeout waiting for AI results');
+        return genData.data.taskId;
       })
     );
 
-    return NextResponse.json({ results });
+    return NextResponse.json({ taskIds: tasks });
   } catch (error: any) {
     console.error('AI Generation Error:', error);
     return NextResponse.json({ error: error.message || 'Failed to generate images' }, { status: 500 });
