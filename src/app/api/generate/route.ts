@@ -44,14 +44,17 @@ export async function POST(req: NextRequest) {
         // Using SDXL with image-to-image or a similar model
         // For simplicity and quality, we can use stability-ai/sdxl
         return replicate.run(
-          "stability-ai/sdxl:7762fd89782c3516513a0a5d562a608103c624d67876a307047743d50893112c",
+          "stability-ai/sdxl:da77452306f715723660619c56145a551366140ad9d576b95110da480f6ad680",
           {
             input: {
               prompt: `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`,
               negative_prompt: negativePrompt,
-              image: image, // Base64 or URL
-              prompt_strength: 0.65, // Adjust to keep likeness but allow style change
+              image: image,
+              prompt_strength: 0.7,
               num_inference_steps: 50,
+              refine: "expert_ensemble_refiner",
+              apply_watermark: false,
+              high_noise_frac: 0.8,
             }
           }
         );
