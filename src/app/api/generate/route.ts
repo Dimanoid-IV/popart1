@@ -38,7 +38,31 @@ export async function POST(req: NextRequest) {
       selectedBackgrounds.map(async (bg) => {
         const fullPrompt = `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`;
         
-        // 1. Generate task
+        // 1. If image is base64, we might need to host it first.
+        // For now, let's try to improve the request and logging.
+        let processedImage = image;
+        
+        // ImgBB Upload (Optional but recommended if base64 fails)
+        const imgbbKey = process.env.IMGBB_API_KEY;
+        if (imgbbKey && image.startsWith('data:')) {
+           try {
+             const base64Data = image.split(',')[1];
+             const formData = new FormData();
+             formData.append('image', base64Data);
+             const imgbbRes = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
+               method: 'POST',
+               body: formData
+             });
+             const imgbbData = await imgbbRes.json();
+             if (imgbbData.success) {
+               processedImage = imgbbData.data.url;
+             }
+           } catch (e) {
+             console.error('ImgBB Upload failed:', e);
+           }
+        }
+
+        // 2. Generate task
         const genRes = await fetch(`${baseUrl}/generate`, {
           method: 'POST',
           headers: {
@@ -49,16 +73,16 @@ export async function POST(req: NextRequest) {
             prompt: fullPrompt,
             type: 'IMAGETOIAMGE',
             numImages: 1,
-            imageUrls: [image],
+            imageUrls: [processedImage],
             image_size: "2:3",
-            callBackUrl: "https://popart.ee/api/webhooks/dummy" // Required parameter
+            callBackUrl: `${req.nextUrl.origin}/api/webhooks/dummy` 
           })
         });
 
         const genData = await genRes.json();
         if (genRes.status !== 200 || genData.code !== 200) {
-          console.error('NanoBanana API Error Response:', genData);
-          throw new Error(genData.msg || `Generation initiation failed with status ${genRes.status}`);
+          console.error('NanoBanana API Error Details:', JSON.stringify(genData, null, 2));
+          throw new Error(genData.msg || `Generation initiation failed (Status ${genRes.status})`);
         }
 
         const taskId = genData.data.taskId;
