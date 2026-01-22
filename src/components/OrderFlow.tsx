@@ -105,10 +105,16 @@ export default function OrderFlow() {
   };
 
   const [email, setEmail] = useState('');
+  const [shippingInfo, setShippingInfo] = useState({
+    fullName: '',
+    address: '',
+    postalCode: '',
+    phone: ''
+  });
 
   const handleCheckout = async () => {
-    if (!email || selectedResult === null) {
-      alert('Please enter your email.');
+    if (!email || !shippingInfo.fullName || !shippingInfo.address || !shippingInfo.postalCode || !shippingInfo.phone || selectedResult === null) {
+      alert('Please fill in all contact and shipping information.');
       return;
     }
 
@@ -121,6 +127,7 @@ export default function OrderFlow() {
           price: selectedSize.price,
           email,
           imageUrl: aiResults[selectedResult],
+          shippingInfo,
         }),
       });
 
@@ -281,22 +288,58 @@ export default function OrderFlow() {
               </p>
             </div>
             
-            <div className="flex flex-col justify-center">
-              <h4 className="text-xl font-bold mb-6">Contact Information</h4>
+            <div className="flex flex-col space-y-4">
+              <h4 className="text-xl font-bold mb-2">Shipping & Contact Information</h4>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="Full Name" 
+                  value={shippingInfo.fullName}
+                  onChange={(e) => setShippingInfo({...shippingInfo, fullName: e.target.value})}
+                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                />
+                <input 
+                  type="email" 
+                  placeholder="Email Address" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                />
+              </div>
+
               <input 
-                type="email" 
-                placeholder="Enter your email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-4 border rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                type="text" 
+                placeholder="Shipping Address (Street, House, Appt)" 
+                value={shippingInfo.address}
+                onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
+                className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
               />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="Postal Code" 
+                  value={shippingInfo.postalCode}
+                  onChange={(e) => setShippingInfo({...shippingInfo, postalCode: e.target.value})}
+                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                />
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number" 
+                  value={shippingInfo.phone}
+                  onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
+                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                />
+              </div>
+
               <button 
                 onClick={handleCheckout}
                 className="bg-indigo-600 text-white w-full py-5 rounded-xl font-black text-xl shadow-2xl hover:bg-indigo-700 transition-all hover:-translate-y-1 active:translate-y-0"
               >
                 Pay with Stripe
               </button>
-              <p className="text-center text-xs text-gray-400 mt-4">Secure payment via Stripe. No credit card details stored.</p>
+              <p className="text-center text-xs text-gray-400 mt-2">Secure payment via Stripe. No credit card details stored.</p>
             </div>
           </div>
           <button onClick={() => setStep('selection')} className="mt-8 text-gray-500 font-semibold hover:text-gray-700 underline">Back to Selection</button>
