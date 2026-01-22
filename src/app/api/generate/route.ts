@@ -15,11 +15,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Image is required' }, { status: 400 });
     }
 
-    const basePrompt = `Digital painting portrait. Exact likeness and anatomy preserved. 
-    Smooth painterly skin, no pores, soft volume. 
-    Expressive artistic eyes, saturated iris, soft painted highlights. 
-    Painterly hair shapes, simplified clothing with brushstroke effects. 
-    Soft glowing outlines.`;
+    const basePrompt = `Professional digital art portrait in a beautiful painterly style. 
+    Artistic rendering with smooth brushstrokes, soft volume, and elegant lighting. 
+    Expressive artistic eyes, simplified clothing with painterly textures. 
+    A masterpiece of digital painting. Avoid photorealism.`;
 
     const backgroundTypes = [
       "Pastel gradient with soft light",
