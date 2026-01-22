@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Replicate from 'replicate';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
+  const token = process.env.REPLICATE_API_TOKEN;
+  if (!token) {
+    return NextResponse.json({ error: 'REPLICATE_API_TOKEN is missing' }, { status: 500 });
+  }
+
   const replicate = new Replicate({
-    auth: process.env.REPLICATE_API_TOKEN,
+    auth: token,
   });
 
   try {
