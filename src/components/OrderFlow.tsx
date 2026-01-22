@@ -96,7 +96,7 @@ export default function OrderFlow() {
           }
           return resultResponse.resultImageUrl;
         } else if (successFlag === 2 || successFlag === 3) {
-          throw new Error(data.errorMessage || data.data?.errorMessage || 'AI Generation failed');
+          throw new Error(data.errorMessage || data.data?.errorMessage || 'Generation failed');
         }
       } catch (e) {
         console.error(`Poll error for ${taskId}:`, e);
@@ -105,7 +105,7 @@ export default function OrderFlow() {
 
       await new Promise(r => setTimeout(r, 5000)); // Poll every 5 seconds
     }
-    throw new Error('Timeout waiting for AI results (5 minutes exceeded)');
+    throw new Error('Timeout waiting for results (5 minutes exceeded)');
   };
 
   const [email, setEmail] = useState('');

@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ taskIds: tasks });
   } catch (error: any) {
-    console.error('AI Generation Error:', error);
+    console.error('Generation Error:', error);
     return NextResponse.json({ error: error.message || 'Failed to generate images' }, { status: 500 });
   }
 }

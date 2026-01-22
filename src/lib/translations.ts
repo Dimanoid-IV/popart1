@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       title1: "Your Photos.",
       title2: "Pure Art.",
-      description: "Turn your favorite memories into professional digital painting portraits. Choose a size, upload your photo, and let our AI create something magical.",
+      description: "Turn your favorite memories into professional digital painting portraits. Choose a size, upload your photo, and let our engine create something magical.",
       ctaPrimary: "Create My Portrait",
       ctaSecondary: "How it Works",
     },
@@ -20,7 +20,7 @@ export const translations = {
       sectionDesc: "Fast, easy, and absolutely stunning results every time.",
       feature1: {
         title: "Instant Magic",
-        desc: "Our Nana Banana AI processes your photo in seconds, keeping every detail while adding artistic flair.",
+        desc: "Our engine processes your photo in seconds, keeping every detail while adding artistic flair.",
       },
       feature2: {
         title: "Digital Painting",
@@ -51,10 +51,10 @@ export const translations = {
         title: "Choose Canvas Size",
         premium: "Premium Canvas",
         back: "Back",
-        button: "Process with AI",
+        button: "Process",
       },
       processing: {
-        title: "Nana Banana is working...",
+        title: "Your art is being created...",
         desc: "Creating your digital masterpieces with different artistic backgrounds.",
       },
       selection: {
@@ -99,7 +99,7 @@ export const translations = {
     hero: {
       title1: "Ваши фото.",
       title2: "Чистое искусство.",
-      description: "Превратите ваши любимые воспоминания в профессиональные цифровые портреты. Выберите размер, загрузите фото, и наш ИИ создаст нечто волшебное.",
+      description: "Превратите ваши любимые воспоминания в профессиональные цифровые портреты. Выберите размер, загрузите фото, и мы создадим нечто волшебное.",
       ctaPrimary: "Создать портрет",
       ctaSecondary: "Как это работает",
     },
@@ -108,7 +108,7 @@ export const translations = {
       sectionDesc: "Быстро, просто и потрясающий результат каждый раз.",
       feature1: {
         title: "Мгновенная магия",
-        desc: "Наш ИИ Nana Banana обрабатывает ваше фото за считанные секунды, сохраняя детали и добавляя художественный стиль.",
+        desc: "Наша система обрабатывает ваше фото за считанные секунды, сохраняя детали и добавляя художественный стиль.",
       },
       feature2: {
         title: "Цифровая живопись",
@@ -139,10 +139,10 @@ export const translations = {
         title: "Выберите размер холста",
         premium: "Премиум холст",
         back: "Назад",
-        button: "Обработать ИИ",
+        button: "Обработать",
       },
       processing: {
-        title: "Nana Banana работает...",
+        title: "Ваш портрет создается...",
         desc: "Создаем ваши цифровые шедевры с различными художественными фонами.",
       },
       selection: {
@@ -187,7 +187,7 @@ export const translations = {
     hero: {
       title1: "Sinu fotod.",
       title2: "Puhas kunst.",
-      description: "Muuda oma lemmikmälestused professionaalseteks digitaalseteks maalideks. Vali suurus, laadi üles foto ja lase meie AI-l luua midagi maagilist.",
+      description: "Muuda oma lemmikmälestused professionaalseteks digitaalseteks maalideks. Vali suurus, laadi üles foto ja lase meil luua midagi maagilist.",
       ctaPrimary: "Loo minu portree",
       ctaSecondary: "Kuidas see toimib",
     },
@@ -196,7 +196,7 @@ export const translations = {
       sectionDesc: "Kiire, lihtne ja vapustavad tulemused iga kord.",
       feature1: {
         title: "Kiire maagia",
-        desc: "Meie Nana Banana AI töötleb sinu fotot sekunditega, säilitades detailid ja lisades kunstilist hõngu.",
+        desc: "Meie süsteem töötleb sinu fotot sekunditega, säilitades detailid ja lisades kunstilist hõngu.",
       },
       feature2: {
         title: "Digitaalne maal",
@@ -227,10 +227,10 @@ export const translations = {
         title: "Vali lõuendi suurus",
         premium: "Premium lõuend",
         back: "Tagasi",
-        button: "Töötle AI-ga",
+        button: "Töötle",
       },
       processing: {
-        title: "Nana Banana töötab...",
+        title: "Sinu portree luuakse...",
         desc: "Loome sinu digitaalseid meistriteoseid erinevate kunstiliste taustadega.",
       },
       selection: {

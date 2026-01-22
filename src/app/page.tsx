@@ -111,18 +111,6 @@ export default function Home() {
           </div>
         </section>
 
-
-        {/* Trust/Social Proof */}
-        <section className="py-20 border-t border-b">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-12 items-center opacity-50 grayscale">
-              <span className="text-2xl font-black">CANVAS.PRO</span>
-              <span className="text-2xl font-black">ART.EE</span>
-              <span className="text-2xl font-black">TALLINN.PRINT</span>
-              <span className="text-2xl font-black">NANA.BANANA</span>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
