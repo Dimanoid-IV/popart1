@@ -1,10 +1,15 @@
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import OrderFlow from "@/components/OrderFlow";
 import Image from "next/image";
 import { CheckCircle, Zap, Palette, Heart } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -39,25 +44,24 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
             <div className="text-center max-w-4xl mx-auto pointer-events-auto">
               <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 mb-8 leading-[1]">
-                Your Photos. <br />
-                <span className="text-indigo-600 drop-shadow-sm">Pure Art.</span>
+                {t.hero.title1} <br />
+                <span className="text-indigo-600 drop-shadow-sm">{t.hero.title2}</span>
               </h1>
               <p className="text-2xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
-                Turn your favorite memories into professional digital painting portraits. 
-                Choose a size, upload your photo, and let our AI create something magical.
+                {t.hero.description}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <a 
                   href="#order-now" 
                   className="bg-indigo-600 text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95"
                 >
-                  Create My Portrait
+                  {t.hero.ctaPrimary}
                 </a>
                 <a 
                   href="#how-it-works" 
                   className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-12 py-5 rounded-full font-bold text-xl hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-lg"
                 >
-                  How it Works
+                  {t.hero.ctaSecondary}
                 </a>
               </div>
             </div>
@@ -76,15 +80,15 @@ export default function Home() {
         <section id="how-it-works" className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Artistic Perfection in 3 Steps</h2>
-              <p className="text-gray-500">Fast, easy, and absolutely stunning results every time.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">{t.features.sectionTitle}</h2>
+              <p className="text-gray-500">{t.features.sectionDesc}</p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
               {[
-                { icon: <Zap className="w-8 h-8 text-yellow-500" />, title: "Instant Magic", desc: "Our Nana Banana AI processes your photo in seconds, keeping every detail while adding artistic flair." },
-                { icon: <Palette className="w-8 h-8 text-indigo-500" />, title: "Digital Painting", desc: "No filters here. Each portrait is transformed into a digital painting style with artistic backgrounds." },
-                { icon: <Heart className="w-8 h-8 text-red-500" />, title: "Premium Quality", desc: "Printed on high-quality museum-grade canvas that lasts a lifetime. Perfect for home or as a gift." }
+                { icon: <Zap className="w-8 h-8 text-yellow-500" />, title: t.features.feature1.title, desc: t.features.feature1.desc },
+                { icon: <Palette className="w-8 h-8 text-indigo-500" />, title: t.features.feature2.title, desc: t.features.feature2.desc },
+                { icon: <Heart className="w-8 h-8 text-red-500" />, title: t.features.feature3.title, desc: t.features.feature3.desc }
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 transition-hover hover:shadow-lg">
                   <div className="mb-6 p-4 bg-white rounded-full shadow-sm">{item.icon}</div>
@@ -100,12 +104,13 @@ export default function Home() {
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">Start Your Transformation</h2>
-              <p className="text-gray-500 italic">Select your size and upload your photo to begin.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">{t.order.sectionTitle}</h2>
+              <p className="text-gray-500 italic">{t.order.sectionDesc}</p>
             </div>
             <OrderFlow />
           </div>
         </section>
+
 
         {/* Trust/Social Proof */}
         <section className="py-20 border-t border-b">

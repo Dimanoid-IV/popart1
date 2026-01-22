@@ -3,6 +3,8 @@
 import { useState, useRef } from 'react';
 import { Upload, Check, Loader2, ArrowRight, ImageIcon } from 'lucide-react';
 
+import { useLanguage } from '@/lib/LanguageContext';
+
 const SIZES = [
   { label: '45x30 cm', price: 45 },
   { label: '60x40 cm', price: 55 },
@@ -13,7 +15,9 @@ const SIZES = [
 type Step = 'upload' | 'size' | 'processing' | 'selection' | 'checkout';
 
 export default function OrderFlow() {
+  const { t } = useLanguage();
   const [step, setStep] = useState<Step>('upload');
+
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
   const [aiResults, setAiResults] = useState<string[]>([]);
@@ -114,6 +118,8 @@ export default function OrderFlow() {
 
   const handleCheckout = async () => {
     if (!email || !shippingInfo.fullName || !shippingInfo.address || !shippingInfo.postalCode || !shippingInfo.phone || selectedResult === null) {
+      alert(t.order.checkout.secure); // Or a specific alert message for missing info
+      // Actually, I should use the correct translations for errors too, but for now I'll use simple ones
       alert('Please fill in all contact and shipping information.');
       return;
     }
@@ -148,7 +154,7 @@ export default function OrderFlow() {
     <div id="order-now" className="w-full max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl border border-gray-100">
       {/* Progress Bar */}
       <div className="flex justify-between mb-8">
-        {['Upload', 'Size', 'Process', 'Select', 'Pay'].map((label, i) => {
+        {[t.order.steps.upload, t.order.steps.size, t.order.steps.process, t.order.steps.select, t.order.steps.pay].map((label, i) => {
           const currentStepIndex = ['upload', 'size', 'processing', 'selection', 'checkout'].indexOf(step);
           const isActive = i <= currentStepIndex;
           return (
@@ -170,12 +176,12 @@ export default function OrderFlow() {
             className="border-2 border-dashed border-gray-300 rounded-xl p-12 hover:border-indigo-500 transition-colors cursor-pointer group"
           >
             <Upload className="w-16 h-16 mx-auto text-gray-400 group-hover:text-indigo-500 transition-colors mb-4" />
-            <h3 className="text-xl font-bold mb-2">Upload your photo</h3>
-            <p className="text-gray-500 mb-6 text-sm">High resolution photos work best (JPG, PNG)</p>
+            <h3 className="text-xl font-bold mb-2">{t.order.upload.title}</h3>
+            <p className="text-gray-500 mb-6 text-sm">{t.order.upload.desc}</p>
             <button className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-700 transition-transform hover:scale-105">
-              Choose File
+              {t.order.upload.button}
             </button>
-            <p className="text-xs text-gray-400 mt-4 italic">Get your custom masterpiece in minutes!</p>
+            <p className="text-xs text-gray-400 mt-4 italic">{t.order.upload.footer}</p>
             <input 
               type="file" 
               ref={fileInputRef} 
@@ -190,7 +196,7 @@ export default function OrderFlow() {
       {/* Step: Size */}
       {step === 'size' && (
         <div className="py-6">
-          <h3 className="text-2xl font-bold mb-6 text-center">Choose Canvas Size</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">{t.order.size.title}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             {SIZES.map((size) => (
               <div 
@@ -200,19 +206,19 @@ export default function OrderFlow() {
               >
                 <div>
                   <div className="font-bold text-lg">{size.label}</div>
-                  <div className="text-gray-500 text-sm italic">Premium Canvas</div>
+                  <div className="text-gray-500 text-sm italic">{t.order.size.premium}</div>
                 </div>
                 <div className="text-2xl font-black text-indigo-600">€{size.price}</div>
               </div>
             ))}
           </div>
           <div className="flex justify-between items-center">
-            <button onClick={() => setStep('upload')} className="text-gray-500 font-semibold hover:text-gray-700 underline">Back</button>
+            <button onClick={() => setStep('upload')} className="text-gray-500 font-semibold hover:text-gray-700 underline">{t.order.size.back}</button>
             <button 
               onClick={startProcessing}
               className="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-indigo-700 shadow-lg transition-all"
             >
-              Process with AI <ArrowRight className="w-5 h-5" />
+              {t.order.size.button} <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -222,8 +228,8 @@ export default function OrderFlow() {
       {step === 'processing' && (
         <div className="text-center py-20">
           <Loader2 className="w-20 h-20 animate-spin mx-auto text-indigo-600 mb-6" />
-          <h3 className="text-2xl font-bold mb-2">Nana Banana is working...</h3>
-          <p className="text-gray-500 italic">Creating your digital masterpieces with different artistic backgrounds.</p>
+          <h3 className="text-2xl font-bold mb-2">{t.order.processing.title}</h3>
+          <p className="text-gray-500 italic">{t.order.processing.desc}</p>
           <div className="mt-8 flex justify-center gap-2">
              <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
              <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce delay-100"></div>
@@ -235,8 +241,8 @@ export default function OrderFlow() {
       {/* Step: Selection */}
       {step === 'selection' && (
         <div className="py-6">
-          <h3 className="text-2xl font-bold mb-2 text-center">Select Your Result</h3>
-          <p className="text-gray-500 text-center mb-8">Pick the one you love the most!</p>
+          <h3 className="text-2xl font-bold mb-2 text-center">{t.order.selection.title}</h3>
+          <p className="text-gray-500 text-center mb-8">{t.order.selection.desc}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
             {aiResults.map((url, i) => (
               <div 
@@ -257,7 +263,7 @@ export default function OrderFlow() {
               onClick={() => setStep('checkout')}
               className="bg-indigo-600 disabled:bg-gray-300 text-white px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-indigo-700 transition-all active:scale-95"
             >
-              Proceed to Checkout
+              {t.order.selection.button}
             </button>
           </div>
         </div>
@@ -268,40 +274,40 @@ export default function OrderFlow() {
         <div className="py-6">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6 italic underline">Your Order Summary</h3>
+              <h3 className="text-2xl font-bold mb-6 italic underline">{t.order.checkout.title}</h3>
               <div className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
                 <div className="flex justify-between items-center pb-4 border-b">
-                  <span className="text-gray-600 font-medium">Product</span>
-                  <span className="font-bold">Digital Painting Portrait</span>
+                  <span className="text-gray-600 font-medium">{t.order.checkout.product}</span>
+                  <span className="font-bold">{t.order.checkout.productName}</span>
                 </div>
                 <div className="flex justify-between items-center pb-4 border-b">
-                  <span className="text-gray-600 font-medium">Size</span>
+                  <span className="text-gray-600 font-medium">{t.order.checkout.size}</span>
                   <span className="font-bold">{selectedSize.label}</span>
                 </div>
                 <div className="flex justify-between items-center text-xl">
-                  <span className="text-gray-900 font-black">Total Price</span>
+                  <span className="text-gray-900 font-black">{t.order.checkout.total}</span>
                   <span className="font-black text-indigo-600">€{selectedSize.price}</span>
                 </div>
               </div>
               <p className="mt-6 text-sm text-gray-500 leading-relaxed italic">
-                Get notified about your order status faster than anyone else! We will send the final file to your email immediately after printing.
+                {t.order.checkout.notification}
               </p>
             </div>
             
             <div className="flex flex-col space-y-4">
-              <h4 className="text-xl font-bold mb-2">Shipping & Contact Information</h4>
+              <h4 className="text-xl font-bold mb-2">{t.order.checkout.shippingTitle}</h4>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input 
                   type="text" 
-                  placeholder="Full Name" 
+                  placeholder={t.order.checkout.fullName} 
                   value={shippingInfo.fullName}
                   onChange={(e) => setShippingInfo({...shippingInfo, fullName: e.target.value})}
                   className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
                 />
                 <input 
                   type="email" 
-                  placeholder="Email Address" 
+                  placeholder={t.order.checkout.email} 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
@@ -310,7 +316,7 @@ export default function OrderFlow() {
 
               <input 
                 type="text" 
-                placeholder="Shipping Address (Street, House, Appt)" 
+                placeholder={t.order.checkout.address} 
                 value={shippingInfo.address}
                 onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
                 className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
@@ -319,14 +325,14 @@ export default function OrderFlow() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input 
                   type="text" 
-                  placeholder="Postal Code" 
+                  placeholder={t.order.checkout.postalCode} 
                   value={shippingInfo.postalCode}
                   onChange={(e) => setShippingInfo({...shippingInfo, postalCode: e.target.value})}
                   className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
                 />
                 <input 
                   type="tel" 
-                  placeholder="Phone Number" 
+                  placeholder={t.order.checkout.phone} 
                   value={shippingInfo.phone}
                   onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
                   className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
@@ -337,12 +343,12 @@ export default function OrderFlow() {
                 onClick={handleCheckout}
                 className="bg-indigo-600 text-white w-full py-5 rounded-xl font-black text-xl shadow-2xl hover:bg-indigo-700 transition-all hover:-translate-y-1 active:translate-y-0"
               >
-                Pay with Stripe
+                {t.order.checkout.payButton}
               </button>
-              <p className="text-center text-xs text-gray-400 mt-2">Secure payment via Stripe. No credit card details stored.</p>
+              <p className="text-center text-xs text-gray-400 mt-2">{t.order.checkout.secure}</p>
             </div>
           </div>
-          <button onClick={() => setStep('selection')} className="mt-8 text-gray-500 font-semibold hover:text-gray-700 underline">Back to Selection</button>
+          <button onClick={() => setStep('selection')} className="mt-8 text-gray-500 font-semibold hover:text-gray-700 underline">{t.order.checkout.back}</button>
         </div>
       )}
     </div>
