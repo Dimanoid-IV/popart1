@@ -1,65 +1,102 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import OrderFlow from "@/components/OrderFlow";
 import Image from "next/image";
+import { CheckCircle, Zap, Palette, Heart } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen flex flex-col bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="relative py-20 overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-[1.1]">
+                Your Photos. <br />
+                <span className="text-indigo-600">Pure Art.</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Turn your favorite memories into professional digital painting portraits. 
+                Choose a size, upload your photo, and let our AI create something magical.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a 
+                  href="#order-now" 
+                  className="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-indigo-700 transition-all hover:scale-105"
+                >
+                  Create My Portrait
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-4 rounded-full font-bold text-lg hover:border-indigo-600 hover:text-indigo-600 transition-all"
+                >
+                  How it Works
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
+            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div className="absolute top-1/3 -right-20 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section id="how-it-works" className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Artistic Perfection in 3 Steps</h2>
+              <p className="text-gray-500">Fast, easy, and absolutely stunning results every time.</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+              {[
+                { icon: <Zap className="w-8 h-8 text-yellow-500" />, title: "Instant Magic", desc: "Our Nana Banana AI processes your photo in seconds, keeping every detail while adding artistic flair." },
+                { icon: <Palette className="w-8 h-8 text-indigo-500" />, title: "Digital Painting", desc: "No filters here. Each portrait is transformed into a digital painting style with artistic backgrounds." },
+                { icon: <Heart className="w-8 h-8 text-red-500" />, title: "Premium Quality", desc: "Printed on high-quality museum-grade canvas that lasts a lifetime. Perfect for home or as a gift." }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 transition-hover hover:shadow-lg">
+                  <div className="mb-6 p-4 bg-white rounded-full shadow-sm">{item.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 italic underline">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Order Flow Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Start Your Transformation</h2>
+              <p className="text-gray-500 italic">Select your size and upload your photo to begin.</p>
+            </div>
+            <OrderFlow />
+          </div>
+        </section>
+
+        {/* Trust/Social Proof */}
+        <section className="py-20 border-t border-b">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-12 items-center opacity-50 grayscale">
+              <span className="text-2xl font-black">CANVAS.PRO</span>
+              <span className="text-2xl font-black">ART.EE</span>
+              <span className="text-2xl font-black">TALLINN.PRINT</span>
+              <span className="text-2xl font-black">NANA.BANANA</span>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <Footer />
     </div>
   );
 }
+
