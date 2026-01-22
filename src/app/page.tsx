@@ -116,7 +116,7 @@ export default function Home() {
                 />
                 
                 {/* Portraits on the wall */}
-                <div className="absolute top-[8%] left-0 w-full h-[65%] flex items-end justify-center gap-4 md:gap-12 px-4">
+                <div className="absolute top-[5%] left-0 w-full h-[55%] flex items-end justify-center gap-4 md:gap-12 px-4">
                   {[
                     { size: '45x30', price: '45', scale: 0.5 },
                     { size: '60x40', price: '55', scale: 0.67 },
