@@ -1,0 +1,32 @@
+{
+  "slug": "custom-art-portrait-estonia",
+  "title": "Custom artistic portrait in Estonia: what to know before you order",
+  "description": "A practical guide to ordering digital painting portraits and canvas prints in Tallinn and across Estonia.",
+  "publishedAt": "2026-02-20",
+  "updatedAt": "2026-02-25",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": ["portrait", "Tallinn", "digital painting", "canvas", "PopArt"],
+  "bodyHtml": "<p>An artistic portrait works well as a gift or home décor. In Estonia you can pick canvas sizes and print from your photo-based artwork.</p><h2>Why digital painting</h2><p>It keeps facial character and adds painterly texture—ideal for high-quality canvas printing.</p><h2>Order steps</h2><ul><li>Upload a clear photo</li><li>Choose a size</li><li>Confirm the result before printing</li></ul>",
+  "faqs": [
+    {
+      "question": "How long does an order take?",
+      "answer": "Timing depends on queue; your confirmation email will include specifics."
+    },
+    {
+      "question": "Can I choose the background?",
+      "answer": "Yes—the engine offers several artistic backgrounds to pick from."
+    }
+  ],
+  "relatedSlugs": ["canvas-gift-tallinn"],
+  "internalLinks": [
+    {
+      "href": "/en/blog/canvas-gift-tallinn",
+      "label": "Canvas gift ideas in Tallinn"
+    }
+  ]
+}

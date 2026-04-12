@@ -1,0 +1,20 @@
+{
+  "slug": "canvas-gift-tallinn",
+  "title": "Холст в подарок: идеи для Таллина",
+  "description": "Как выбрать размер и стиль, чтобы подарок на холсте радовал годами.",
+  "publishedAt": "2026-02-18",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee"
+  },
+  "coverImage": "/pic1.jpg",
+  "keywords": ["подарок", "холст", "Таллин", "портрет"],
+  "bodyHtml": "<p>Холст в подарок — персональный и долговечный выбор. Подберите фото, которое лучше всего передаёт нужный момент.</p><p>Меньший формат удобен для офиса; крупный — как акцент в гостиной.</p>",
+  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/custom-art-portrait-estonia",
+      "label": "Индивидуальный портрет в Эстонии"
+    }
+  ]
+}

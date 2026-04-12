@@ -1,0 +1,20 @@
+{
+  "slug": "canvas-gift-tallinn",
+  "title": "Lõuend kingitusena: ideid Tallinna sünnipäevadeks",
+  "description": "Kuidas valida mõõtu ja stiili, et lõuend kingitusena rõõmustaks aastaid.",
+  "publishedAt": "2026-02-18",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee"
+  },
+  "coverImage": "/pic1.jpg",
+  "keywords": ["kingitus", "lõuend", "Tallinn", "portree"],
+  "bodyHtml": "<p>Lõuend kingitusena on isiklik ja püsiv. Vali foto, mis toob esile hetked, mida soovid jäädvustada.</p><p>Väiksem mõõt sobib kontorisse; suurem elutuppa fookuspildina.</p>",
+  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "internalLinks": [
+    {
+      "href": "/et/blog/custom-art-portrait-estonia",
+      "label": "Kunstiline portree tellimus Eestis"
+    }
+  ]
+}
