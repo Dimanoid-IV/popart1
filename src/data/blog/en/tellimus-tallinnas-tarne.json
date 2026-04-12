@@ -1,0 +1,15 @@
+{
+  "slug": "tellimus-tallinnas-tarne",
+  "category": "local-estonia",
+  "title": "Ordering in Tallinn and Estonia: delivery notes",
+  "description": "Practical notes on checkout details and delivery across Estonia.",
+  "publishedAt": "2026-02-12",
+  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
+  "coverImage": "/pic3.jpg",
+  "keywords": ["Tallinn", "delivery", "Estonia", "order"],
+  "bodyHtml": "<p>Double-check phone and address at checkout—courier delivery depends on accurate details.</p>",
+  "relatedSlugs": ["canvas-gift-tallinn"],
+  "internalLinks": [
+    { "href": "/en/blog/canvas-gift-tallinn", "label": "Gift ideas" }
+  ]
+}

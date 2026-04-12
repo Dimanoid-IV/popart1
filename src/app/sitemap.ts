@@ -3,10 +3,13 @@ import {
   BLOG_LOCALES,
   SITE_URL,
   blogArticleUrl,
+  blogCategoryUrl,
   blogIndexUrl,
   getAllArticleParams,
+  getAllCategoryPageParams,
   getArticle,
 } from "@/lib/blog";
+import { getMarketingSitemapEntries } from "@/lib/seo/marketing-sitemap-urls";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [
@@ -16,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...getMarketingSitemapEntries(),
   ];
 
   for (const locale of BLOG_LOCALES) {
@@ -24,6 +28,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
+    });
+  }
+
+  for (const { locale, category } of getAllCategoryPageParams()) {
+    entries.push({
+      url: blogCategoryUrl(locale, category),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.75,
     });
   }
 

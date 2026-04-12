@@ -1,6 +1,7 @@
 import type { BlogArticle } from "./types";
 import { SITE_URL } from "./constants";
-import { blogArticleUrl, blogIndexPath } from "./paths";
+import { blogArticleUrl, blogCategoryPath, blogIndexPath } from "./paths";
+import { getCategoryCopy } from "./categories";
 
 function absoluteImageUrl(coverImage: string): string {
   if (coverImage.startsWith("http")) return coverImage;
@@ -12,7 +13,7 @@ export function buildArticleGraphLd(article: BlogArticle, slug: string) {
   const imageUrl = absoluteImageUrl(article.coverImage);
   const dateModified = article.updatedAt ?? article.publishedAt;
 
-  const articleEntity = {
+  const articleEntity: Record<string, unknown> = {
     "@type": "Article",
     "@id": `${url}#article`,
     headline: article.title,
@@ -45,29 +46,53 @@ export function buildArticleGraphLd(article: BlogArticle, slug: string) {
     keywords: article.keywords.join(", "),
   };
 
+  if (article.category) {
+    const cat = getCategoryCopy(article.category, article.locale);
+    articleEntity.articleSection = cat.title;
+  }
+
+  const crumbItems: { position: number; name: string; item: string }[] = [
+    {
+      position: 1,
+      name: "PopArt.ee",
+      item: SITE_URL,
+    },
+    {
+      position: 2,
+      name: "Blog",
+      item: `${SITE_URL}${blogIndexPath(article.locale)}`,
+    },
+  ];
+
+  if (article.category) {
+    const cat = getCategoryCopy(article.category, article.locale);
+    crumbItems.push({
+      position: 3,
+      name: cat.short,
+      item: `${SITE_URL}${blogCategoryPath(article.locale, article.category)}`,
+    });
+    crumbItems.push({
+      position: 4,
+      name: article.title,
+      item: url,
+    });
+  } else {
+    crumbItems.push({
+      position: 3,
+      name: article.title,
+      item: url,
+    });
+  }
+
   const breadcrumbList = {
     "@type": "BreadcrumbList",
     "@id": `${url}#breadcrumb`,
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "PopArt.ee",
-        item: SITE_URL,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Blog",
-        item: `${SITE_URL}${blogIndexPath(article.locale)}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: article.title,
-        item: url,
-      },
-    ],
+    itemListElement: crumbItems.map((c) => ({
+      "@type": "ListItem",
+      position: c.position,
+      name: c.name,
+      item: c.item,
+    })),
   };
 
   const graph: Record<string, unknown>[] = [articleEntity, breadcrumbList];

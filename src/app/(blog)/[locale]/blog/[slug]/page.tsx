@@ -5,9 +5,11 @@ import {
   BLOG_LOCALES,
   SITE_URL,
   blogArticleUrl,
+  blogCategoryPath,
   blogIndexPath,
   getAllArticleParams,
   getArticle,
+  getCategoryCopy,
   isValidBlogLocale,
 } from "@/lib/blog";
 import { getBlogUiLabels } from "@/lib/blog/ui-labels";
@@ -93,8 +95,23 @@ export default async function BlogArticlePage({
   const breadcrumbItems = [
     { label: "PopArt.ee", href: "/" },
     { label: labels.breadcrumbBlog, href: blogIndexPath(locale) },
+    ...(article.category
+      ? [
+          {
+            label: getCategoryCopy(article.category, locale).short,
+            href: blogCategoryPath(locale, article.category),
+          },
+        ]
+      : []),
     { label: article.title },
   ];
+
+  const categoryNav = article.category
+    ? {
+        label: getCategoryCopy(article.category, locale).title,
+        href: blogCategoryPath(locale, article.category),
+      }
+    : undefined;
 
   return (
     <ArticleTemplate
@@ -109,6 +126,7 @@ export default async function BlogArticlePage({
         readingTime: labels.readingTime,
       }}
       breadcrumbItems={breadcrumbItems}
+      categoryNav={categoryNav}
     />
   );
 }

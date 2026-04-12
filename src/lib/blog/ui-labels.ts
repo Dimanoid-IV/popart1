@@ -10,6 +10,8 @@ export type BlogUiLabels = {
   relatedHeading: string;
   readingTime: (minutes: number) => string;
   breadcrumbBlog: string;
+  categoriesHeading: string;
+  emptyCategory: string;
 };
 
 const LABELS: Record<BlogLocale, BlogUiLabels> = {
@@ -24,6 +26,8 @@ const LABELS: Record<BlogLocale, BlogUiLabels> = {
     relatedHeading: "Seotud artiklid",
     readingTime: (m) => `${m} min lugemist`,
     breadcrumbBlog: "Blogi",
+    categoriesHeading: "Kategooriad",
+    emptyCategory: "Selles kategoorias pole veel artikleid.",
   },
   ru: {
     blogTitle: "Блог PopArt.ee",
@@ -36,6 +40,8 @@ const LABELS: Record<BlogLocale, BlogUiLabels> = {
     relatedHeading: "Похожие статьи",
     readingTime: (m) => `${m} мин. чтения`,
     breadcrumbBlog: "Блог",
+    categoriesHeading: "Категории",
+    emptyCategory: "В этой категории пока нет статей.",
   },
   en: {
     blogTitle: "PopArt.ee Blog",
@@ -48,6 +54,8 @@ const LABELS: Record<BlogLocale, BlogUiLabels> = {
     relatedHeading: "Related articles",
     readingTime: (m) => `${m} min read`,
     breadcrumbBlog: "Blog",
+    categoriesHeading: "Categories",
+    emptyCategory: "No articles in this category yet.",
   },
 };
 

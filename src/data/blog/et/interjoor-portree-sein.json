@@ -1,0 +1,15 @@
+{
+  "slug": "interjoor-portree-sein",
+  "category": "interior",
+  "title": "Portree elutoas: suurus ja paigutus",
+  "description": "Kuidas valida lõuendi mõõtu ja kohta, et portree looks elutoas loomulikult.",
+  "publishedAt": "2026-02-15",
+  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
+  "coverImage": "/pic2.jpg",
+  "keywords": ["interjöör", "portree", "elutuba", "lõuend"],
+  "bodyHtml": "<p>Elutoas tasakaalustab portree sageli diivanitsooni. Jäta seina ümber piisavalt õhku, et raam ei tunduks surutuna.</p>",
+  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "internalLinks": [
+    { "href": "/et/blog/custom-art-portrait-estonia", "label": "Portree tellimise juhend" }
+  ]
+}

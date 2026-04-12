@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
-import type { BlogArticle, BlogLocale } from "./types";
+import type { BlogArticle, BlogCategoryId, BlogLocale } from "./types";
 import { BLOG_LOCALES } from "./constants";
+import { BLOG_CATEGORY_IDS } from "./categories";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
@@ -53,4 +54,24 @@ export function listArticlesForLocale(locale: BlogLocale): BlogArticle[] {
 
 export function isValidBlogLocale(s: string): s is BlogLocale {
   return BLOG_LOCALES.includes(s as BlogLocale);
+}
+
+export function listArticlesByCategory(
+  locale: BlogLocale,
+  category: BlogCategoryId
+): BlogArticle[] {
+  return listArticlesForLocale(locale).filter((a) => a.category === category);
+}
+
+export function getAllCategoryPageParams(): {
+  locale: BlogLocale;
+  category: BlogCategoryId;
+}[] {
+  const params: { locale: BlogLocale; category: BlogCategoryId }[] = [];
+  for (const locale of BLOG_LOCALES) {
+    for (const category of BLOG_CATEGORY_IDS) {
+      params.push({ locale, category });
+    }
+  }
+  return params;
 }

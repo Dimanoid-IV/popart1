@@ -1,5 +1,12 @@
 export type BlogLocale = "et" | "ru" | "en";
 
+/** URL segment under /{locale}/blog/category/[category] */
+export type BlogCategoryId =
+  | "gifts"
+  | "portrait-guide"
+  | "interior"
+  | "local-estonia";
+
 export type BlogAuthor = {
   name: string;
   url?: string;
@@ -30,4 +37,6 @@ export type BlogArticle = {
   faqs?: BlogFaqItem[];
   relatedSlugs?: string[];
   internalLinks?: BlogInternalLink[];
+  /** Optional hub for category listing & schema */
+  category?: BlogCategoryId;
 };

@@ -1,80 +1,89 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import type { BlogLocale } from "@/lib/blog/types";
+import type { BlogArticle, BlogCategoryId, BlogLocale } from "@/lib/blog/types";
 import {
   BLOG_LOCALES,
   SITE_URL,
   blogArticlePath,
+  blogCategoryUrl,
+  blogIndexPath,
   blogIndexUrl,
+  getCategoryCopy,
+  isValidBlogCategory,
   isValidBlogLocale,
-  listArticlesForLocale,
+  listArticlesByCategory,
+  getAllCategoryPageParams,
 } from "@/lib/blog";
 import { getBlogUiLabels } from "@/lib/blog/ui-labels";
-import BlogCategoryChips from "@/components/blog/BlogCategoryChips";
 import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 
 export async function generateStaticParams() {
-  return BLOG_LOCALES.map((locale) => ({ locale }));
+  return getAllCategoryPageParams();
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
-  const { locale: loc } = await params;
-  if (!isValidBlogLocale(loc)) return {};
+  const { locale: loc, category: cat } = await params;
+  if (!isValidBlogLocale(loc) || !isValidBlogCategory(cat)) return {};
   const locale = loc as BlogLocale;
-  const labels = getBlogUiLabels(locale);
-  const canonical = blogIndexUrl(locale);
+  const category = cat as BlogCategoryId;
+  const copy = getCategoryCopy(category, locale);
+  const canonical = blogCategoryUrl(locale, category);
+  const languages = Object.fromEntries(
+    BLOG_LOCALES.map((l) => [l, blogCategoryUrl(l, category)])
+  ) as Record<string, string>;
+  languages["x-default"] = blogCategoryUrl("et", category);
+
   return {
-    title: `${labels.blogTitle} | PopArt.ee`,
-    description: labels.blogIntro,
-    alternates: {
-      canonical,
-      languages: Object.fromEntries(
-        BLOG_LOCALES.map((l) => [l, blogIndexUrl(l)])
-      ) as Record<string, string>,
-    },
+    title: `${copy.title} | ${getBlogUiLabels(locale).blogTitle} | PopArt.ee`,
+    description: copy.description,
+    alternates: { canonical, languages },
     openGraph: {
       url: canonical,
-      title: labels.blogTitle,
-      description: labels.blogIntro,
+      title: copy.title,
+      description: copy.description,
       siteName: "PopArt.ee",
-      locale: locale === "et" ? "et_EE" : locale === "ru" ? "ru_RU" : "en_US",
       type: "website",
+      locale: locale === "et" ? "et_EE" : locale === "ru" ? "ru_RU" : "en_US",
     },
     twitter: {
       card: "summary_large_image",
-      title: labels.blogTitle,
-      description: labels.blogIntro,
+      title: copy.title,
+      description: copy.description,
     },
+    robots: { index: true, follow: true },
   };
 }
 
-export default async function BlogIndexPage({
+export default async function BlogCategoryPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; category: string }>;
 }) {
-  const { locale: loc } = await params;
-  if (!isValidBlogLocale(loc)) notFound();
+  const { locale: loc, category: cat } = await params;
+  if (!isValidBlogLocale(loc) || !isValidBlogCategory(cat)) notFound();
   const locale = loc as BlogLocale;
-  const articles = listArticlesForLocale(locale);
+  const category = cat as BlogCategoryId;
+  const articles = listArticlesByCategory(locale, category);
   const labels = getBlogUiLabels(locale);
   const cro = getBlogCroLabels(locale);
+  const copy = getCategoryCopy(category, locale);
+  const canonical = blogCategoryUrl(locale, category);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": `${blogIndexUrl(locale)}#collection`,
-        name: labels.blogTitle,
-        description: labels.blogIntro,
-        url: blogIndexUrl(locale),
+        "@id": `${canonical}#collection`,
+        name: copy.title,
+        description: copy.description,
+        url: canonical,
         inLanguage:
           locale === "et" ? "et-EE" : locale === "ru" ? "ru-EE" : "en-EE",
         isPartOf: { "@type": "WebSite", name: "PopArt.ee", url: SITE_URL },
@@ -94,6 +103,12 @@ export default async function BlogIndexPage({
             name: labels.breadcrumbBlog,
             item: blogIndexUrl(locale),
           },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: copy.title,
+            item: canonical,
+          },
         ],
       },
     ],
@@ -105,16 +120,29 @@ export default async function BlogIndexPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <nav className="mb-6 text-sm text-gray-600">
+        <ol className="flex flex-wrap items-center gap-2">
+          <li>
+            <Link href="/" className="hover:text-indigo-600">
+              PopArt.ee
+            </Link>
+          </li>
+          <span className="text-gray-400">/</span>
+          <li>
+            <Link href={blogIndexPath(locale)} className="hover:text-indigo-600">
+              {labels.breadcrumbBlog}
+            </Link>
+          </li>
+          <span className="text-gray-400">/</span>
+          <li className="font-medium text-gray-900">{copy.title}</li>
+        </ol>
+      </nav>
       <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">
-        {labels.blogTitle}
+        {copy.title}
       </h1>
-      <p className="mt-4 text-lg text-gray-600">{labels.blogIntro}</p>
-      <BlogCategoryChips
-        locale={locale}
-        heading={labels.categoriesHeading}
-      />
+      <p className="mt-4 text-lg text-gray-600">{copy.description}</p>
       <ul className="mt-10 space-y-6">
-        {articles.map((a) => (
+        {articles.map((a: BlogArticle) => (
           <li
             key={a.slug}
             className="rounded-xl border border-gray-200 p-5 transition-shadow hover:shadow-md"
@@ -136,6 +164,9 @@ export default async function BlogIndexPage({
           </li>
         ))}
       </ul>
+      {articles.length === 0 ? (
+        <p className="mt-8 text-gray-500">{labels.emptyCategory}</p>
+      ) : null}
       <BlogListCroBanner cro={cro} />
     </div>
   );

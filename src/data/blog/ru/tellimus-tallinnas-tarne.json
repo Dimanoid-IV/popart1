@@ -1,0 +1,15 @@
+{
+  "slug": "tellimus-tallinnas-tarne",
+  "category": "local-estonia",
+  "title": "Заказ в Таллине и по Эстонии: доставка",
+  "description": "Практические заметки по оформлению заказа и доставке в Эстонии.",
+  "publishedAt": "2026-02-12",
+  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
+  "coverImage": "/pic3.jpg",
+  "keywords": ["Таллин", "доставка", "Эстония", "заказ"],
+  "bodyHtml": "<p>Проверьте телефон и адрес в заказе — курьерская доставка зависит от точных данных.</p>",
+  "relatedSlugs": ["canvas-gift-tallinn"],
+  "internalLinks": [
+    { "href": "/ru/blog/canvas-gift-tallinn", "label": "Идеи подарков" }
+  ]
+}

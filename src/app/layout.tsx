@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
-
+import { rootMetadata } from "@/lib/seo/root-metadata";
+import RootJsonLd from "@/components/seo/RootJsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,32 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "PopArt.ee - Custom Digital Painting Portraits",
-  description: "Turn your photos into stunning digital art portraits. Unique backgrounds, high-quality canvas prints, and fast delivery. Professional AI-powered art editor.",
-  keywords: ["popart", "digital painting", "custom portrait", "canvas print", "gift idea", "photo to art"],
-  openGraph: {
-    title: "PopArt.ee - Your Photos, Pure Art",
-    description: "Create stunning digital painting portraits from your photos in seconds.",
-    url: "https://popart.ee",
-    siteName: "PopArt.ee",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PopArt.ee - Custom Digital Painting Portraits",
-    description: "Turn your photos into stunning digital art portraits.",
-    images: ["/og-image.jpg"],
-  },
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children,
@@ -65,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <RootJsonLd />
         <LanguageProvider>
           {children}
         </LanguageProvider>

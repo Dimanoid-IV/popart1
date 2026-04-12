@@ -1,0 +1,15 @@
+{
+  "slug": "interjoor-portree-sein",
+  "category": "interior",
+  "title": "Портрет в гостиной: размер и размещение",
+  "description": "Как выбрать размер холста и место, чтобы портрет смотрелся естественно.",
+  "publishedAt": "2026-02-15",
+  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
+  "coverImage": "/pic2.jpg",
+  "keywords": ["интерьер", "портрет", "гостиная", "холст"],
+  "bodyHtml": "<p>В гостиной портрет часто балансирует зону дивана. Оставьте вокруг достаточно воздуха у стены.</p>",
+  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "internalLinks": [
+    { "href": "/ru/blog/custom-art-portrait-estonia", "label": "Гид по заказу портрета" }
+  ]
+}
