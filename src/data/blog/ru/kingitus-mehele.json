@@ -1,0 +1,72 @@
+{
+  "slug": "kingitus-mehele",
+  "category": "gifts",
+  "title": "Подарок мужчине, который не ощущается “случайной вещью”",
+  "description": "Подарок мужчине в Эстонии: портрет по фото, предпросмотр и доставка по стране.",
+  "publishedAt": "2026-04-10",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "подарок мужчине Эстония",
+    "портрет по фото",
+    "Таллин"
+  ],
+  "bodyHtml": "<p>Функциональные подарки понятны, но эмоциональные запоминаются. Портрет по общему фото добавляет историю без лишней театральности. Для свадебного контекста см. <a href='/ru/blog/pulmakingitus-idee'>идею свадебного подарка</a> и <a href='/ru/blog/seinapilt-tellimine'>заказ настенного изображения</a>.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Портрет — уместно?",
+      "answer": "Да, особенно с семейной или общей памятью."
+    },
+    {
+      "question": "Сроки?",
+      "answer": "Зависит от очереди и подтверждения предпросмотра."
+    },
+    {
+      "question": "Слишком сентиментально?",
+      "answer": "Выберите спокойный стиль."
+    },
+    {
+      "question": "Доставка?",
+      "answer": "Да, по Эстонии."
+    },
+    {
+      "question": "Фото?",
+      "answer": "Резкое и естественное."
+    },
+    {
+      "question": "Коллеге?",
+      "answer": "Зависит от контекста."
+    },
+    {
+      "question": "Как не выглядеть дёшево?",
+      "answer": "Предпросмотр и качественная печать на холсте."
+    }
+  ],
+  "relatedSlugs": [
+    "pulmakingitus-idee",
+    "personaalne-kingitus",
+    "seinapilt-tellimine"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/pulmakingitus-idee",
+      "label": "Идея свадебного подарка"
+    },
+    {
+      "href": "/ru/blog/personaalne-kingitus",
+      "label": "Персональный подарок"
+    },
+    {
+      "href": "/ru/blog/seinapilt-tellimine",
+      "label": "Заказ настенного изображения"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

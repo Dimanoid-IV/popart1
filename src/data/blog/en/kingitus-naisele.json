@@ -1,0 +1,73 @@
+{
+  "slug": "kingitus-naisele",
+  "category": "gifts",
+  "title": "A gift for her that feels thoughtful—not risky",
+  "description": "Gift for her in Estonia: portrait from a photo, style choices, preview before printing, delivery across Estonia, and realistic timing.",
+  "publishedAt": "2026-04-11",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "gift for her Estonia",
+    "personalized portrait",
+    "canvas print",
+    "Tallinn"
+  ],
+  "bodyHtml": "<p>Buying a gift for her can feel high-stakes. A portrait from a meaningful photo is personal without forcing wearable guesses. Choose a style that fits her home, plan turnaround with preview approval, and consider delivery across Estonia if you cannot hand it over in person.</p>\n<h2>Quiet backgrounds vs bold art</h2>\n<p>Classic taste often prefers calmer backgrounds. For stronger art direction, read <a href='/en/blog/kunstiline-portree'>artistic portrait</a> and <a href='/en/blog/pilt-louendil'>canvas print quality</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "Is a portrait too intimate?",
+      "answer": "With a tasteful photo choice, it usually reads as thoughtful."
+    },
+    {
+      "question": "How early should I order?",
+      "answer": "Plan ahead for preview and printing."
+    },
+    {
+      "question": "Background choices?",
+      "answer": "Usually yes—confirm in preview."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp, natural emotion."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes."
+    },
+    {
+      "question": "Avoid wrong style?",
+      "answer": "Start calmer and iterate in preview."
+    },
+    {
+      "question": "Good for mothers too?",
+      "answer": "Often yes—especially family moments."
+    }
+  ],
+  "relatedSlugs": [
+    "personaalne-kingitus",
+    "kingitus-synnipaevaks",
+    "pilt-louendil"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/kingitus-mehele",
+      "label": "Gift for him"
+    },
+    {
+      "href": "/en/blog/kunstiline-portree",
+      "label": "Artistic portrait"
+    },
+    {
+      "href": "/en/blog/pilt-louendil",
+      "label": "Canvas print"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

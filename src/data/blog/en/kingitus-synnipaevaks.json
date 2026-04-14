@@ -1,0 +1,73 @@
+{
+  "slug": "kingitus-synnipaevaks",
+  "category": "gifts",
+  "title": "A birthday gift that still feels special weeks later",
+  "description": "Birthday gift ideas in Estonia: portrait from a photo, preview before printing, delivery across Estonia, and realistic timing.",
+  "publishedAt": "2026-04-12",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "birthday gift Estonia",
+    "personalized portrait gift",
+    "Tallinn",
+    "delivery across Estonia"
+  ],
+  "bodyHtml": "<p>A birthday gift should spark joy immediately—and again when someone walks past it at home. A portrait from a meaningful photo creates that “slow” happiness. Plan turnaround with preview approval and printing in mind, especially if you need delivery across Estonia.</p>\n<h2>Photo choice for surprises</h2>\n<p>If it must stay secret, pick a photo the recipient will not suspect. For sizing, read <a href='/en/blog/seinapilt-tellimine'>wall art ordering</a> and <a href='/en/blog/portree-fotost-tallinn'>portrait from a photo in Tallinn</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "Will it arrive on time?",
+      "answer": "Plan early; timing depends on queue and preview approval."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes; timing depends on region."
+    },
+    {
+      "question": "What if they are private about portraits?",
+      "answer": "Choose a calmer composition and discuss in preview."
+    },
+    {
+      "question": "How do I pick a size?",
+      "answer": "Use a versatile mid size if unsure."
+    },
+    {
+      "question": "Good for older recipients?",
+      "answer": "Often yes—especially classic, calm styling."
+    },
+    {
+      "question": "What signals quality?",
+      "answer": "Sharpness, color balance, finish, and a clear process."
+    }
+  ],
+  "relatedSlugs": [
+    "personaalne-kingitus",
+    "kingitus-naisele",
+    "portree-fotost-tallinn"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/personaalne-kingitus",
+      "label": "Personal gift guide"
+    },
+    {
+      "href": "/en/blog/kingitus-naisele",
+      "label": "Gift for her"
+    },
+    {
+      "href": "/en/blog/portree-fotost-tallinn",
+      "label": "Portrait from a photo in Tallinn"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

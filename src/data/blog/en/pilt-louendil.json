@@ -1,0 +1,73 @@
+{
+  "slug": "pilt-louendil",
+  "category": "interior",
+  "title": "Canvas print quality: what actually matters before you order",
+  "description": "Canvas prints in Estonia: sizing, sharpness, color, preview before printing, delivery across Estonia, and realistic turnaround.",
+  "publishedAt": "2026-04-08",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "canvas print Estonia",
+    "wall art",
+    "Tallinn",
+    "preview before printing"
+  ],
+  "bodyHtml": "<p>A canvas print is a popular way to make art feel “real” in a room. The canvas texture softens digital edges and interacts with light. For sizing and placement, read <a href='/en/blog/seinapilt-tellimine'>wall art ordering</a> and <a href='/en/blog/kunstiline-portree'>artistic portrait</a> guidance.</p>\n<h2>Sharpness rules</h2>\n<p>Printing magnifies softness. Choose the sharpest photo with readable eye detail. For ordering context, see <a href='/en/blog/portree-fotost-tallinn'>portrait from a photo in Tallinn</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "Canvas vs paper?",
+      "answer": "Canvas adds texture and depth."
+    },
+    {
+      "question": "Do I need a frame?",
+      "answer": "Depends on product; gallery-wrapped edges are common."
+    },
+    {
+      "question": "How to pick a size?",
+      "answer": "Measure the wall and viewing distance."
+    },
+    {
+      "question": "Small photo for big print?",
+      "answer": "Often risky—upscaling reveals blur."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes—recommended."
+    },
+    {
+      "question": "Printing time?",
+      "answer": "Depends on queue; ask for deadlines."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes."
+    }
+  ],
+  "relatedSlugs": [
+    "seinapilt-tellimine",
+    "kunstiline-portree",
+    "portree-fotost-tallinn"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/seinapilt-tellimine",
+      "label": "Wall art ordering"
+    },
+    {
+      "href": "/en/blog/kunstiline-portree",
+      "label": "Artistic portrait"
+    },
+    {
+      "href": "/en/blog/portree-fotost-tallinn",
+      "label": "Portrait from a photo in Tallinn"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

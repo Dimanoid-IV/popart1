@@ -1,0 +1,72 @@
+{
+  "slug": "kunstiline-portree",
+  "category": "portrait-guide",
+  "title": "Художественный портрет: стиль, который уважает черты лица",
+  "description": "Художественный портрет в Эстонии: стиль, предпросмотр, печать на холсте и доставка по стране.",
+  "publishedAt": "2026-04-07",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "художественный портрет Эстония",
+    "холст",
+    "Таллин"
+  ],
+  "bodyHtml": "<p>Художественный портрет должен сохранять узнаваемость и добавлять намеренный стиль. Перед печатью см. <a href='/ru/blog/pilt-louendil'>печать на холсте</a> и <a href='/ru/blog/custom-portrait-estonia'>заказ custom portrait в Эстонии</a> — удобно, если вам ближе международные формулировки, а доставка нужна по Эстонии.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Будет похоже?",
+      "answer": "Хороший процесс сохраняет черты; помогает предпросмотр."
+    },
+    {
+      "question": "Как подарок?",
+      "answer": "Да — если сомневаетесь, выберите спокойнее."
+    },
+    {
+      "question": "Сроки?",
+      "answer": "Зависит от очереди и подтверждения."
+    },
+    {
+      "question": "Фон?",
+      "answer": "Обычно да — уточняйте опции."
+    },
+    {
+      "question": "Фото?",
+      "answer": "Резкое, ровный свет."
+    },
+    {
+      "question": "Холст?",
+      "answer": "Часто отличный выбор."
+    },
+    {
+      "question": "Доставка?",
+      "answer": "Да."
+    }
+  ],
+  "relatedSlugs": [
+    "pilt-louendil",
+    "custom-portrait-estonia",
+    "portree-fotost-tallinn"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/pilt-louendil",
+      "label": "Печать на холсте"
+    },
+    {
+      "href": "/ru/blog/custom-portrait-estonia",
+      "label": "Custom portrait Estonia"
+    },
+    {
+      "href": "/ru/blog/portree-fotost-tallinn",
+      "label": "Портрет по фото в Таллине"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "pulmakingitus-idee",
+  "category": "gifts",
+  "title": "Идея свадебного подарка, которая останется в интерьере",
+  "description": "Идеи свадебного подарка в Эстонии: портрет по фото, предпросмотр и доставка по стране.",
+  "publishedAt": "2026-04-09",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "свадебный подарок Эстония",
+    "портрет по фото",
+    "Таллин"
+  ],
+  "bodyHtml": "<p>Сильный свадебный подарок сочетает эмоцию и пользу. Портрет по важному совместному фото становится частью интерьера. Заложите сроки с учётом поездок, предпросмотра и доставки по Эстонии.</p>\n<h2>Стиль</h2>\n<p>Если вкус неизвестен, выберите спокойнее. Подробнее: <a href='/ru/blog/kunstiline-portree'>художественный портрет</a> и <a href='/ru/blog/pilt-louendil'>печать на холсте</a>.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Уместно ли?",
+      "answer": "Часто да — с важным общим фото."
+    },
+    {
+      "question": "За сколько заказывать?",
+      "answer": "Лучше за несколько недель; быстрее — по очереди."
+    },
+    {
+      "question": "Предпросмотр?",
+      "answer": "Да."
+    },
+    {
+      "question": "Не знаю размер стены?",
+      "answer": "Универсальный средний формат."
+    },
+    {
+      "question": "Доставка?",
+      "answer": "Да."
+    },
+    {
+      "question": "Не ошибиться со стилем?",
+      "answer": "Спокойнее фон."
+    },
+    {
+      "question": "Общий подарок?",
+      "answer": "Да — назначьте координатора."
+    }
+  ],
+  "relatedSlugs": [
+    "personaalne-kingitus",
+    "kingitus-synnipaevaks",
+    "kunstiline-portree"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/kingitus-synnipaevaks",
+      "label": "Подарок на день рождения"
+    },
+    {
+      "href": "/ru/blog/personaalne-kingitus",
+      "label": "Персональный подарок"
+    },
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "slug": "portree-fotost-tallinn",
+  "category": "local-estonia",
+  "title": "Portrait from a photo in Tallinn: ordering guide",
+  "description": "Portrait from a photo in Tallinn and across Estonia: clear steps, preview before printing, delivery, and realistic turnaround for deadlines.",
+  "publishedAt": "2026-04-14",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "portrait from photo Tallinn",
+    "artistic portrait Estonia",
+    "canvas print",
+    "order Tallinn",
+    "delivery across Estonia",
+    "preview before print"
+  ],
+  "bodyHtml": "<p>A portrait from a photo in Tallinn is a practical way to turn one meaningful image into décor or a memorable gift. When you want both emotion and a polished finish, focus on three things: photo quality, a transparent order flow, and realistic turnaround that includes printing and delivery across Estonia.</p>\n<h2>Why this format works</h2>\n<p>People want something personal without scheduling a classic studio session. A portrait based on your photo starts with your story, then adds an artistic interpretation suited to your space or the recipient’s taste.</p>\n<h2>Photo basics that improve the result</h2>\n<p>Choose a sharp, evenly lit image where facial details read clearly. Natural expression beats a stiff pose. If you are also considering wall sizing, read <a href='/en/blog/seinapilt-tellimine'>wall art ordering</a> guidance next.</p>\n<h2>Tallinn logistics and Estonia-wide delivery</h2>\n<p>Tallinn is often a strong hub for communication and shipping routes, but the same service quality can apply nationwide. Ask for delivery timing early if you have a hard deadline like a birthday or wedding weekend.</p>\n<h2>Turnaround time you can plan around</h2>\n<p>Turnaround depends on queue, your preview approval, and production. Leave a buffer of several business days before the event. If you need faster timing, state it upfront so expectations stay realistic.</p>\n<h2>Trust signals to look for</h2>\n<p>Clear steps, preview before printing, secure payment, and readable privacy terms reduce anxiety. If you want a deeper style discussion, see <a href='/en/blog/kunstiline-portree'>artistic portrait</a> and <a href='/en/blog/pilt-louendil'>canvas image quality</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a>: upload a photo, review the preview, and confirm when you are confident.</p>",
+  "faqs": [
+    {
+      "question": "How long does it take?",
+      "answer": "It depends on queue, preview approval, and printing. Plan several business days before your deadline."
+    },
+    {
+      "question": "Can I see a preview before printing?",
+      "answer": "Yes—good workflows include a preview and confirmation step."
+    },
+    {
+      "question": "Do you deliver across Estonia?",
+      "answer": "Delivery across Estonia is common; exact timing depends on carrier and region."
+    },
+    {
+      "question": "What photo works best?",
+      "answer": "Sharp, evenly lit photos with readable facial details."
+    },
+    {
+      "question": "Is it a good gift?",
+      "answer": "Yes—especially when the photo carries a meaningful memory."
+    },
+    {
+      "question": "How do I pick a size?",
+      "answer": "Measure the wall or choose a versatile mid size if unsure."
+    },
+    {
+      "question": "What happens after payment?",
+      "answer": "You should see a clear path: processing, preview, approval, print, ship."
+    }
+  ],
+  "relatedSlugs": [
+    "kunstiline-portree",
+    "pilt-louendil",
+    "seinapilt-tellimine"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/kunstiline-portree",
+      "label": "Artistic portrait guide"
+    },
+    {
+      "href": "/en/blog/pilt-louendil",
+      "label": "Canvas print basics"
+    },
+    {
+      "href": "/en/blog/seinapilt-tellimine",
+      "label": "Wall art ordering"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

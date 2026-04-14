@@ -1,0 +1,73 @@
+{
+  "slug": "custom-portrait-estonia",
+  "category": "portrait-guide",
+  "title": "Custom portrait Estonia: заказ без сюрпризов",
+  "description": "Custom portrait Estonia: заказ по Эстонии с предпросмотром до печати, доставкой и понятными сроками.",
+  "publishedAt": "2026-04-05",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "custom portrait Estonia",
+    "портрет Эстония",
+    "Таллин",
+    "доставка по Эстонии"
+  ],
+  "bodyHtml": "<p>Запрос “custom portrait Estonia” часто означает нужду в ясном процессе: предпросмотр до печати, размеры и доставка по Эстонии. Даже если удобнее на английском, важно, чтобы шаги были прозрачными. См. также <a href='/ru/blog/kunstiline-portree'>художественный портрет</a>, <a href='/ru/blog/portree-fotost-tallinn'>портрет по фото в Таллине</a> и <a href='/ru/blog/seinapilt-tellimine'>заказ настенного изображения</a>.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Можно ли на английском?",
+      "answer": "Часто да — уточните на странице заказа."
+    },
+    {
+      "question": "Доставка по Эстонии?",
+      "answer": "Да."
+    },
+    {
+      "question": "Предпросмотр?",
+      "answer": "Да."
+    },
+    {
+      "question": "Сроки?",
+      "answer": "Зависит от очереди и подтверждения."
+    },
+    {
+      "question": "Фото?",
+      "answer": "Резкое, ровный свет."
+    },
+    {
+      "question": "Как подарок?",
+      "answer": "Да."
+    },
+    {
+      "question": "Размер?",
+      "answer": "Измерьте стену или выберите универсальный."
+    }
+  ],
+  "relatedSlugs": [
+    "kunstiline-portree",
+    "portree-fotost-tallinn",
+    "seinapilt-tellimine"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    },
+    {
+      "href": "/ru/blog/portree-fotost-tallinn",
+      "label": "Портрет по фото в Таллине"
+    },
+    {
+      "href": "/ru/blog/seinapilt-tellimine",
+      "label": "Заказ настенного изображения"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

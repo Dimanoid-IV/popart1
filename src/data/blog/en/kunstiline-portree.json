@@ -1,0 +1,73 @@
+{
+  "slug": "kunstiline-portree",
+  "category": "portrait-guide",
+  "title": "Artistic portrait: style that flatters without distorting",
+  "description": "Artistic portraits in Estonia: style choices, preview before printing, canvas printing, delivery across Estonia, and realistic turnaround.",
+  "publishedAt": "2026-04-07",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "artistic portrait Estonia",
+    "canvas print",
+    "Tallinn",
+    "preview before printing"
+  ],
+  "bodyHtml": "<p>An artistic portrait should keep identity readable while adding intentional style. That balance makes it great for gifts and décor. Before printing, review canvas considerations in <a href='/en/blog/pilt-louendil'>canvas print quality</a> and ordering context in <a href='/en/blog/custom-portrait-estonia'>custom portrait in Estonia</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Will it still look like them?",
+      "answer": "Good workflows preserve character; preview helps."
+    },
+    {
+      "question": "Good as a gift?",
+      "answer": "Yes—choose a calmer style if unsure."
+    },
+    {
+      "question": "How long?",
+      "answer": "Depends on queue and preview approval."
+    },
+    {
+      "question": "Change background?",
+      "answer": "Usually yes—confirm options."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp, even lighting."
+    },
+    {
+      "question": "Canvas?",
+      "answer": "Often a strong choice."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes."
+    }
+  ],
+  "relatedSlugs": [
+    "pilt-louendil",
+    "custom-portrait-estonia",
+    "portree-fotost-tallinn"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/pilt-louendil",
+      "label": "Canvas print quality"
+    },
+    {
+      "href": "/en/blog/custom-portrait-estonia",
+      "label": "Custom portrait in Estonia"
+    },
+    {
+      "href": "/en/blog/portree-fotost-tallinn",
+      "label": "Portrait from a photo in Tallinn"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

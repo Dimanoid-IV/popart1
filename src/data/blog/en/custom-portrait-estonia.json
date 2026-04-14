@@ -1,0 +1,74 @@
+{
+  "slug": "custom-portrait-estonia",
+  "category": "portrait-guide",
+  "title": "Custom portrait Estonia: preview-first ordering",
+  "description": "Custom portrait Estonia: order from Tallinn and nationwide with preview before printing, delivery across Estonia, and realistic turnaround.",
+  "publishedAt": "2026-04-05",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "custom portrait Estonia",
+    "canvas portrait",
+    "Tallinn",
+    "delivery across Estonia",
+    "preview before printing"
+  ],
+  "bodyHtml": "<p>Searching “custom portrait Estonia” usually means you want clarity: preview before printing, understandable sizing, and reliable delivery across Estonia. Even if you prefer English, you can still order with an Estonia-based workflow. Start with a sharp photo, confirm the preview, then print—see also <a href='/en/blog/kunstiline-portree'>artistic portrait</a>, <a href='/en/blog/portree-fotost-tallinn'>portrait from a photo in Tallinn</a>, and <a href='/en/blog/seinapilt-tellimine'>wall art ordering</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "Can I order in English?",
+      "answer": "Many workflows support English messaging; confirm on the order page."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes—timing depends on region."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes—recommended."
+    },
+    {
+      "question": "How long?",
+      "answer": "Depends on queue and preview approval."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp, even lighting."
+    },
+    {
+      "question": "Good gift?",
+      "answer": "Yes—meaningful photos work best."
+    },
+    {
+      "question": "How to pick a size?",
+      "answer": "Measure the wall or choose a versatile mid size."
+    }
+  ],
+  "relatedSlugs": [
+    "kunstiline-portree",
+    "portree-fotost-tallinn",
+    "seinapilt-tellimine"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/kunstiline-portree",
+      "label": "Artistic portrait"
+    },
+    {
+      "href": "/en/blog/portree-fotost-tallinn",
+      "label": "Portrait from a photo in Tallinn"
+    },
+    {
+      "href": "/en/blog/seinapilt-tellimine",
+      "label": "Wall art ordering"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

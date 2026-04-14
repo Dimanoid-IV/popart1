@@ -1,0 +1,72 @@
+{
+  "slug": "pilt-louendil",
+  "category": "interior",
+  "title": "Картина на холсте: качество, размер и контроль",
+  "description": "Печать на холсте в Эстонии: размеры, резкость, цвет, предпросмотр и доставка по стране.",
+  "publishedAt": "2026-04-08",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "печать на холсте Эстония",
+    "интерьер",
+    "Таллин"
+  ],
+  "bodyHtml": "<p>Холст добавляет текстуру и делает изображение «живым» в интерьере. Для размещения и размеров см. <a href='/ru/blog/seinapilt-tellimine'>заказ настенного изображения</a> и <a href='/ru/blog/kunstiline-portree'>художественный портрет</a>. Для фото и логистики — <a href='/ru/blog/portree-fotost-tallinn'>портрет по фото в Таллине</a>.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "Холст vs бумага?",
+      "answer": "У холста есть фактура и глубина."
+    },
+    {
+      "question": "Нужна рама?",
+      "answer": "Зависит от продукта; часто делают галерейную натяжку."
+    },
+    {
+      "question": "Размер?",
+      "answer": "Измерьте стену и дистанцию просмотра."
+    },
+    {
+      "question": "Маленькое фото на большой размер?",
+      "answer": "Риск размытия выше."
+    },
+    {
+      "question": "Предпросмотр?",
+      "answer": "Да, это правильная практика."
+    },
+    {
+      "question": "Сроки печати?",
+      "answer": "Зависит от очереди."
+    },
+    {
+      "question": "Доставка?",
+      "answer": "Да, по Эстонии."
+    }
+  ],
+  "relatedSlugs": [
+    "seinapilt-tellimine",
+    "kunstiline-portree",
+    "portree-fotost-tallinn"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/seinapilt-tellimine",
+      "label": "Заказ настенного изображения"
+    },
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    },
+    {
+      "href": "/ru/blog/portree-fotost-tallinn",
+      "label": "Портрет по фото в Таллине"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "kingitus-mehele",
+  "category": "gifts",
+  "title": "A gift for him that still feels intentional",
+  "description": "Gift for him in Estonia: portrait from a photo, preview before printing, delivery across Estonia, and realistic turnaround.",
+  "publishedAt": "2026-04-10",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "gift for him Estonia",
+    "canvas portrait",
+    "Tallinn",
+    "delivery across Estonia"
+  ],
+  "bodyHtml": "<p>Functional gifts are easy, but emotional gifts last. A portrait from a shared photo adds narrative without feeling theatrical—especially if you choose a calm composition. For wedding contexts, see <a href='/en/blog/pulmakingitus-idee'>wedding gift ideas</a> and <a href='/en/blog/seinapilt-tellimine'>wall art ordering</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "Is a portrait a good gift for men?",
+      "answer": "Yes—especially family or shared-memory photos."
+    },
+    {
+      "question": "How fast?",
+      "answer": "Depends on queue and preview approval."
+    },
+    {
+      "question": "Too sentimental?",
+      "answer": "Choose a calmer style; emotion can live in the photo itself."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp and natural."
+    },
+    {
+      "question": "For a colleague?",
+      "answer": "Depends on context."
+    },
+    {
+      "question": "Avoid a cheap look?",
+      "answer": "Preview + quality canvas printing."
+    }
+  ],
+  "relatedSlugs": [
+    "pulmakingitus-idee",
+    "personaalne-kingitus",
+    "seinapilt-tellimine"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/pulmakingitus-idee",
+      "label": "Wedding gift ideas"
+    },
+    {
+      "href": "/en/blog/personaalne-kingitus",
+      "label": "Personal gift guide"
+    },
+    {
+      "href": "/en/blog/seinapilt-tellimine",
+      "label": "Wall art ordering"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

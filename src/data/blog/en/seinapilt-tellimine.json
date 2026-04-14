@@ -1,0 +1,72 @@
+{
+  "slug": "seinapilt-tellimine",
+  "category": "interior",
+  "title": "Ordering wall art: measure light, distance, and intent",
+  "description": "Wall art ordering in Estonia: sizing, lighting, preview before printing, delivery across Estonia, and realistic turnaround.",
+  "publishedAt": "2026-04-06",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "order wall art Estonia",
+    "canvas sizing",
+    "Tallinn"
+  ],
+  "bodyHtml": "<p>Wall art works when it matches the room’s intent: accent vs atmosphere. Measure the wall, stand back, and sanity-check proportions. Pair with <a href='/en/blog/pilt-louendil'>canvas print quality</a> and <a href='/en/blog/portree-fotost-tallinn'>portrait from a photo in Tallinn</a>.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a>.</p>",
+  "faqs": [
+    {
+      "question": "How to pick a size?",
+      "answer": "Measure and consider viewing distance."
+    },
+    {
+      "question": "Preview?",
+      "answer": "Yes."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes."
+    },
+    {
+      "question": "File requirements?",
+      "answer": "Larger prints need higher-resolution sources."
+    },
+    {
+      "question": "Placement tips?",
+      "answer": "Tape paper to the wall to preview scale."
+    },
+    {
+      "question": "Portrait in living room?",
+      "answer": "Yes—align with seating sightlines."
+    },
+    {
+      "question": "How fast?",
+      "answer": "Depends on queue and preview approval."
+    }
+  ],
+  "relatedSlugs": [
+    "pilt-louendil",
+    "portree-fotost-tallinn",
+    "pulmakingitus-idee"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/pilt-louendil",
+      "label": "Canvas print quality"
+    },
+    {
+      "href": "/en/blog/pulmakingitus-idee",
+      "label": "Wedding gift ideas"
+    },
+    {
+      "href": "/en/blog/portree-fotost-tallinn",
+      "label": "Portrait from a photo in Tallinn"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}

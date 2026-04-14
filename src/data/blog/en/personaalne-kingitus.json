@@ -1,0 +1,74 @@
+{
+  "slug": "personaalne-kingitus",
+  "category": "gifts",
+  "title": "Personal gift: a portrait with emotional weight",
+  "description": "A personal gift in Estonia: portrait from your photo, preview before printing, delivery across Estonia, and clear timing you can trust.",
+  "publishedAt": "2026-04-13",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "personal gift Estonia",
+    "birthday gift",
+    "canvas portrait gift",
+    "delivery across Estonia",
+    "Tallinn"
+  ],
+  "bodyHtml": "<p>A personal gift should feel intentional. A portrait created from a meaningful photo combines emotion with a finished object someone can live with. It works well for birthdays and weddings, and it scales nationwide with delivery across Estonia.</p>\n<h2>What makes a gift truly personal</h2>\n<p>Precision matters: the right photo, the right size, and a style that fits the home. If you are planning a birthday surprise, pair this guide with <a href='/en/blog/kingitus-synnipaevaks'>birthday gift ideas</a> and <a href='/en/blog/pulmakingitus-idee'>wedding gift ideas</a>.</p>\n<h2>Deadlines and turnaround</h2>\n<p>Plan backwards from the event. Preview approval and printing both take time—state your deadline early.</p>\n<h2>CTA</h2>\n<p>Start on <a href='https://www.popart.ee'>PopArt.ee</a> and confirm the preview before printing.</p>",
+  "faqs": [
+    {
+      "question": "How fast can I receive it?",
+      "answer": "Depends on queue and preview approval; plan several business days."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes—confirm when you are happy."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes; exact timing depends on region and carrier."
+    },
+    {
+      "question": "What if I do not know wall size?",
+      "answer": "Choose a versatile mid size or ask for guidance."
+    },
+    {
+      "question": "Is it appropriate as a gift?",
+      "answer": "Often yes—especially with a meaningful photo."
+    },
+    {
+      "question": "What photo should I pick?",
+      "answer": "Sharp, natural, emotionally honest moments work best."
+    },
+    {
+      "question": "How do I avoid an awkward surprise?",
+      "answer": "Use preview and discuss background suitability."
+    }
+  ],
+  "relatedSlugs": [
+    "kingitus-synnipaevaks",
+    "pulmakingitus-idee",
+    "kingitus-naisele"
+  ],
+  "internalLinks": [
+    {
+      "href": "/en/blog/kingitus-synnipaevaks",
+      "label": "Birthday gift ideas"
+    },
+    {
+      "href": "/en/blog/pulmakingitus-idee",
+      "label": "Wedding gift ideas"
+    },
+    {
+      "href": "/en/blog/kingitus-naisele",
+      "label": "Gift for her"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    }
+  ]
+}
