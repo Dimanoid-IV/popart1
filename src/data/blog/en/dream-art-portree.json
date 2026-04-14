@@ -1,0 +1,76 @@
+{
+  "slug": "dream-art-portree",
+  "category": "dream-art",
+  "title": "Dream Art portrait in Estonia—style, preview, print",
+  "description": "Dream Art portrait from your photo in Estonia: mood-led art, preview before print, canvas, and decor notes.",
+  "publishedAt": "2026-05-02",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Art services"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "dream art portrait",
+    "Estonia",
+    "Tallinn",
+    "canvas",
+    "gift"
+  ],
+  "bodyHtml": "<p>Dream Art portraits from your photo blend dreamy atmosphere with controlled artistic interpretation—ideal when you want a premium gift or a statement piece for a Tallinn apartment or any Estonian home.</p><h2>What Dream Art means</h2><p>Compared to a more classical portrait, Dream Art leans into mood, light, and narrative while keeping the face readable. Preview approval before printing is the quality anchor.</p><h2>Gift use cases</h2><p>Weddings, anniversaries, and seasonal gifting pair well with Dream Art when you want emotional lift without losing decor sense.</p><h2>CTA</h2><p>Start on <a href='https://www.popart.ee'>PopArt.ee</a>. Read the Estonian cluster: <a href='/en/blog/dream-art-portree'>Dream Art portrait</a>, <a href='/en/blog/dream-art-portree-fotost'>from a photo</a>, <a href='/en/blog/digitaalne-kunstiline-portree'>digital artistic portrait</a>, <a href='/en/blog/fantaasia-portree-fotost'>fantasy portrait</a>, <a href='/en/blog/dream-art-pilt-louendil'>canvas</a>. Also see <a href='/en/blog/kunstiline-portree'>artistic portrait</a> and <a href='/en/blog/joulukingitus-2026'>Christmas 2026 gifts</a>.</p>",
+  "faqs": [
+    {
+      "question": "What is Dream Art?",
+      "answer": "A dreamy, artistic portrait interpretation from your photo—preview before print."
+    },
+    {
+      "question": "Is it good for gifts?",
+      "answer": "Yes for weddings, anniversaries, and close recipients when tone matches the context."
+    },
+    {
+      "question": "Do you deliver across Estonia?",
+      "answer": "Yes—use an accurate address and realistic timelines."
+    },
+    {
+      "question": "How do I choose a size?",
+      "answer": "Use a wall mockup or read the canvas sizing guide on the blog."
+    },
+    {
+      "question": "How does it compare to a classical portrait?",
+      "answer": "Classical leans truer-to-photo; Dream Art leans mood and story."
+    }
+  ],
+  "relatedSlugs": [
+    "dream-art-portree-fotost",
+    "digitaalne-kunstiline-portree",
+    "fantaasia-portree-fotost",
+    "dream-art-pilt-louendil",
+    "kunstiline-portree"
+  ],
+  "internalLinks": [
+    {
+      "href": "https://www.popart.ee",
+      "label": "Order on PopArt.ee"
+    },
+    {
+      "href": "/en/blog/dream-art-portree-fotost",
+      "label": "Portrait from a photo"
+    },
+    {
+      "href": "/en/blog/digitaalne-kunstiline-portree",
+      "label": "Digital artistic portrait"
+    },
+    {
+      "href": "/en/blog/fantaasia-portree-fotost",
+      "label": "Fantasy portrait"
+    },
+    {
+      "href": "/en/blog/dream-art-pilt-louendil",
+      "label": "Dream Art on canvas"
+    },
+    {
+      "href": "/en/blog/kunstiline-portree",
+      "label": "Artistic portrait"
+    }
+  ]
+}

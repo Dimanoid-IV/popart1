@@ -5,7 +5,8 @@ export type BlogCategoryId =
   | "gifts"
   | "portrait-guide"
   | "interior"
-  | "local-estonia";
+  | "local-estonia"
+  | "dream-art";
 
 export type BlogAuthor = {
   name: string;

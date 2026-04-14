@@ -1,0 +1,71 @@
+{
+  "slug": "dream-art-portree",
+  "category": "dream-art",
+  "title": "Портрет Dream Art в Эстонии — стиль и предпросмотр",
+  "description": "Портрет Dream Art по фото в Эстонии и Таллине: атмосфера, предпросмотр, печать и подарок.",
+  "publishedAt": "2026-05-02",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "dream art портрет",
+    "Эстония",
+    "Таллин",
+    "холст"
+  ],
+  "bodyHtml": "<p>Портрет Dream Art по фото — это премиальная художественная интерпретация с “сонной” атмосферой, которая подходит для подарка или интерьера в Таллинне и по всей Эстонии.</p><h2>В чём смысл стиля</h2><p>По сравнению с более классическим портретом, Dream Art сильнее работает на настроение и историю, сохраняя читаемость лица. Предпросмотр до печати — ключ к качеству.</p><h2>CTA</h2><p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>. Кластер: <a href='/ru/blog/dream-art-portree'>Dream Art портрет</a>, <a href='/ru/blog/dream-art-portree-fotost'>по фото</a>, <a href='/ru/blog/digitaalne-kunstiline-portree'>цифровой художественный портрет</a>, <a href='/ru/blog/fantaasia-portree-fotost'>фантазийный портрет</a>, <a href='/ru/blog/dream-art-pilt-louendil'>на холсте</a>. Также см. <a href='/ru/blog/kunstiline-portree'>художественный портрет</a>.</p>",
+  "faqs": [
+    {
+      "question": "Что такое Dream Art?",
+      "answer": "Художественная интерпретация с мечтательной атмосферой; предпросмотр до печати."
+    },
+    {
+      "question": "Подойдёт ли в подарок?",
+      "answer": "Да — для свадьбы, годовщины и близких, если тон уместен."
+    },
+    {
+      "question": "Есть ли доставка по Эстонии?",
+      "answer": "Да; укажите точный адрес и срок."
+    },
+    {
+      "question": "Как выбрать размер?",
+      "answer": "Сделайте мокап стены или прочитайте гид по холсту в блоге."
+    }
+  ],
+  "relatedSlugs": [
+    "dream-art-portree-fotost",
+    "digitaalne-kunstiline-portree",
+    "fantaasia-portree-fotost",
+    "dream-art-pilt-louendil",
+    "kunstiline-portree"
+  ],
+  "internalLinks": [
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    },
+    {
+      "href": "/ru/blog/dream-art-portree-fotost",
+      "label": "Портрет по фото"
+    },
+    {
+      "href": "/ru/blog/digitaalne-kunstiline-portree",
+      "label": "Цифровой художественный портрет"
+    },
+    {
+      "href": "/ru/blog/fantaasia-portree-fotost",
+      "label": "Фантазийный портрет"
+    },
+    {
+      "href": "/ru/blog/dream-art-pilt-louendil",
+      "label": "Dream Art на холсте"
+    },
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ export const BLOG_CATEGORY_IDS: BlogCategoryId[] = [
   "portrait-guide",
   "interior",
   "local-estonia",
+  "dream-art",
 ];
 
 export function isValidBlogCategory(s: string): s is BlogCategoryId {
@@ -98,6 +99,26 @@ export function getCategoryCopy(
         short: "Estonia",
         description:
           "Ordering, delivery, and practical notes for customers in Estonia and Tallinn.",
+      },
+    },
+    "dream-art": {
+      et: {
+        title: "Dream Art",
+        short: "Dream Art",
+        description:
+          "Dream Art portree fotost: unenäoline, fantaasiarikas ja premium kunstiline tõlgendus Eestis — tellimus, eelvaade ja lõuend.",
+      },
+      ru: {
+        title: "Dream Art",
+        short: "Dream Art",
+        description:
+          "Портрет Dream Art по фото: мечтательный, фантазийный стиль в Эстонии — предпросмотр и холст.",
+      },
+      en: {
+        title: "Dream Art",
+        short: "Dream Art",
+        description:
+          "Dream Art portraits from photos in Estonia—dreamy, fantasy-forward art with preview and canvas options.",
       },
     },
   };
