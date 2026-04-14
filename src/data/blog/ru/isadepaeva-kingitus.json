@@ -1,0 +1,72 @@
+{
+  "slug": "isadepaeva-kingitus",
+  "category": "gifts",
+  "title": "Подарок на День отца 2026 в Эстонии",
+  "description": "Подарок на День отца в Эстонии в 2026: портрет по фото, предпросмотр и доставка по стране.",
+  "publishedAt": "2026-10-20",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "день отца подарок Эстония",
+    "2026"
+  ],
+  "bodyHtml": "<p>Закажите заранее и подтвердите предпросмотр до печати.</p><h2>CTA</h2><p><a href='https://www.popart.ee'>PopArt.ee</a></p>",
+  "faqs": [
+    {
+      "question": "How long does it take?",
+      "answer": "Depends on queue and preview approval; plan ahead."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes—recommended."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes; timing depends on region."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp, natural, evenly lit."
+    },
+    {
+      "question": "How to pick a size?",
+      "answer": "Measure the wall or choose a versatile mid size."
+    },
+    {
+      "question": "Seasonal deadlines?",
+      "answer": "State your deadline in the order notes."
+    }
+  ],
+  "relatedSlugs": [
+    "joulukingitus-2026",
+    "joulukingitus-naisele",
+    "joulukingitus-mehele",
+    "personaalne-kingitus"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/joulukingitus-2026",
+      "label": "Рождество 2026"
+    },
+    {
+      "href": "/ru/blog/joulukingitus-naisele",
+      "label": "Подарок женщине"
+    },
+    {
+      "href": "/ru/blog/joulukingitus-mehele",
+      "label": "Подарок мужчине"
+    },
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}

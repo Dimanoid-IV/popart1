@@ -1,0 +1,73 @@
+{
+  "slug": "joulukingitus-2026",
+  "category": "gifts",
+  "title": "Рождественский подарок 2026 в Эстонии",
+  "description": "Рождество 2026 в Эстонии: закажите заранее, предпросмотр до печати и доставка по стране — без праздничного хаоса.",
+  "publishedAt": "2026-10-01",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Художественные услуги"
+  },
+  "coverImage": "/og-image.jpg",
+  "keywords": [
+    "рождественский подарок 2026 Эстония",
+    "Таллин",
+    "доставка по Эстонии"
+  ],
+  "bodyHtml": "<p>Новый год и Рождество 2026 требуют раннего плана: предпросмотр, печать и доставка по Эстонии занимают время.</p>\n<h2>Сроки</h2>\n<p>Укажите дедлайн при заказе.</p>\n<h2>CTA</h2>\n<p>Начните на <a href='https://www.popart.ee'>PopArt.ee</a>. См. <a href='/ru/blog/joulukingitus-naisele'>подарок женщине</a> и <a href='/ru/blog/joulukingitus-mehele'>подарок мужчине</a>.</p>",
+  "faqs": [
+    {
+      "question": "How long does it take?",
+      "answer": "Depends on queue and preview approval; plan ahead."
+    },
+    {
+      "question": "Preview before print?",
+      "answer": "Yes—recommended."
+    },
+    {
+      "question": "Delivery across Estonia?",
+      "answer": "Yes; timing depends on region."
+    },
+    {
+      "question": "Best photo?",
+      "answer": "Sharp, natural, evenly lit."
+    },
+    {
+      "question": "How to pick a size?",
+      "answer": "Measure the wall or choose a versatile mid size."
+    },
+    {
+      "question": "Seasonal deadlines?",
+      "answer": "State your deadline in the order notes."
+    }
+  ],
+  "relatedSlugs": [
+    "joulukingitus-naisele",
+    "joulukingitus-mehele",
+    "emadepaeva-kingitus",
+    "personaalne-kingitus"
+  ],
+  "internalLinks": [
+    {
+      "href": "/ru/blog/joulukingitus-naisele",
+      "label": "Подарок женщине"
+    },
+    {
+      "href": "/ru/blog/joulukingitus-mehele",
+      "label": "Подарок мужчине"
+    },
+    {
+      "href": "/ru/blog/emadepaeva-kingitus",
+      "label": "День матери"
+    },
+    {
+      "href": "/ru/blog/kunstiline-portree",
+      "label": "Художественный портрет"
+    },
+    {
+      "href": "https://www.popart.ee",
+      "label": "Заказ на PopArt.ee"
+    }
+  ]
+}
