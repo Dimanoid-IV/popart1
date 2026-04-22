@@ -14,6 +14,7 @@ import { getBlogUiLabels } from "@/lib/blog/ui-labels";
 import BlogCategoryChips from "@/components/blog/BlogCategoryChips";
 import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
+import BlogArticleImage from "@/components/blog/BlogArticleImage";
 
 export async function generateStaticParams() {
   return BLOG_LOCALES.map((locale) => ({ locale }));
@@ -117,22 +118,32 @@ export default async function BlogIndexPage({
         {articles.map((a) => (
           <li
             key={a.slug}
-            className="rounded-xl border border-gray-200 p-5 transition-shadow hover:shadow-md"
+            className="rounded-xl border border-gray-200 overflow-hidden transition-shadow hover:shadow-md"
           >
-            <Link
-              href={blogArticlePath(locale, a.slug)}
-              className="text-xl font-semibold text-indigo-600 hover:underline"
-            >
-              {a.title}
-            </Link>
-            <p className="mt-2 text-gray-600">{a.description}</p>
-            <p className="mt-3 text-sm text-gray-500">{a.publishedAt}</p>
-            <Link
-              href={blogArticlePath(locale, a.slug)}
-              className="mt-3 inline-block text-sm font-medium text-indigo-600 hover:underline"
-            >
-              {labels.readMore} →
-            </Link>
+            <div className="overflow-hidden">
+              <BlogArticleImage
+                src={a.coverImage}
+                alt={a.title}
+                width={800}
+                height={420}
+              />
+            </div>
+            <div className="p-5">
+              <Link
+                href={blogArticlePath(locale, a.slug)}
+                className="text-xl font-semibold text-indigo-600 hover:underline"
+              >
+                {a.title}
+              </Link>
+              <p className="mt-2 text-gray-600">{a.description}</p>
+              <p className="mt-3 text-sm text-gray-500">{a.publishedAt}</p>
+              <Link
+                href={blogArticlePath(locale, a.slug)}
+                className="mt-3 inline-block text-sm font-medium text-indigo-600 hover:underline"
+              >
+                {labels.readMore} →
+              </Link>
+            </div>
           </li>
         ))}
       </ul>

@@ -9,9 +9,16 @@
     "url": "https://www.popart.ee"
   },
   "coverImage": "/pic1.jpg",
-  "keywords": ["gift", "canvas", "Tallinn", "portrait"],
+  "keywords": [
+    "gift",
+    "canvas",
+    "Tallinn",
+    "portrait"
+  ],
   "bodyHtml": "<p>A canvas gift is personal and lasting. Choose a photo that best captures the moment you want to celebrate.</p><p>Smaller sizes suit a desk; larger pieces work as a living-room focal point.</p>",
-  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "relatedSlugs": [
+    "custom-art-portrait-estonia"
+  ],
   "internalLinks": [
     {
       "href": "/en/blog/custom-art-portrait-estonia",

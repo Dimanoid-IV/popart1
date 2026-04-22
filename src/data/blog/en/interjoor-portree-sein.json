@@ -4,12 +4,25 @@
   "title": "Portrait in the living room: size and placement",
   "description": "How to pick canvas size and wall placement so the portrait feels natural.",
   "publishedAt": "2026-02-15",
-  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
-  "coverImage": "/pic2.jpg",
-  "keywords": ["interior", "portrait", "living room", "canvas"],
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee"
+  },
+  "coverImage": "/pic11.JPG",
+  "keywords": [
+    "interior",
+    "portrait",
+    "living room",
+    "canvas"
+  ],
   "bodyHtml": "<p>In a living room a portrait often balances the sofa wall. Leave enough breathing room around the piece.</p>",
-  "relatedSlugs": ["custom-art-portrait-estonia"],
+  "relatedSlugs": [
+    "custom-art-portrait-estonia"
+  ],
   "internalLinks": [
-    { "href": "/en/blog/custom-art-portrait-estonia", "label": "Portrait ordering guide" }
+    {
+      "href": "/en/blog/custom-art-portrait-estonia",
+      "label": "Portrait ordering guide"
+    }
   ]
 }

@@ -4,12 +4,25 @@
   "title": "Tellimus Tallinnas ja üle Eesti: mida teada tarne kohta",
   "description": "Praktilised märkused tellimuse vormistamise ja kättetoimetamise kohta Eestis.",
   "publishedAt": "2026-02-12",
-  "author": { "name": "PopArt.ee", "url": "https://www.popart.ee" },
-  "coverImage": "/pic3.jpg",
-  "keywords": ["Tallinn", "tarne", "Eesti", "tellimus"],
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee"
+  },
+  "coverImage": "/pic11.JPG",
+  "keywords": [
+    "Tallinn",
+    "tarne",
+    "Eesti",
+    "tellimus"
+  ],
   "bodyHtml": "<p>Kontrolli tellimuses telefoni ja aadressi õigsust — kulleriteenus sõltub täpsetest andmetest.</p>",
-  "relatedSlugs": ["canvas-gift-tallinn"],
+  "relatedSlugs": [
+    "canvas-gift-tallinn"
+  ],
   "internalLinks": [
-    { "href": "/et/blog/canvas-gift-tallinn", "label": "Kingituse ideed" }
+    {
+      "href": "/et/blog/canvas-gift-tallinn",
+      "label": "Kingituse ideed"
+    }
   ]
 }

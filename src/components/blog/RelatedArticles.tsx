@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { BlogArticle, BlogLocale } from "@/lib/blog/types";
 import { blogArticlePath } from "@/lib/blog/paths";
+import BlogArticleImage from "./BlogArticleImage";
 
 type Props = {
   locale: BlogLocale;
@@ -18,14 +19,24 @@ export default function RelatedArticles({ locale, articles, heading }: Props) {
           <li key={a.slug}>
             <Link
               href={blogArticlePath(locale, a.slug)}
-              className="block rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
+              className="block rounded-lg border border-gray-200 overflow-hidden transition-shadow hover:shadow-md"
             >
-              <span className="font-semibold text-indigo-600 hover:underline">
-                {a.title}
-              </span>
-              <p className="mt-2 line-clamp-2 text-sm text-gray-600">
-                {a.description}
-              </p>
+              <div className="overflow-hidden">
+                <BlogArticleImage
+                  src={a.coverImage}
+                  alt={a.title}
+                  width={400}
+                  height={210}
+                />
+              </div>
+              <div className="p-4">
+                <span className="font-semibold text-indigo-600 hover:underline">
+                  {a.title}
+                </span>
+                <p className="mt-2 line-clamp-2 text-sm text-gray-600">
+                  {a.description}
+                </p>
+              </div>
             </Link>
           </li>
         ))}

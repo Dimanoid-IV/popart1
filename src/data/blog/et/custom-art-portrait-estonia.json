@@ -10,8 +10,14 @@
     "url": "https://www.popart.ee",
     "jobTitle": "Kunstiteenus"
   },
-  "coverImage": "/og-image.jpg",
-  "keywords": ["portree", "Tallinn", "digitaalmaal", "lõuend", "PopArt"],
+  "coverImage": "/pic2.jpg",
+  "keywords": [
+    "portree",
+    "Tallinn",
+    "digitaalmaal",
+    "lõuend",
+    "PopArt"
+  ],
   "bodyHtml": "<p>Kunstiline portree sobib kingituseks ja koju kaunistuseks. Eestis saate valida erinevaid lõuendi mõõteid ning tellida trüki oma fotost valminud maalist.</p><h2>Miks valida digitaalmaal?</h2><p>Digitaalmaal säilitab näo jooned ja annab maalilise pinna — tulemus sobib trükiks kvaliteetsele lõuendile.</p><h2>Tellimuse sammud</h2><ul><li>Laadige üles selge foto</li><li>Valige suurus</li><li>Kinnitage tulemus enne trükki</li></ul>",
   "faqs": [
     {
@@ -23,7 +29,9 @@
       "answer": "Jah, meie mootor pakub erinevaid kunstilisi taustu, mille seast valida."
     }
   ],
-  "relatedSlugs": ["canvas-gift-tallinn"],
+  "relatedSlugs": [
+    "canvas-gift-tallinn"
+  ],
   "internalLinks": [
     {
       "href": "/et/blog/canvas-gift-tallinn",

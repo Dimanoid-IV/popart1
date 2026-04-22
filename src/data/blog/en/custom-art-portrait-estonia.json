@@ -10,8 +10,14 @@
     "url": "https://www.popart.ee",
     "jobTitle": "Art services"
   },
-  "coverImage": "/og-image.jpg",
-  "keywords": ["portrait", "Tallinn", "digital painting", "canvas", "PopArt"],
+  "coverImage": "/pic11.JPG",
+  "keywords": [
+    "portrait",
+    "Tallinn",
+    "digital painting",
+    "canvas",
+    "PopArt"
+  ],
   "bodyHtml": "<p>An artistic portrait works well as a gift or home décor. In Estonia you can pick canvas sizes and print from your photo-based artwork.</p><h2>Why digital painting</h2><p>It keeps facial character and adds painterly texture—ideal for high-quality canvas printing.</p><h2>Order steps</h2><ul><li>Upload a clear photo</li><li>Choose a size</li><li>Confirm the result before printing</li></ul>",
   "faqs": [
     {
@@ -23,7 +29,9 @@
       "answer": "Yes—the engine offers several artistic backgrounds to pick from."
     }
   ],
-  "relatedSlugs": ["canvas-gift-tallinn"],
+  "relatedSlugs": [
+    "canvas-gift-tallinn"
+  ],
   "internalLinks": [
     {
       "href": "/en/blog/canvas-gift-tallinn",
