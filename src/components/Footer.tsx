@@ -1,14 +1,15 @@
 "use client";
 
 import { useLanguage } from "@/lib/LanguageContext";
+import Link from "next/link";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer className="bg-gray-50 border-t">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-bold text-indigo-600 mb-4">PopArt.ee</h3>
             <p className="text-sm text-gray-600">
@@ -20,6 +21,16 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-600">
               <li>Email: info@popart.ee</li>
               <li>Location: Tallinn, Estonia</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>
+                <Link href={`/${language}/blog`} className="hover:text-indigo-600 transition-colors">
+                  {t.footer.blog}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

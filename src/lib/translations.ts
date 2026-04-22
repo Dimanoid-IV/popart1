@@ -6,6 +6,7 @@ export const translations = {
       howItWorks: "How It Works",
       pricing: "Pricing",
       gallery: "Gallery",
+      blog: "Blog",
       orderNow: "Order Now",
     },
     hero: {
@@ -86,6 +87,7 @@ export const translations = {
       legal: "Legal",
       terms: "Terms of Service",
       privacy: "Privacy Policy",
+      blog: "Blog",
       rights: "All rights reserved.",
     },
   },
@@ -94,6 +96,7 @@ export const translations = {
       howItWorks: "Как это работает",
       pricing: "Цены",
       gallery: "Галерея",
+      blog: "Блог",
       orderNow: "Заказать сейчас",
     },
     hero: {
@@ -174,6 +177,7 @@ export const translations = {
       legal: "Юридическая информация",
       terms: "Условия использования",
       privacy: "Политика конфиденциальности",
+      blog: "Блог",
       rights: "Все права защищены.",
     },
   },
@@ -182,6 +186,7 @@ export const translations = {
       howItWorks: "Kuidas see toimib",
       pricing: "Hinnad",
       gallery: "Galerii",
+      blog: "Blogi",
       orderNow: "Telli kohe",
     },
     hero: {
@@ -262,6 +267,7 @@ export const translations = {
       legal: "Õiguslik teave",
       terms: "Kasutustingimused",
       privacy: "Privaatsuspoliitika",
+      blog: "Blogi",
       rights: "Kõik õigused kaitstud.",
     },
   },

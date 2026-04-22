@@ -17,6 +17,7 @@ export default function Header() {
           <Link href="#how-it-works" className="text-gray-600 hover:text-indigo-600">{t.nav.howItWorks}</Link>
           <Link href="#pricing" className="text-gray-600 hover:text-indigo-600">{t.nav.pricing}</Link>
           <Link href="#gallery" className="text-gray-600 hover:text-indigo-600">{t.nav.gallery}</Link>
+          <Link href={`/${language}/blog`} className="text-gray-600 hover:text-indigo-600">{t.nav.blog}</Link>
         </nav>
         <div className="flex items-center space-x-4">
           <div className="flex bg-gray-100 p-1 rounded-lg">
