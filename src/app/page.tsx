@@ -100,6 +100,48 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="rankboost-seo-content" className="py-20 bg-indigo-50/50">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-4xl rounded-3xl border border-indigo-100 bg-white p-8 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                Custom portrait guide
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-gray-900 md:text-4xl">
+                Custom digital painting portraits from your photo
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-8 text-gray-700">
+                <p>
+                  PopArt.ee turns your favourite photos into custom digital painting
+                  portraits for gifts, wall art, family memories, and special
+                  occasions. The process is simple: upload a clear photo, choose a
+                  canvas size, review the preview, and confirm the final print when
+                  the portrait feels right.
+                </p>
+                <p>
+                  A good portrait starts with a sharp image and a story worth keeping.
+                  Natural light, visible facial details, and a relaxed expression help
+                  the artwork feel personal instead of generic. If you are ordering
+                  for a birthday, wedding, anniversary, or holiday gift, add your
+                  deadline early so production and delivery can be planned honestly.
+                </p>
+                <p>
+                  Every order is made for real homes: canvas sizes are easy to compare,
+                  the preview step protects the result before printing, and delivery
+                  can be arranged across Estonia. Start with the photo you love most,
+                  then use the order flow below to create a portrait that looks
+                  intentional, warm, and ready to give.
+                </p>
+              </div>
+              <a
+                href="#order-now"
+                className="mt-6 inline-flex rounded-full bg-indigo-600 px-6 py-3 font-bold text-white transition hover:bg-indigo-700"
+              >
+                Start your portrait order
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing Section with Sofa */}
         <section id="pricing" className="py-24 bg-white overflow-hidden">
           <div className="container mx-auto px-4 text-center">
