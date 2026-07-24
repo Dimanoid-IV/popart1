@@ -536,15 +536,15 @@ export async function POST(request: NextRequest) {
     const repo = process.env.POPART_GITHUB_REPO || DEFAULT_REPO;
     const branch = process.env.POPART_GITHUB_BRANCH || DEFAULT_BRANCH;
     const target =
-      isFaqFix(payload)
+      isThinContentFix(payload)
         ? {
-            path: "src/lib/seo/root-schemas.ts",
-            apply: applyRootFaqSchemaFix,
+            path: "src/app/page.tsx",
+            apply: applyHomepageContentFix,
           }
-        : isThinContentFix(payload)
+        : isFaqFix(payload)
           ? {
-              path: "src/app/page.tsx",
-              apply: applyHomepageContentFix,
+              path: "src/lib/seo/root-schemas.ts",
+              apply: applyRootFaqSchemaFix,
             }
           : {
               path: "src/lib/seo/root-metadata.ts",
