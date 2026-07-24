@@ -74,6 +74,32 @@ Real publish:
 }
 ```
 
+SEO fix apply:
+
+```json
+{
+  "event": "site.fix.ready",
+  "dryRun": false,
+  "task": {
+    "id": "rankboost-task-id"
+  },
+  "fix": {
+    "id": "rankboost-fix-id",
+    "type": "META_FIX",
+    "field": "meta_description",
+    "title": "Improve homepage meta description",
+    "suggestedValue": "New SEO description"
+  }
+}
+```
+
+Currently applied automatically:
+
+- `field: "meta_title"` → updates `rootMetadata.title.default`
+- `field: "meta_description"` → updates `rootMetadata.description`
+
+Other fix fields return `422` with `applied: false`. RankBoost must not mark the task completed unless the endpoint returns `applied: true`.
+
 ## Response
 
 ```json
@@ -87,3 +113,16 @@ Real publish:
 ```
 
 The URL becomes live after Vercel finishes deploying the GitHub commit.
+
+For `site.fix.ready`, success response includes:
+
+```json
+{
+  "ok": true,
+  "applied": true,
+  "externalId": "rankboost-fix-id",
+  "url": "https://www.popart.ee",
+  "githubPath": "src/lib/seo/root-metadata.ts",
+  "commitSha": "..."
+}
+```

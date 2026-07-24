@@ -13,6 +13,19 @@ const DEFAULT_COVER = "/pic1.jpg";
 type RankBoostPayload = {
   event?: string;
   dryRun?: boolean;
+  task?: {
+    id?: string;
+  };
+  fix?: {
+    id?: string;
+    type?: string;
+    field?: string | null;
+    title?: string;
+    preview?: string;
+    suggestedValue?: string;
+    summary?: string | null;
+    implementationNotes?: string | null;
+  };
   article?: {
     id?: string;
     title?: string;
@@ -222,6 +235,100 @@ async function fileExists(input: {
   return true;
 }
 
+async function readTextFile(input: {
+  owner: string;
+  repo: string;
+  branch: string;
+  path: string;
+}) {
+  const result = await githubRequest(
+    `/repos/${input.owner}/${input.repo}/contents/${encodeURIComponent(input.path).replace(/%2F/g, "/")}?ref=${encodeURIComponent(input.branch)}`
+  );
+  if (!result.ok) {
+    throw new Error(`github_read_${result.status}`);
+  }
+  const body = result.body as { content?: string; encoding?: string; sha?: string };
+  if (!body.content || body.encoding !== "base64" || !body.sha) {
+    throw new Error("github_read_invalid");
+  }
+  return {
+    sha: body.sha,
+    content: Buffer.from(body.content, "base64").toString("utf8"),
+  };
+}
+
+async function updateTextFile(input: {
+  owner: string;
+  repo: string;
+  branch: string;
+  path: string;
+  sha: string;
+  content: string;
+  message: string;
+}) {
+  const result = await githubRequest(
+    `/repos/${input.owner}/${input.repo}/contents/${encodeURIComponent(input.path).replace(/%2F/g, "/")}`,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        message: input.message,
+        content: Buffer.from(input.content, "utf8").toString("base64"),
+        sha: input.sha,
+        branch: input.branch,
+        committer: {
+          name: "RankBoost Publisher",
+          email: "rankboost@popart.ee",
+        },
+        author: {
+          name: "RankBoost Publisher",
+          email: "rankboost@popart.ee",
+        },
+      }),
+    }
+  );
+
+  if (!result.ok) {
+    throw new Error(`github_update_${result.status}`);
+  }
+
+  return result.body as { commit?: { sha?: string } };
+}
+
+function escapeForDoubleQuotedTs(value: string) {
+  return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function replaceStringProperty(source: string, property: string, value: string) {
+  const escaped = escapeForDoubleQuotedTs(value.trim().slice(0, 220));
+  const pattern = new RegExp(`(${property}:\\\\s*)\"[^\"]*\"`);
+  if (!pattern.test(source)) return null;
+  return source.replace(pattern, `$1"${escaped}"`);
+}
+
+function applyMetadataFix(source: string, payload: RankBoostPayload) {
+  const field = payload.fix?.field?.trim().toLowerCase();
+  const value = payload.fix?.suggestedValue?.trim() || payload.fix?.preview?.trim();
+  if (!field || !value) {
+    return { applied: false, reason: "missing_field_or_value", content: source };
+  }
+
+  if (field === "meta_title") {
+    const next = replaceStringProperty(source, "default", value);
+    return next
+      ? { applied: next !== source, reason: "applied_meta_title", content: next }
+      : { applied: false, reason: "meta_title_target_not_found", content: source };
+  }
+
+  if (field === "meta_description") {
+    const next = replaceStringProperty(source, "description", value);
+    return next
+      ? { applied: next !== source, reason: "applied_meta_description", content: next }
+      : { applied: false, reason: "meta_description_target_not_found", content: source };
+  }
+
+  return { applied: false, reason: "unsupported_fix_field", content: source };
+}
+
 async function createArticleFile(input: {
   owner: string;
   repo: string;
@@ -284,6 +391,51 @@ export async function POST(request: NextRequest) {
       accepted: true,
       message: "RankBoost webhook is connected.",
     });
+  }
+
+  if (payload.event === "site.fix.ready") {
+    const owner = process.env.POPART_GITHUB_OWNER || DEFAULT_OWNER;
+    const repo = process.env.POPART_GITHUB_REPO || DEFAULT_REPO;
+    const branch = process.env.POPART_GITHUB_BRANCH || DEFAULT_BRANCH;
+    const path = "src/lib/seo/root-metadata.ts";
+
+    try {
+      const current = await readTextFile({ owner, repo, branch, path });
+      const next = applyMetadataFix(current.content, payload);
+
+      if (!next.applied) {
+        return json(422, {
+          ok: false,
+          applied: false,
+          error: next.reason,
+        });
+      }
+
+      const updated = await updateTextFile({
+        owner,
+        repo,
+        branch,
+        path,
+        sha: current.sha,
+        content: next.content,
+        message: `Apply RankBoost SEO fix: ${payload.fix?.id ?? payload.task?.id ?? "metadata"}`,
+      });
+
+      return json(200, {
+        ok: true,
+        applied: true,
+        externalId: payload.fix?.id ?? payload.task?.id ?? path,
+        url: "https://www.popart.ee",
+        githubPath: path,
+        commitSha: updated.commit?.sha ?? null,
+      });
+    } catch (error) {
+      return json(502, {
+        ok: false,
+        applied: false,
+        error: error instanceof Error ? error.message : "fix_apply_failed",
+      });
+    }
   }
 
   if (payload.event !== "article.ready") {
