@@ -329,6 +329,144 @@ function applyMetadataFix(source: string, payload: RankBoostPayload) {
   return { applied: false, reason: "unsupported_fix_field", content: source };
 }
 
+function fixHaystack(payload: RankBoostPayload) {
+  return [
+    payload.fix?.field,
+    payload.fix?.title,
+    payload.fix?.preview,
+    payload.fix?.suggestedValue,
+    payload.fix?.summary,
+    payload.fix?.implementationNotes,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function isFaqFix(payload: RankBoostPayload) {
+  return /faq|faqpage|частых вопросов|faq-размет|schema/.test(
+    fixHaystack(payload)
+  );
+}
+
+function isThinContentFix(payload: RankBoostPayload) {
+  return /мало текста|thin content|word count|word_count|300.?500|описание услуг/.test(
+    fixHaystack(payload)
+  );
+}
+
+function applyRootFaqSchemaFix(source: string) {
+  if (source.includes("@id\": `${SITE_ORIGIN}#rankboost-faq`")) {
+    return { applied: true, reason: "already_applied_faq_schema", content: source };
+  }
+
+  const marker = `      {
+        "@type": "WebSite",
+        "@id": \`${"${SITE_ORIGIN}"}#website\`,`;
+  if (!source.includes(marker)) {
+    return { applied: false, reason: "faq_schema_target_not_found", content: source };
+  }
+
+  const faqBlock = `      {
+        "@type": "FAQPage",
+        "@id": \`${"${SITE_ORIGIN}"}#rankboost-faq\`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How do I order a portrait from a photo?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Upload your photo, choose a canvas size, review the preview, and confirm the order before printing.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I use the portrait as a gift?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. PopArt.ee portraits are designed for birthdays, weddings, holidays, and personal wall art gifts.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Do you deliver in Estonia?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Orders can be prepared online and delivered across Estonia after preview approval and printing.",
+            },
+          },
+        ],
+      },
+`;
+
+  return {
+    applied: true,
+    reason: "applied_faq_schema",
+    content: source.replace(marker, faqBlock + marker),
+  };
+}
+
+function applyHomepageContentFix(source: string) {
+  if (source.includes('id="rankboost-seo-content"')) {
+    return { applied: true, reason: "already_applied_homepage_content", content: source };
+  }
+
+  const marker = "        {/* Pricing Section with Sofa */}";
+  if (!source.includes(marker)) {
+    return { applied: false, reason: "homepage_content_target_not_found", content: source };
+  }
+
+  const section = `        <section id="rankboost-seo-content" className="py-20 bg-indigo-50/50">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-4xl rounded-3xl border border-indigo-100 bg-white p-8 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                Custom portrait guide
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-gray-900 md:text-4xl">
+                Custom digital painting portraits from your photo
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-8 text-gray-700">
+                <p>
+                  PopArt.ee turns your favourite photos into custom digital painting
+                  portraits for gifts, wall art, family memories, and special
+                  occasions. The process is simple: upload a clear photo, choose a
+                  canvas size, review the preview, and confirm the final print when
+                  the portrait feels right.
+                </p>
+                <p>
+                  A good portrait starts with a sharp image and a story worth keeping.
+                  Natural light, visible facial details, and a relaxed expression help
+                  the artwork feel personal instead of generic. If you are ordering
+                  for a birthday, wedding, anniversary, or holiday gift, add your
+                  deadline early so production and delivery can be planned honestly.
+                </p>
+                <p>
+                  Every order is made for real homes: canvas sizes are easy to compare,
+                  the preview step protects the result before printing, and delivery
+                  can be arranged across Estonia. Start with the photo you love most,
+                  then use the order flow below to create a portrait that looks
+                  intentional, warm, and ready to give.
+                </p>
+              </div>
+              <a
+                href="#order-now"
+                className="mt-6 inline-flex rounded-full bg-indigo-600 px-6 py-3 font-bold text-white transition hover:bg-indigo-700"
+              >
+                Start your portrait order
+              </a>
+            </div>
+          </div>
+        </section>
+
+`;
+
+  return {
+    applied: true,
+    reason: "applied_homepage_content",
+    content: source.replace(marker, section + marker),
+  };
+}
+
 async function createArticleFile(input: {
   owner: string;
   repo: string;
@@ -397,11 +535,25 @@ export async function POST(request: NextRequest) {
     const owner = process.env.POPART_GITHUB_OWNER || DEFAULT_OWNER;
     const repo = process.env.POPART_GITHUB_REPO || DEFAULT_REPO;
     const branch = process.env.POPART_GITHUB_BRANCH || DEFAULT_BRANCH;
-    const path = "src/lib/seo/root-metadata.ts";
+    const target =
+      isFaqFix(payload)
+        ? {
+            path: "src/lib/seo/root-schemas.ts",
+            apply: applyRootFaqSchemaFix,
+          }
+        : isThinContentFix(payload)
+          ? {
+              path: "src/app/page.tsx",
+              apply: applyHomepageContentFix,
+            }
+          : {
+              path: "src/lib/seo/root-metadata.ts",
+              apply: (source: string) => applyMetadataFix(source, payload),
+            };
 
     try {
-      const current = await readTextFile({ owner, repo, branch, path });
-      const next = applyMetadataFix(current.content, payload);
+      const current = await readTextFile({ owner, repo, branch, path: target.path });
+      const next = target.apply(current.content);
 
       if (!next.applied) {
         return json(422, {
@@ -415,18 +567,19 @@ export async function POST(request: NextRequest) {
         owner,
         repo,
         branch,
-        path,
+        path: target.path,
         sha: current.sha,
         content: next.content,
-        message: `Apply RankBoost SEO fix: ${payload.fix?.id ?? payload.task?.id ?? "metadata"}`,
+        message: `Apply RankBoost SEO fix: ${payload.fix?.id ?? payload.task?.id ?? target.path}`,
       });
 
       return json(200, {
         ok: true,
         applied: true,
-        externalId: payload.fix?.id ?? payload.task?.id ?? path,
+        externalId: payload.fix?.id ?? payload.task?.id ?? target.path,
         url: "https://www.popart.ee",
-        githubPath: path,
+        githubPath: target.path,
+        reason: next.reason,
         commitSha: updated.commit?.sha ?? null,
       });
     } catch (error) {
