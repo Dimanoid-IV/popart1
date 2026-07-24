@@ -350,7 +350,7 @@ function isFaqFix(payload: RankBoostPayload) {
 }
 
 function isThinContentFix(payload: RankBoostPayload) {
-  return /мало текста|thin content|word count|word_count|300.?500|описание услуг/.test(
+  return /мало текста|маловато|контента|thin content|word count|word_count|300.?500|описание услуг/.test(
     fixHaystack(payload)
   );
 }
@@ -407,8 +407,53 @@ function applyRootFaqSchemaFix(source: string) {
 }
 
 function applyHomepageContentFix(source: string) {
-  if (source.includes('id="rankboost-seo-content"')) {
+  if (
+    source.includes('id="rankboost-seo-content"') &&
+    source.includes('id="rankboost-seo-content-expanded"')
+  ) {
     return { applied: true, reason: "already_applied_homepage_content", content: source };
+  }
+
+  if (source.includes('id="rankboost-seo-content"')) {
+    const marker = `              <a
+                href="#order-now"`;
+    if (!source.includes(marker)) {
+      return { applied: false, reason: "homepage_content_expand_target_not_found", content: source };
+    }
+
+    const expansion = `              <div id="rankboost-seo-content-expanded" className="mt-6 grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    What makes the portrait feel personal?
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    The best result usually comes from one meaningful photo, not a
+                    large album of almost-right images. Choose a photo where the face,
+                    eyes, and expression are clear. Tell us whether the portrait is for
+                    a partner, parent, friend, child, pet owner, or business gift so the
+                    final artwork can match the occasion.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    How to plan timing and delivery
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    For birthdays, weddings, Christmas, and anniversaries, leave time
+                    for preview feedback, printing, packaging, and delivery. If the date
+                    is important, mention it before checkout. Clear timing helps avoid
+                    rushed artwork and gives you a calmer gift experience.
+                  </p>
+                </div>
+              </div>
+
+`;
+
+    return {
+      applied: true,
+      reason: "expanded_homepage_content",
+      content: source.replace(marker, expansion + marker),
+    };
   }
 
   const marker = "        {/* Pricing Section with Sofa */}";
