@@ -132,6 +132,32 @@ export default function Home() {
                   intentional, warm, and ready to give.
                 </p>
               </div>
+              <div id="rankboost-seo-content-expanded" className="mt-6 grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    What makes the portrait feel personal?
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    The best result usually comes from one meaningful photo, not a
+                    large album of almost-right images. Choose a photo where the face,
+                    eyes, and expression are clear. Tell us whether the portrait is for
+                    a partner, parent, friend, child, pet owner, or business gift so the
+                    final artwork can match the occasion.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    How to plan timing and delivery
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    For birthdays, weddings, Christmas, and anniversaries, leave time
+                    for preview feedback, printing, packaging, and delivery. If the date
+                    is important, mention it before checkout. Clear timing helps avoid
+                    rushed artwork and gives you a calmer gift experience.
+                  </p>
+                </div>
+              </div>
+
               <a
                 href="#order-now"
                 className="mt-6 inline-flex rounded-full bg-indigo-600 px-6 py-3 font-bold text-white transition hover:bg-indigo-700"
