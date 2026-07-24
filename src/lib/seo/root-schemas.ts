@@ -38,6 +38,36 @@ export function buildRootJsonLd() {
         priceRange: "€€",
       },
       {
+        "@type": "FAQPage",
+        "@id": `${SITE_ORIGIN}#rankboost-faq`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How do I order a portrait from a photo?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Upload your photo, choose a canvas size, review the preview, and confirm the order before printing.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I use the portrait as a gift?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. PopArt.ee portraits are designed for birthdays, weddings, holidays, and personal wall art gifts.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Do you deliver in Estonia?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Orders can be prepared online and delivered across Estonia after preview approval and printing.",
+            },
+          },
+        ],
+      },
+      {
         "@type": "WebSite",
         "@id": `${SITE_ORIGIN}#website`,
         name: SITE_NAME,
