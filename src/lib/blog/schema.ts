@@ -22,7 +22,7 @@ export function buildArticleGraphLd(article: BlogArticle, slug: string) {
     datePublished: article.publishedAt,
     dateModified,
     author: {
-      "@type": "Person",
+      "@type": article.author.name === "PopArt.ee" ? "Organization" : "Person",
       name: article.author.name,
       ...(article.author.url ? { url: article.author.url } : {}),
       ...(article.author.jobTitle
@@ -35,7 +35,7 @@ export function buildArticleGraphLd(article: BlogArticle, slug: string) {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/pic1.jpg`,
       },
     },
     mainEntityOfPage: {

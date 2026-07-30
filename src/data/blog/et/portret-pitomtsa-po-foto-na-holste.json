@@ -1,0 +1,55 @@
+{
+  "slug": "portret-pitomtsa-po-foto-na-holste",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Lemmiklooma portree fotost lõuendile: kingitus koera- või kassiomanikule",
+  "description": "Nõuanded lemmiklooma foto, tausta ja formaadi valimiseks, et koera või kassi portree jääks isikupärane ja äratuntav.",
+  "publishedAt": "2026-07-26",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic2.jpg",
+  "keywords": [
+    "lemmiklooma portree fotost",
+    "koera portree lõuendil",
+    "kassi portree tellimine",
+    "kingitus loomaomanikule"
+  ],
+  "bodyHtml": "<p>Lemmiklooma portree on emotsionaalne kingitus, mis näitab looma iseloomu ega piirdu foto kopeerimisega. Hea lähtepilt aitab säilitada pilgu, värvuse ja äratuntava kehahoiaku.</p><h2>Kuidas lemmiklooma pildistada</h2><p>Pildista looma silmade kõrguselt pehmes päevavalguses. Ülevalt tehtud pilt ja telefoni lainurk moonutavad koonu proportsioone. Astu veidi kaugemale ning hoia kaamera stabiilsena.</p><p>Juhi looma tähelepanu mänguasja või maiusega kaamera lähedal. Mitmest kaadrist koosnev seeria suurendab võimalust saada teravad silmad ja loomulik kõrvade asend.</p><h2>Millised detailid on olulised</h2><p>Sarnasuse loovad silmade kuju, karvamuster, nina värvus ja iseloomulik ilme. Ära varja neid ebavajalike aksessuaaridega. Lemmikkaelarihm või mänguasi võib jääda isiklikuks detailiks.</p><p>Kirjelda ka tunnuseid, mis pole esmapilgul märgatavad: eri värvi silmad, hele laik rinnal või murdunud kõrvaots.</p><h2>Taust ja kunstiline lahendus</h2><p>Rahulik ühetooniline taust keskendab tähelepanu loomale ning sobib moodsasse interjööri. Loodustaust jutustab jalutuskäikudest, fantaasiataust muudab kingi mängulisemaks.</p><p>Vali taust looma iseloomu ja omaniku maitse järgi. Mida kirjum on karv või aksessuaarid, seda rahulikum võiks olla ümbrus.</p><h2>Portree suurus</h2><p>Pea- ja rinnaportree jaoks piisab sageli mõõdust 45 × 30 cm. Täispikk loom või mitme lemmikloomaga kompositsioon vajab vähemalt 60 × 40 cm. Istuv koer sobib püstformaati, lamav kass sageli rõhtformaati.</p><p>Mõtle läbi riputuskoht: väiksem pilt sobib kabinetti või esikusse, suurem portree muutub elutoa keskpunktiks.</p><h2>Kingitus ja mälestus</h2><p>Portree sobib sünnipäevaks, soolaleivaks või looma mälestuseks. Viimasel juhul vali rahulik ja hästi äratuntav foto ning delikaatne kujundus.</p><p>Nime ja eluaastad võib lisada, kuid see pole kohustuslik. Mõnikord jutustab tuttav pilk rohkem kui tekst.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas telefonifoto sobib?",
+      "answer": "Jah, kui silmad on fookuses, pilt pole tugevalt udune ja looma pea on kaadris piisavalt suur."
+    },
+    {
+      "question": "Kas kaks lemmiklooma saab ühele portreele panna?",
+      "answer": "Jah. Saada mõlemast loomast mitu fotot ja kirjelda soovitud paigutust."
+    },
+    {
+      "question": "Kas jalutusrihma või segavad esemed saab eemaldada?",
+      "answer": "Üldjuhul saab kõrvalised elemendid kunstilisest kompositsioonist välja jätta."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "semeynyy-portret-na-holste-v-podarok"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

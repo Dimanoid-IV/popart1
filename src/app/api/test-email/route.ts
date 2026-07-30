@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { getErrorMessage, getErrorStack } from '@/lib/errors';
 
 export const dynamic = 'force-dynamic';
 
@@ -74,13 +75,13 @@ export async function POST(req: NextRequest) {
       customerEmail: customerResult,
       message: 'Test emails sent successfully. Check your inbox!',
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Test email error:', error);
     return NextResponse.json(
       {
         error: 'Failed to send test email',
-        details: error.message,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+        details: getErrorMessage(error, 'Unknown email service error'),
+        stack: process.env.NODE_ENV === 'development' ? getErrorStack(error) : undefined,
       },
       { status: 500 }
     );

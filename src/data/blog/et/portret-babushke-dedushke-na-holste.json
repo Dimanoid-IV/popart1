@@ -1,0 +1,55 @@
+{
+  "slug": "portret-babushke-dedushke-na-holste",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Portree vanaemale ja vanaisale lõuendil: perekingitus fotost",
+  "description": "Kuidas valmistada vanaemale ja vanaisale paari- või pereportree, kasutada vana fotot ning valida hästi loetav suurus.",
+  "publishedAt": "2026-07-22",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/divan.png",
+  "keywords": [
+    "portree vanaemale ja vanaisale",
+    "kingitus vanaemale fotost",
+    "kingitus vanaisale lõuendil",
+    "mitme põlvkonna portree"
+  ],
+  "bodyHtml": "<p>Vanemale põlvkonnale on inimeste näod ja perekondlikud sündmused eriti tähenduslikud. Lõuendiportree võib tuua ellu vana foto, ühendada lapsed ja lapselapsed või jäädvustada paari tänapäevase ilme.</p><h2>Milline eluetapp valida</h2><p>Pulma- või nooruspõlve foto toob tagasi mälestused, tänapäevane pilt näitab peret sellisena, nagu see praegu on. Mõlemad lahendused on õiged; otsus sõltub tähtpäevast ja sellest, milliseid pilte kingisaajad ise väärtustavad.</p><p>Hea lahendus võib olla ka vanast fotost inspireeritud kunstiline kompositsioon, kus säilivad äratuntavad detailid.</p><h2>Vana foto digiteerimine</h2><p>Skanni paberfoto võimalusel 600 dpi lahutusega. Telefoniga pildistades aseta foto sirgelt, väldi välku ja peegeldusi ning hoia kaamera täpselt pildi kohal. Ära lisa enne edastamist automaatseid filtreid.</p><p>Säilita nii algne kui töödeldud fail. Kunstnikul on kasulik näha originaali tegelikku tooni ja kahjustusi.</p><h2>Mitu põlvkonda ühel portreel</h2><p>Laste ja lastelaste lisamiseks kogu igast inimesest selged fotod. Kirjelda sugulussuhteid ning soovitud paigutust, et tulemus ei mõjuks juhusliku grupina.</p><p>Ära proovi väikesele lõuendile mahutada liiga palju kaugeid sugulasi. Lähedaste suuremalt kujutamine annab tugevama tulemuse.</p><h2>Hästi loetav suurus</h2><p>Portree peaks olema tavaliselt vaatamiskauguselt selge. Liiga pisikesed näod ja madal kontrast on raskemini tajutavad. Paarile sobib 60 × 40 cm, suurele perele suurem formaat.</p><p>Lõuendi matt pind vähendab valguspeegeldusi, mis on praktiline heledas elutoas.</p><h2>Tekst ja kuupäev</h2><p>Lisada võib nimed, pulmapäeva või kodukoha nime. Kasuta lühikest sõnastust ja loetavat kirja; pikk pühendus jäta kaardile.</p><p>Enne trükki palu teisel pereliikmel kuupäevad ja nimed üle kontrollida.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas väikesest paberfotost saab portree teha?",
+      "answer": "Mõnikord küll. Tulemus sõltub näo teravusest; hea skann ja lisafotod parandavad võimalusi."
+    },
+    {
+      "question": "Kuidas ühendada mitu põlvkonda?",
+      "answer": "Vaja on sarnase vaatenurgaga fotosid ja soovitud paigutuse kirjeldust. Suurema pere puhul vali suur lõuend."
+    },
+    {
+      "question": "Milline taust sobib?",
+      "answer": "Rahulik interjööri-, looduse- või neutraalne taust toetab pereportreed kõige paremini."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "semeynyy-portret-na-holste-v-podarok"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

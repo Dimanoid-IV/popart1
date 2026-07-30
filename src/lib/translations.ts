@@ -32,6 +32,20 @@ export const translations = {
         desc: "Printed on high-quality museum-grade canvas that lasts a lifetime. Perfect for home or as a gift.",
       },
     },
+    guide: {
+      eyebrow: "Custom portrait guide",
+      title: "Custom digital painting portraits from your photo",
+      paragraphs: [
+        "PopArt.ee turns your favourite photos into custom digital painting portraits for gifts, wall art, family memories, and special occasions. The process is simple: upload a clear photo, choose a canvas size, review the preview, and confirm the final print when the portrait feels right.",
+        "A good portrait starts with a sharp image and a story worth keeping. Natural light, visible facial details, and a relaxed expression help the artwork feel personal instead of generic. If you are ordering for a birthday, wedding, anniversary, or holiday gift, add your deadline early so production and delivery can be planned honestly.",
+        "Every order is made for real homes: canvas sizes are easy to compare, the preview step protects the result before printing, and delivery can be arranged across Estonia. Start with the photo you love most, then use the order flow below to create a portrait that looks intentional, warm, and ready to give.",
+      ],
+      personalTitle: "What makes the portrait feel personal?",
+      personalText: "The best result usually comes from one meaningful photo, not a large album of almost-right images. Choose a photo where the face, eyes, and expression are clear. Tell us whether the portrait is for a partner, parent, friend, child, pet owner, or business gift so the final artwork can match the occasion.",
+      timingTitle: "How to plan timing and delivery",
+      timingText: "For birthdays, weddings, Christmas, and anniversaries, leave time for preview feedback, printing, packaging, and delivery. If the date is important, mention it before checkout. Clear timing helps avoid rushed artwork and gives you a calmer gift experience.",
+      cta: "Start your portrait order",
+    },
     order: {
       sectionTitle: "Start Your Transformation",
       sectionDesc: "Select your size and upload your photo to begin.",
@@ -122,6 +136,20 @@ export const translations = {
         desc: "Печать на высококачественном музейном холсте, который служит вечно. Идеально для дома или подарка.",
       },
     },
+    guide: {
+      eyebrow: "Гид по портретам на заказ",
+      title: "Цифровые художественные портреты по вашей фотографии",
+      paragraphs: [
+        "PopArt.ee превращает любимые фотографии в цифровые художественные портреты для подарков, украшения интерьера, семейных воспоминаний и особых событий. Всё просто: загрузите чёткое фото, выберите размер холста, оцените результат и подтвердите печать понравившегося портрета.",
+        "Хороший портрет начинается с качественной фотографии и истории, которую хочется сохранить. Естественный свет, хорошо видимые черты лица и непринуждённое выражение помогают сделать работу по-настоящему личной. Если портрет нужен ко дню рождения, свадьбе, годовщине или празднику, заранее сообщите дату, чтобы спокойно спланировать изготовление и доставку.",
+        "Каждый заказ создаётся для реального интерьера: размеры холста легко сравнить, предварительный просмотр помогает проверить результат до печати, а доставка доступна по всей Эстонии. Начните с любимой фотографии и используйте форму ниже, чтобы создать тёплый, продуманный и готовый к вручению портрет.",
+      ],
+      personalTitle: "Что делает портрет действительно личным?",
+      personalText: "Лучший результат обычно получается из одной значимой фотографии, а не из большого альбома почти подходящих кадров. Выберите снимок, где хорошо видны лицо, глаза и выражение. Укажите, кому предназначен портрет, чтобы оформление соответствовало поводу.",
+      timingTitle: "Как спланировать сроки и доставку",
+      timingText: "Для дня рождения, свадьбы, Рождества или годовщины оставьте время на проверку результата, печать, упаковку и доставку. Если дата важна, сообщите её до оплаты. Понятный график помогает избежать спешки.",
+      cta: "Начать создание портрета",
+    },
     order: {
       sectionTitle: "Начните трансформацию",
       sectionDesc: "Выберите размер и загрузите фото, чтобы начать.",
@@ -211,6 +239,20 @@ export const translations = {
         title: "Premium kvaliteet",
         desc: "Trükitud kvaliteetsele muuseumiklassi lõuendile, mis kestab igavesti. Ideaalne koju või kingituseks.",
       },
+    },
+    guide: {
+      eyebrow: "Eritellimusportree juhend",
+      title: "Sinu fotost loodud digitaalne kunstiline portree",
+      paragraphs: [
+        "PopArt.ee muudab sinu lemmikfotod digitaalseteks kunstilisteks portreedeks, mis sobivad kingituseks, kodu kaunistamiseks, peremälestuste jäädvustamiseks ja erilisteks tähtpäevadeks. Protsess on lihtne: laadi üles selge foto, vali lõuendi suurus, vaata tulemus üle ja kinnita sobiva portree trükk.",
+        "Hea portree algab teravast fotost ja loost, mida tasub hoida. Loomulik valgus, nähtavad näodetailid ja vaba ilme aitavad muuta kunstiteose isiklikuks. Kui tellid sünnipäeva-, pulma-, aastapäeva- või jõulukingi, anna tähtajast varakult teada, et valmistamist ja tarnet saaks rahulikult planeerida.",
+        "Iga tellimus valmib päris kodu jaoks: lõuendisuurusi on lihtne võrrelda, eelvaade aitab tulemust enne trükki kontrollida ning tarne on võimalik üle Eesti. Alusta fotost, mida kõige rohkem armastad, ja kasuta allolevat tellimisvormi, et luua läbimõeldud, soe ning kinkimiseks valmis portree.",
+      ],
+      personalTitle: "Mis muudab portree isiklikuks?",
+      personalText: "Parim tulemus sünnib tavaliselt ühest tähenduslikust fotost, mitte suurest peaaegu sobivate piltide albumist. Vali foto, millel nägu, silmad ja ilme on selgelt nähtavad. Anna teada, kellele portree on mõeldud, et kujundus sobiks sündmusega.",
+      timingTitle: "Kuidas planeerida valmimist ja tarnet",
+      timingText: "Sünnipäeva, pulma, jõulude või aastapäeva puhul jäta aega tulemuse ülevaatamiseks, trükiks, pakkimiseks ja tarneks. Kui kuupäev on oluline, maini seda enne maksmist. Selge ajakava aitab vältida kiirustamist.",
+      cta: "Alusta portree tellimist",
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",

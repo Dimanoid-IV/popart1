@@ -12,17 +12,82 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.blog-content {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.blog-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.blog-content h2 {
+  margin-top: 2.75rem;
+  color: #0f172a;
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.blog-content h3 {
+  margin-top: 2rem;
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.blog-content a {
+  color: #4338ca;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5rem;
+}
+
+.blog-content ul {
+  list-style: disc;
+}
+
+.blog-content ol {
+  list-style: decimal;
+}
+
+.blog-content li + li {
+  margin-top: 0.6rem;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid #818cf8;
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: #eef2ff;
+  padding: 1rem 1.25rem;
+  color: #3730a3;
+}
+
+.blog-content img {
+  width: min(100%, 760px);
+  max-height: 480px;
+  margin-inline: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.blog-content article,
+.blog-content body,
+.blog-content html {
+  display: contents;
 }
 
 @keyframes marquee {
@@ -39,4 +104,3 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
-

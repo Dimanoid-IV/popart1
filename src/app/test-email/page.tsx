@@ -1,11 +1,19 @@
 "use client";
 
 import { useState } from 'react';
+import { getErrorMessage } from '@/lib/errors';
+
+type TestEmailResult = {
+  success?: boolean;
+  error?: string;
+  details?: string;
+  [key: string]: unknown;
+};
 
 export default function TestEmailPage() {
   const [email, setEmail] = useState('dmitri.ivkin@gmail.com');
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<TestEmailResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,8 +39,8 @@ export default function TestEmailPage() {
         setError(data.error || 'Неизвестная ошибка');
         setResult(data);
       }
-    } catch (err: any) {
-      setError(err.message || 'Ошибка сети');
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, 'Ошибка сети'));
     } finally {
       setLoading(false);
     }
@@ -53,7 +61,7 @@ export default function TestEmailPage() {
             <ul className="text-sm text-blue-700 mt-2 space-y-1 list-disc list-inside">
               <li>Письмо будет отправлено на указанный email</li>
               <li>Также будет отправлено письмо администратору</li>
-              <li>Проверьте папку "Входящие" и "Спам"</li>
+              <li>Проверьте папку &quot;Входящие&quot; и &quot;Спам&quot;</li>
             </ul>
           </div>
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getErrorMessage } from '@/lib/errors';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +23,11 @@ export async function GET(req: NextRequest) {
     const statusData = await statusRes.json();
 
     return NextResponse.json(statusData);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Status Check Error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: getErrorMessage(error, 'Failed to check generation status') },
+      { status: 500 }
+    );
   }
 }

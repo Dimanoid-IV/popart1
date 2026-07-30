@@ -45,7 +45,7 @@ export default function ArticleTemplate({
   const cro = getBlogCroLabels(article.locale);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <JsonLd data={graphLd as unknown as Record<string, unknown>} />
       <Breadcrumbs items={breadcrumbItems} />
       {categoryNav ? (
@@ -68,19 +68,21 @@ export default function ArticleTemplate({
           {article.title}
         </h1>
         <p className="mt-4 text-lg text-gray-600">{article.description}</p>
-        <div className="mt-8 overflow-hidden rounded-xl">
+        <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl bg-slate-100 shadow-sm">
           <BlogArticleImage
             src={article.coverImage}
             alt={article.title}
             width={1200}
             height={630}
             priority
+            className="aspect-[16/9] max-h-[480px] w-full rounded-none object-cover"
+            sizes="(max-width: 896px) 100vw, 768px"
           />
         </div>
       </header>
       <BlogCroTrustStrip cro={cro} />
       <div
-        className="blog-content mt-10 max-w-none space-y-4 text-gray-800 [&_a]:text-indigo-600 [&_a]:underline [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_img]:max-w-full [&_img]:rounded-lg [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6"
+        className="blog-content mx-auto mt-10 max-w-3xl text-gray-800"
         dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
       />
       <BlogCroMidCta cro={cro} />

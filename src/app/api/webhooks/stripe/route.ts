@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import { getErrorMessage } from '@/lib/errors';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-01-27.acacia' as any,
+    apiVersion: '2025-01-27.acacia' as Stripe.LatestApiVersion,
   });
 
   // Check if Resend API key is configured
@@ -28,9 +29,10 @@ export async function POST(req: NextRequest) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err: any) {
-    console.error(`Webhook signature verification failed: ${err.message}`);
-    return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
+  } catch (err: unknown) {
+    const message = getErrorMessage(err, 'Invalid webhook signature');
+    console.error(`Webhook signature verification failed: ${message}`);
+    return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
   }
 
   if (event.type === 'checkout.session.completed') {
@@ -117,7 +119,7 @@ export async function POST(req: NextRequest) {
           `,
         });
         console.log('Customer email sent successfully:', customerEmailResult);
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error('Failed to send customer email:', error);
         // Don't fail the webhook if customer email fails
       }
@@ -192,11 +194,11 @@ export async function POST(req: NextRequest) {
         `,
       });
       console.log('Admin email sent successfully:', adminEmailResult);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to send admin email:', error);
       // Return error so Stripe can retry
       return NextResponse.json(
-        { error: `Failed to send admin email: ${error.message}` },
+        { error: `Failed to send admin email: ${getErrorMessage(error, 'Unknown email service error')}` },
         { status: 500 }
       );
     }

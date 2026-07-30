@@ -1,0 +1,55 @@
+{
+  "slug": "portret-na-holste-podarok-na-novosele",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Lõuendiportree soolaleivakingiks: isiklik kunst uude koju",
+  "description": "Kuidas valida soolaleivaks fotost portree motiiv, värvipalett ja suurus, et pilt sobiks uue kodu interjööriga.",
+  "publishedAt": "2026-07-20",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic4.jpg",
+  "keywords": [
+    "portree soolaleivakingiks",
+    "kingitus uude koju fotost",
+    "lõuendipilt kingituseks",
+    "interjööri pereportree"
+  ],
+  "bodyHtml": "<p>Soolaleivaks sobib kingitus, mis muudab uue ruumi isiklikuks. Lõuendiportree seob kodu selle elanike, pere või armastatud kohaga ega korda tavapäraseid majapidamiskinke.</p><h2>Tutvu kõigepealt ruumiga</h2><p>Küsi toa fotot või pane külaskäigul tähele seinu. Olulised on värvid, vaba seina laius, mööbli stiil ja valgustus. Ka ligikaudne info aitab vältida liiga suurt või kirgast pilti.</p><p>Kui interjöör pole veel valmis, vali rahulik palett ja keskmine formaat, mida saab hiljem eri tubadesse paigutada.</p><h2>Motiivid uue kodu jaoks</h2><p>Sobivad paaripilt, pere koos lemmikloomaga, kodu ostmise hetk või kunstiline vaade lemmiklinnale. Lisada võib maja silueti või uue aadressi koordinaadid.</p><p>Ära täida portreed sisustusesemetega. Inimesed ja nende lugu peaksid jääma peamiseks.</p><h2>Värvide sobitamine</h2><p>Korda pildil üht või kaht ruumis leiduvat tooni, kuid ära proovi kopeerida kõiki värve. Kontrastne aktsent elavdab neutraalset interjööri, pehme palett rahustab värvikat ruumi.</p><p>Sooja valgusega sobivad beežid, terrakota- ja kuldsed toonid; jaheda valgusega sinised, hallid ja rohelised.</p><h2>Suurus mööbli kohal</h2><p>Diivani või kummuti kohal on hea orientiir umbes kaks kolmandikku mööbli laiusest. 60 × 40 cm sobib keskmisse tuppa, 80 × 54 ja 90 × 60 cm avarale seinale. Kitsale seinaosale vali püstformaat.</p><p>Lõika soovitud mõõdus paberist ristkülik ja kinnita ajutiselt seinale. Nii on mõõtkava kohe arusaadav.</p><h2>Praktiline üleandmine</h2><p>Kaitse lõuendi nurki ning ära hoia pakki niiskes või külmas kohas. Kui kolimine veel kestab, lepi tarne kokku pärast suuremate asjade paigutamist.</p><p>Lisa kingile valitud foto lugu ja lihtne soovitus riputamiseks. Nii muutub portree kohe uue kodu osaks.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kuidas valida portreed, kui interjöör pole valmis?",
+      "answer": "Vali keskmine formaat, neutraalne taust ja loomulik palett, mida on hiljem lihtne paigutada."
+    },
+    {
+      "question": "Kuidas määrata suurus diivani kohale?",
+      "answer": "Hea orientiir on umbes kaks kolmandikku mööbli laiusest, jättes pildi ümber vaba ruumi."
+    },
+    {
+      "question": "Kas portreele saab lisada uue maja?",
+      "answer": "Jah, maja saab kasutada tagasihoidliku tausta või tähendusliku detailina."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "semeynyy-portret-na-holste-v-podarok"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

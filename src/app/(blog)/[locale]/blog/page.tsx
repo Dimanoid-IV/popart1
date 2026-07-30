@@ -1,11 +1,10 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { BlogLocale } from "@/lib/blog/types";
 import {
   BLOG_LOCALES,
   SITE_URL,
-  blogArticlePath,
+  blogArticleUrl,
   blogIndexUrl,
   isValidBlogLocale,
   listArticlesForLocale,
@@ -14,7 +13,7 @@ import { getBlogUiLabels } from "@/lib/blog/ui-labels";
 import BlogCategoryChips from "@/components/blog/BlogCategoryChips";
 import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
-import BlogArticleImage from "@/components/blog/BlogArticleImage";
+import BlogArticleCard from "@/components/blog/BlogArticleCard";
 
 export async function generateStaticParams() {
   return BLOG_LOCALES.map((locale) => ({ locale }));
@@ -35,9 +34,10 @@ export async function generateMetadata({
     description: labels.blogIntro,
     alternates: {
       canonical,
-      languages: Object.fromEntries(
-        BLOG_LOCALES.map((l) => [l, blogIndexUrl(l)])
-      ) as Record<string, string>,
+      languages: {
+        ...Object.fromEntries(BLOG_LOCALES.map((l) => [l, blogIndexUrl(l)])),
+        "x-default": blogIndexUrl("et"),
+      },
     },
     openGraph: {
       url: canonical,
@@ -46,11 +46,20 @@ export async function generateMetadata({
       siteName: "PopArt.ee",
       locale: locale === "et" ? "et_EE" : locale === "ru" ? "ru_RU" : "en_US",
       type: "website",
+      images: [
+        {
+          url: `${SITE_URL}/pic1.jpg`,
+          width: 1200,
+          height: 630,
+          alt: labels.blogTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: labels.blogTitle,
       description: labels.blogIntro,
+      images: [`${SITE_URL}/pic1.jpg`],
     },
   };
 }
@@ -79,6 +88,16 @@ export default async function BlogIndexPage({
         inLanguage:
           locale === "et" ? "et-EE" : locale === "ru" ? "ru-EE" : "en-EE",
         isPartOf: { "@type": "WebSite", name: "PopArt.ee", url: SITE_URL },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: articles.length,
+          itemListElement: articles.map((article, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: blogArticleUrl(locale, article.slug),
+            name: article.title,
+          })),
+        },
       },
       {
         "@type": "BreadcrumbList",
@@ -101,53 +120,29 @@ export default async function BlogIndexPage({
   };
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">
-        {labels.blogTitle}
-      </h1>
-      <p className="mt-4 text-lg text-gray-600">{labels.blogIntro}</p>
-      <BlogCategoryChips
-        locale={locale}
-        heading={labels.categoriesHeading}
-      />
-      <ul className="mt-10 space-y-6">
+      <div className="max-w-3xl">
+        <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          {labels.blogTitle}
+        </h1>
+        <p className="mt-5 text-lg leading-8 text-slate-600">{labels.blogIntro}</p>
+      </div>
+      <BlogCategoryChips locale={locale} heading={labels.categoriesHeading} />
+      <ul className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((a) => (
-          <li
+          <BlogArticleCard
             key={a.slug}
-            className="rounded-xl border border-gray-200 overflow-hidden transition-shadow hover:shadow-md"
-          >
-            <div className="overflow-hidden">
-              <BlogArticleImage
-                src={a.coverImage}
-                alt={a.title}
-                width={800}
-                height={420}
-              />
-            </div>
-            <div className="p-5">
-              <Link
-                href={blogArticlePath(locale, a.slug)}
-                className="text-xl font-semibold text-indigo-600 hover:underline"
-              >
-                {a.title}
-              </Link>
-              <p className="mt-2 text-gray-600">{a.description}</p>
-              <p className="mt-3 text-sm text-gray-500">{a.publishedAt}</p>
-              <Link
-                href={blogArticlePath(locale, a.slug)}
-                className="mt-3 inline-block text-sm font-medium text-indigo-600 hover:underline"
-              >
-                {labels.readMore} →
-              </Link>
-            </div>
-          </li>
+            article={a}
+            locale={locale}
+            readMoreLabel={labels.readMore}
+          />
         ))}
       </ul>
       <BlogListCroBanner cro={cro} />
-    </div>
+    </main>
   );
 }

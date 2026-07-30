@@ -10,8 +10,8 @@ export default function SuccessPage() {
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Order Successful!</h1>
         <p className="text-gray-600 mb-8">
-          Thank you for your order. We've received your art selection and our team is getting it ready for printing.
-          You'll receive a confirmation email shortly.
+          Thank you for your order. We&apos;ve received your art selection and our team is getting it ready for printing.
+          You&apos;ll receive a confirmation email shortly.
         </p>
         <div className="space-y-4">
           <Link 

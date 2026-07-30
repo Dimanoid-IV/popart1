@@ -6,6 +6,8 @@ type Props = {
   width: number;
   height: number;
   priority?: boolean;
+  className?: string;
+  sizes?: string;
 };
 
 export default function BlogArticleImage({
@@ -14,6 +16,8 @@ export default function BlogArticleImage({
   width,
   height,
   priority = false,
+  className = "h-auto w-full rounded-lg object-cover",
+  sizes = "(max-width: 768px) 100vw, 720px",
 }: Props) {
   if (src.startsWith("http")) {
     return (
@@ -23,7 +27,7 @@ export default function BlogArticleImage({
         alt={alt}
         width={width}
         height={height}
-        className="h-auto w-full rounded-lg object-cover"
+        className={className}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
       />
@@ -35,10 +39,10 @@ export default function BlogArticleImage({
       alt={alt}
       width={width}
       height={height}
-      className="h-auto w-full rounded-lg object-cover"
+      className={className}
       loading={priority ? "eager" : "lazy"}
       priority={priority}
-      sizes="(max-width: 768px) 100vw, 720px"
+      sizes={sizes}
     />
   );
 }

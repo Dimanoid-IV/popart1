@@ -1,0 +1,55 @@
+{
+  "slug": "semeynyy-portret-na-holste-v-podarok",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Pereportree lõuendil kingituseks: fotodest tervikliku pildini",
+  "description": "Kuidas valmistada ette fotod pereportree jaoks, paigutada mitu põlvkonda ning valida sobiv lõuendi formaat.",
+  "publishedAt": "2026-07-27",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic33.JPG",
+  "keywords": [
+    "pereportree lõuendil",
+    "perekingitus fotost",
+    "perepilt tellimisel",
+    "personaalne pereportree"
+  ],
+  "bodyHtml": "<p>Pereportree ühendab inimesed ja ühised mälestused üheks pildiks. Seda tellitakse soolaleivaks, pulma-aastapäevaks, lapse sünni puhul või tähtpäevaks, mil kingitus peaks kõnetama tervet peret.</p><h2>Üks foto või mitu fotot</h2><p>Ühine grupifoto annab kõige loomulikuma valguse ja kehahoiaku. Kui kogu pere pole korraga pildile saanud, saab kasutada eraldi fotosid, mille vaatenurk ja valgus on omavahel sarnased.</p><p>Vali igast inimesest võimalusel kaks fotot. Nii saab kombineerida ilmed ja poosid, mis mõjuvad ühises stseenis usutavalt.</p><h2>Kuidas pereliikmed paigutada</h2><p>Kompositsioon vajab tähenduslikku keskpunkti: selleks võivad olla vanemad, vanavanemad või laps. Täiesti sirge rivi asemel mõjuvad väikesed kõrguse ja kehahoiaku erinevused loomulikumalt.</p><p>Anna enne töö algust teada, kes peaks paiknema keskel ning kas inimeste tegelik pikkusevahe on oluline.</p><h2>Lapsed ja lemmikloomad</h2><p>Lapse puhul vali kaader, millel silmad on teravad ja liikumine pole udune. Lemmiklooma lisamiseks on vaja fotot, millel on näha silmad, karvkatte värv ja iseloomulikud tunnused.</p><p>Ära täida kompositsiooni liigsete esemete ja sümbolitega. Rahulik taust laseb pereliikmetel jääda loo keskmesse.</p><h2>Milline lõuend valida</h2><p>Kolme või enama inimese puhul on praktiline rõhtformaat alates 60 × 40 cm. Väikesel lõuendil jäävad näod liiga pisikeseks. Suurem formaat aitab säilitada sarnasuse ja rõivaste olulised detailid.</p><p>Mõõda sein ning selle all olev mööbel. Jäta portree kõrvale piisavalt vaba ruumi, eriti kui läheduses ripub teisi pilte.</p><h2>Kontroll enne trükki</h2><p>Vaata üle, kas kõik inimesed on äratuntavad, nimed õiged ja tähtsad detailid ei jää lõuendi serva pööratavale alale. Kompositsiooni kinnitamine enne trükki vähendab arusaamatusi.</p><p>Hea pereportree ei pea kopeerima foto tausta. Kõige tähtsamad on inimesed, nendevaheline suhe ja ühtne meeleolu.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas eraldi fotolt saab lisada puuduva pereliikme?",
+      "answer": "Jah, kui nägu on selgelt nähtav ning vaatenurk ja valgus sobivad ülejäänud kompositsiooniga."
+    },
+    {
+      "question": "Kui palju inimesi lõuendile mahub?",
+      "answer": "Kindlat piiri pole, kuid suure pere puhul on loetavate nägude jaoks vaja suuremat formaati."
+    },
+    {
+      "question": "Kas pereportreele saab lisada lemmiklooma?",
+      "answer": "Jah. Vaja on teravat fotot, millel on näha looma silmad, värvus ja eripärad."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "portret-pitomtsa-po-foto-na-holste"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

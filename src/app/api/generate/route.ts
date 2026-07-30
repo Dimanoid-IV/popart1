@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getErrorMessage } from '@/lib/errors';
 
 export const dynamic = 'force-dynamic';
 
@@ -87,8 +88,11 @@ export async function POST(req: NextRequest) {
     );
 
     return NextResponse.json({ taskIds: tasks });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Generation Error:', error);
-    return NextResponse.json({ error: error.message || 'Failed to generate images' }, { status: 500 });
+    return NextResponse.json(
+      { error: getErrorMessage(error, 'Failed to generate images') },
+      { status: 500 }
+    );
   }
 }

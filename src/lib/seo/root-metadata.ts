@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LOCALE_ALTERNATES, SITE_NAME, SITE_ORIGIN } from "./site-config";
 
-const ogImage = "/og-image.jpg";
+const ogImage = "/pic1.jpg";
 
 /**
  * Root layout metadata: canonical, OG, Twitter, hreflang hints via blog hubs.
@@ -26,6 +26,14 @@ export const rootMetadata: Metadata = {
     "Tallinn",
   ],
   applicationName: SITE_NAME,
+  category: "art",
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: {
     canonical: SITE_ORIGIN,
     languages: {
@@ -46,7 +54,7 @@ export const rootMetadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: SITE_NAME,
+        alt: "Custom portrait printed on canvas by PopArt.ee",
       },
     ],
     locale: "en_US",

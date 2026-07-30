@@ -1,0 +1,55 @@
+{
+  "slug": "portret-kollege-rukovoditelyu-v-podarok",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Portree kolleegile või juhile kingituseks: etikett ja ideed",
+  "description": "Kuidas valida kolleegile või juhile sobiv fotost portree: stiil, meeskonna pühendus, mõõt ja väärikas üleandmine.",
+  "publishedAt": "2026-07-21",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic1.jpg",
+  "keywords": [
+    "portree juhile kingituseks",
+    "kingitus kolleegile fotost",
+    "ettevõtte kingitus lõuendil",
+    "personaalne juubelikingitus"
+  ],
+  "bodyHtml": "<p>Tööalane kingitus peaks olema isiklik, kuid austama piire. Fotost portree sobib juubeliks, suure projekti lõpetamiseks või pensionile minekuks, kui motiiv ja pühendus on maitsekad.</p><h2>Millal on portree sobiv</h2><p>Head põhjused on ümmargune sünnipäev, pikk tööstaaž, kontori avamine, ametialane tunnustus või meeskonnast lahkumine. Uuele töötajale või formaalsele ärikontaktile võib portree olla liiga isiklik.</p><p>Veendu enne tellimist, et kingisaaja suhtub portreedesse ja avalikku üleandmisse hästi.</p><h2>Millist fotot kasutada</h2><p>Vali kvaliteetne tööalane või loomulik portree, mitte juhuslik üritusekaader. Konsulteeri lähedase kolleegi või assistendiga ning ära kasuta loata kinnise konto fotot.</p><p>Universaalne lahendus on poolfiguuris inimene rahulikul taustal ja ühe ametialase detailiga.</p><h2>Stiil ilma karikatuurita</h2><p>Kui saaja maitset täpselt ei teata, väldi groteski ja naljakat rolli. Maaliline realism või puhas moodne stiil mõjub väärikalt ja sobib kontorisse.</p><p>Huumor töötab ainult lähedases meeskonnas ning täieliku kindluse korral, et see ei solva inimest.</p><h2>Meeskonna pühendus</h2><p>Lühike kuupäev, ettevõtte nimi või tänusõna võib olla pildi osa. Töötajate nimed jäta pigem lõuendi tagaküljele või eraldi kaardile.</p><p>Kontrolli ametinimetust, nime õigekirja ja kaubamärgielemente. Viga muudab ametliku kingi ebamugavaks.</p><h2>Suurus ja üleandmine</h2><p>Kabinetti sobivad 45 × 30 ja 60 × 40 cm. Väga suur lõuend eeldab vaba seina ja on keerulisem transportida. Kingi annab üle üks meeskonna esindaja koos lühikese selgitusega.</p><p>Kui sündmus toimub kontorist väljas, võib üritusel anda üle kaardi ja korraldada portree tarne hiljem.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas portreele saab lisada ettevõtte logo?",
+      "answer": "Jah, kui ettevõte lubab kaubamärki kasutada. Logo peaks jääma tagasihoidlikuks aktsendiks."
+    },
+    {
+      "question": "Kas humoorikas stiil sobib?",
+      "answer": "Ainult siis, kui meeskond tunneb kingisaaja maitset väga hästi. Universaalsem on väärikas kunstiline stiil."
+    },
+    {
+      "question": "Kuidas märkida, et kingitus on kollektiivilt?",
+      "answer": "Lisa lühidalt sündmus ja kuupäev ning kirjuta nimed ja soovid eraldi kaardile."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "semeynyy-portret-na-holste-v-podarok"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

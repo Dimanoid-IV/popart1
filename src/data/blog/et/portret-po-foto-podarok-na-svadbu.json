@@ -1,0 +1,55 @@
+{
+  "slug": "portret-po-foto-podarok-na-svadbu",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Fotost portree pulmakingiks: isiklik kingitus noorpaarile",
+  "description": "Kuidas tellida noorpaarile lõuendiportree: paari foto, kunstistiili, formaadi ja pühenduse valimine ning kingi üleandmine.",
+  "publishedAt": "2026-07-28",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic3.jpg",
+  "keywords": [
+    "portree pulmakingiks",
+    "pulmakingitus fotost",
+    "noorpaari portree",
+    "paaripilt lõuendil"
+  ],
+  "bodyHtml": "<p>Pulmaportree muudab paari foto iseseisvaks sisustuselemendiks. See säilitab olulise päeva emotsiooni, kuid mõjub tavalisest fotoprindist isiklikuma ja kunstilisemana.</p><h2>Milline paari foto valida</h2><p>Enne pulmi sobib ühine reisifoto, kihluspilt või mõni muu paarile oluline kaader. Pärast pulmi saab kasutada fotosessiooni materjali. Oluline on, et mõlemad näod oleksid teravad ja ilmed loomulikud.</p><p>Elava tulemuse annavad fotod, kus paar vaatab teineteist või liigub. Algne taust ei pea olema täiuslik, sest selle saab asendada rahulikuma kunstilise taustaga.</p><h2>Sobiva stiili leidmine</h2><p>Pehme koloriit ja maalilised pintslitõmbed sobivad klassikalise pulma ning heleda interjööriga. Kontrastsem käsitlus võib sobida modernse kodu ja julge maitsega paarile.</p><p>Kui noorpaari eelistused pole teada, vali loomulikud nahatoonid ja neutraalne taust. Selline portree sobitub lihtsamini erinevatesse kodudesse.</p><h2>Formaat ja kompositsioon</h2><p>Poolfiguuris paari puhul töötab nii püst- kui rõhtformaat. Täispikk jalutuspilt või arhitektuuriga stseen vajab enamasti rõhtformaati. 60 × 40 cm on märgatav, kuid mahub hästi enamikku korteritesse.</p><p>Ära lõika lähtefotol olulisi detaile serva lähedalt. Vaba ruum aitab pildi proportsioone lõuendi jaoks kohandada.</p><h2>Isiklik pühendus</h2><p>Nimed ja pulmapäev on ajatu valik. Lisada võib ka kohtumise koordinaadid või lühikese fraasi, mis on paarile tähenduslik. Tekst peaks jääma portree kõrval teisejärguliseks.</p><p>Üllatuskingi puhul kontrolli nimede kirjapilti ja kuupäeva mõne lähedase või korraldajaga.</p><h2>Kuidas portree üle anda</h2><p>Kaitse transpordil lõuendi nurki ja pinda. Kui suurt kingitust on peopaigast ebamugav viia, anna üritusel üle kaart ning korralda portree tarne noorpaari koju.</p><p>Lisa kingile lühike selgitus, miks just see foto valiti. Nii saab kunstiteos endale kohe isikliku loo.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas portree saab tellida enne pulmapiltide valmimist?",
+      "answer": "Jah. Kasutada võib kvaliteetset kihlus-, reisi- või muud paarile olulist ühisfotot."
+    },
+    {
+      "question": "Milline taust sobib pulmaportreele?",
+      "answer": "Kõige universaalsem on hele ja detailivaene kunstiline taust, mida saab kohandada noorpaari kodu värvidega."
+    },
+    {
+      "question": "Kas portreele võib lisada pulmapäeva?",
+      "answer": "Jah, lühike ja korrektne kuupäev sobib kompositsiooni hästi, kui see ei varjuta portreed."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "semeynyy-portret-na-holste-v-podarok",
+    "portret-pitomtsa-po-foto-na-holste"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}

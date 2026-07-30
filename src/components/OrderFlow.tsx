@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from 'react';
-import { Upload, Check, Loader2, ArrowRight, ImageIcon } from 'lucide-react';
+import { Upload, Check, Loader2, ArrowRight } from 'lucide-react';
+import { getErrorMessage } from '@/lib/errors';
 
 import { useLanguage } from '@/lib/LanguageContext';
 
@@ -22,7 +23,6 @@ export default function OrderFlow() {
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
   const [aiResults, setAiResults] = useState<string[]>([]);
   const [selectedResult, setSelectedResult] = useState<number | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,6 @@ export default function OrderFlow() {
     if (!selectedImage) return;
     
     setStep('processing');
-    setIsProcessing(true);
     
     try {
       const response = await fetch('/api/generate', {
@@ -60,12 +59,10 @@ export default function OrderFlow() {
       } else {
         throw new Error(data.error || 'Failed to start generation');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert('Error: ' + error.message);
+      alert('Error: ' + getErrorMessage(error, 'Failed to generate images'));
       setStep('size');
-    } finally {
-      setIsProcessing(false);
     }
   };
 
@@ -144,9 +141,9 @@ export default function OrderFlow() {
       } else {
         throw new Error(data.error || 'Failed to create checkout session');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert('Checkout failed: ' + error.message);
+      alert('Checkout failed: ' + getErrorMessage(error, 'Unknown checkout error'));
     }
   };
 
@@ -250,6 +247,8 @@ export default function OrderFlow() {
                 onClick={() => setSelectedResult(i)}
                 className={`relative group rounded-2xl overflow-hidden cursor-pointer border-4 transition-all ${selectedResult === i ? 'border-indigo-600 ring-4 ring-indigo-200' : 'border-transparent hover:border-indigo-300'}`}
               >
+                {/* External result hosts are dynamic, so Next Image cannot safely allow-list them. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={url} alt={`Result ${i + 1}`} className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur rounded-full p-2 shadow-lg">
                   {selectedResult === i ? <Check className="w-6 h-6 text-indigo-600" /> : <div className="w-6 h-6" />}

@@ -6,6 +6,20 @@ import { BLOG_CATEGORY_IDS } from "./categories";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
+function normalizeBodyHtml(html: string): string {
+  const articleMatch = html.match(/<article(?:\s[^>]*)?>([\s\S]*?)<\/article>/i);
+  const content = articleMatch?.[1] ?? html;
+
+  return content
+    .replace(/<!doctype[^>]*>/gi, "")
+    .replace(/<\/?(?:html|head|body)(?:\s[^>]*)?>/gi, "")
+    .replace(/<title>[\s\S]*?<\/title>/gi, "")
+    .replace(/<meta(?:\s[^>]*)?>/gi, "")
+    .replace(/<link(?:\s[^>]*)?>/gi, "")
+    .replace(/^\s*<h1(?:\s[^>]*)?>[\s\S]*?<\/h1>\s*/i, "")
+    .trim();
+}
+
 export function listSlugsForLocale(locale: BlogLocale): string[] {
   const dir = path.join(DATA_ROOT, locale);
   if (!fs.existsSync(dir)) return [];
@@ -29,6 +43,7 @@ export function getArticle(
     ...raw,
     locale,
     slug: raw.slug ?? slug,
+    bodyHtml: normalizeBodyHtml(raw.bodyHtml),
   };
 }
 

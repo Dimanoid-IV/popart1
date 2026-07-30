@@ -1,0 +1,55 @@
+{
+  "slug": "portret-pape-po-foto-podarok",
+  "locale": "et",
+  "category": "gifts",
+  "title": "Fotost portree isale: iseloomuga sünnipäevakingitus",
+  "description": "Kuidas valida isale mõeldud lõuendiportree foto, karakter, kunstistiil, suurus ja isiklik detail.",
+  "publishedAt": "2026-07-24",
+  "updatedAt": "2026-07-31",
+  "author": {
+    "name": "PopArt.ee",
+    "url": "https://www.popart.ee",
+    "jobTitle": "Fotost loodud kunstilised portreed"
+  },
+  "coverImage": "/pic22.JPG",
+  "keywords": [
+    "portree isale fotost",
+    "kingitus isale lõuendil",
+    "mehe portree tellimine",
+    "personaalne kingitus isale"
+  ],
+  "bodyHtml": "<p>Isale kingitust otsides tuleb sageli valida praktilisuse ja isikliku tähenduse vahel. Fotost portree ühendab mõlemad: see on seotud konkreetse inimesega, leiab kodus väärika koha ning võib näidata tema iseloomu või hobi.</p><h2>Klassikaline portree või hobiga stseen</h2><p>Poolfiguuris portree on väärikas ja sobib kabinetti. Kalapüügi, auto, mere, spordi või töökojaga seotud taust muudab kingituse isiklikumaks. Vali üks keskne hobi, et pilt ei muutuks juhuslikuks kollaažiks.</p><p>Üks tähenduslik detail töötab paremini kui mitu omavahel võistlevat sümbolit.</p><h2>Foto valimine</h2><p>Otsi pilti, millel on loomulik ja enesekindel ilme ning hea valgus. Dokumendifoto annab harva edasi inimese iseloomu. Paremini sobib kaader reisilt, perepeolt või rahulikult jalutuskäigult.</p><p>Kui isa kannab tavaliselt kindlaid prille, kella või rõivaid, tasub see äratuntav detail säilitada.</p><h2>Värv ja stiil</h2><p>Sügavad sinised, rohelised, grafiit- ja soojad pruunid toonid loovad vaoshoitud meeleolu. Ere popkunsti lahendus sobib inimesele, kes armastab kontrasti ja moodsat kunsti.</p><p>Stiil peaks rääkima kingisaajast, mitte hetkemoest. Neutraalne maaliline töötlus on enamiku kodude jaoks turvaline valik.</p><h2>Lõuendi formaat</h2><p>Püstformaat sobib ühe inimese portreele. Rõhtformaati on vaja siis, kui oluline osa loost on auto, paat, loodus või töökeskkond. Detailirohke stseeni puhul vali vähemalt 60 × 40 cm.</p><p>Arvesta vaatamiskaugusega: suur lõuend loeb hästi üle toa, keskmine formaat sobib isiklikku kabinetti.</p><h2>Isiklik pühendus</h2><p>Nimi, kuupäev või lühike lause perelt võib tööd täiendada. Väldi nalja, mis on arusaadav ainult üleandmise hetkel, kui portree jääb seinale aastateks.</p><p>Kõige tugevam pühendus on sageli täpselt valitud kujutis: tuttav pilk, armastatud koht ja õiged detailid.</p><h2>Lühike kontrollnimekiri enne tellimist</h2><ul><li>Vali kaks või kolm teravat filtriteta fotot.</li><li>Mõõda lõuendi jaoks mõeldud koht ja otsusta pildi suund.</li><li>Määra üks põhimotiiv ning soovitud värvipalett.</li><li>Kontrolli nimed, kuupäevad ja tarneaeg.</li></ul><p>Vaata kujundusvõimalusi ja <a href=\"/#order-now\">telli fotost portree lõuendil</a> PopArt.ee lehel.</p>",
+  "faqs": [
+    {
+      "question": "Kas portreele saab lisada lemmikauto või hobi?",
+      "answer": "Jah. Loomuliku kompositsiooni jaoks lisa eraldi fotod olulisest esemest või kohast."
+    },
+    {
+      "question": "Milline suurus sobib kabinetti?",
+      "answer": "Tavaliselt 45 × 30 või 60 × 40 cm, sõltuvalt vabast seinast ja detailide hulgast."
+    },
+    {
+      "question": "Kas grupifotost saab teha üksikportree?",
+      "answer": "Jah, kui isa nägu on piisavalt suur, terav ja teiste inimeste poolt varjamata."
+    }
+  ],
+  "relatedSlugs": [
+    "portret-na-holste-podarok-na-yubiley",
+    "portret-po-foto-podarok-na-svadbu",
+    "semeynyy-portret-na-holste-v-podarok"
+  ],
+  "internalLinks": [
+    {
+      "href": "/et/blog",
+      "label": "Kõik kingi- ja portreeartiklid"
+    },
+    {
+      "href": "/et/blog/pilt-louendil",
+      "label": "Praktiline juhend: pilt lõuendil"
+    },
+    {
+      "href": "/#order-now",
+      "label": "Telli fotost portree"
+    }
+  ]
+}
