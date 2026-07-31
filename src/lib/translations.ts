@@ -46,6 +46,18 @@ export const translations = {
       timingText: "For birthdays, weddings, Christmas, and anniversaries, leave time for preview feedback, printing, packaging, and delivery. If the date is important, mention it before checkout. Clear timing helps avoid rushed artwork and gives you a calmer gift experience.",
       cta: "Start your portrait order",
     },
+    gallery: {
+      eyebrow: "Portraits in real interiors",
+      title: "Imagine your portrait at home",
+      description: "See how a personal canvas portrait becomes part of a warm, modern interior. Each example shows a realistic scale, natural light, and the character of a gallery-wrapped canvas.",
+      items: [
+        "Wedding portrait in a warm living room",
+        "Family portrait in a Scandinavian interior",
+        "Couple portrait in a soft neutral room",
+        "Modern portrait in a contemporary interior",
+      ],
+      cta: "Create a portrait for my home",
+    },
     order: {
       sectionTitle: "Start Your Transformation",
       sectionDesc: "Select your size and upload your photo to begin.",
@@ -150,6 +162,18 @@ export const translations = {
       timingText: "Для дня рождения, свадьбы, Рождества или годовщины оставьте время на проверку результата, печать, упаковку и доставку. Если дата важна, сообщите её до оплаты. Понятный график помогает избежать спешки.",
       cta: "Начать создание портрета",
     },
+    gallery: {
+      eyebrow: "Портреты в настоящем интерьере",
+      title: "Представьте ваш портрет у себя дома",
+      description: "Посмотрите, как персональный портрет на холсте становится частью уютного современного интерьера. На примерах показаны реалистичный масштаб, естественное освещение и фактура холста на подрамнике.",
+      items: [
+        "Свадебный портрет в тёплой гостиной",
+        "Семейный портрет в скандинавском интерьере",
+        "Портрет пары в мягком нейтральном интерьере",
+        "Современный портрет в стильной гостиной",
+      ],
+      cta: "Создать портрет для моего дома",
+    },
     order: {
       sectionTitle: "Начните трансформацию",
       sectionDesc: "Выберите размер и загрузите фото, чтобы начать.",
@@ -253,6 +277,18 @@ export const translations = {
       timingTitle: "Kuidas planeerida valmimist ja tarnet",
       timingText: "Sünnipäeva, pulma, jõulude või aastapäeva puhul jäta aega tulemuse ülevaatamiseks, trükiks, pakkimiseks ja tarneks. Kui kuupäev on oluline, maini seda enne maksmist. Selge ajakava aitab vältida kiirustamist.",
       cta: "Alusta portree tellimist",
+    },
+    gallery: {
+      eyebrow: "Portreed päris interjööris",
+      title: "Kujutle oma portreed koduseinal",
+      description: "Vaata, kuidas personaalne lõuendiportree saab osaks hubasest ja moodsast interjöörist. Näited annavad ettekujutuse tegelikust mõõdust, loomulikust valgusest ning alusraamile pingutatud lõuendi ilmest.",
+      items: [
+        "Pulmaportree soojas elutoas",
+        "Pereportree skandinaavialikus interjööris",
+        "Paariportree pehmetes neutraalsetes toonides",
+        "Moodne portree kaasaegses elutoas",
+      ],
+      cta: "Loo portree minu koju",
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",

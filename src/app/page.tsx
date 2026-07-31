@@ -9,6 +9,12 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Home() {
   const { t } = useLanguage();
+  const galleryImages = [
+    "/interiors/wedding-portrait-cozy-living-room.jpg",
+    "/interiors/family-portrait-scandinavian-living-room.jpg",
+    "/interiors/couple-portrait-soft-neutral-interior.jpg",
+    "/interiors/woman-portrait-modern-teal-interior.jpg",
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -96,6 +102,53 @@ export default function Home() {
                   <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="gallery" className="scroll-mt-20 bg-slate-950 py-20 text-white md:py-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-300">
+                {t.gallery.eyebrow}
+              </p>
+              <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
+                {t.gallery.title}
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                {t.gallery.description}
+              </p>
+            </div>
+
+            <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2">
+              {galleryImages.map((src, index) => (
+                <figure
+                  key={src}
+                  className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl"
+                >
+                  <div className="relative aspect-[3/2] overflow-hidden">
+                    <Image
+                      src={src}
+                      alt={t.gallery.items[index]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.025]"
+                    />
+                  </div>
+                  <figcaption className="px-5 py-4 text-sm font-semibold text-slate-200">
+                    {t.gallery.items[index]}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <a
+                href="#order-now"
+                className="inline-flex rounded-full bg-indigo-500 px-7 py-3.5 font-bold text-white shadow-lg transition hover:bg-indigo-400"
+              >
+                {t.gallery.cta}
+              </a>
             </div>
           </div>
         </section>
