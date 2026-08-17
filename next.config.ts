@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { BLOG_EDITORIAL_REDIRECTS } from "./src/lib/blog/editorial-policy";
 
 const nextConfig: NextConfig = {
   images: {
@@ -8,7 +9,7 @@ const nextConfig: NextConfig = {
     const removedArticles = [
       {
         slug: "polnoe-rukovodstvo-popart-ee-v-podarok-kak-vybrat-luchshii-variant",
-        destination: "/ru/blog/personaalne-kingitus",
+        destination: "/ru/blog/personalnyy-podarok-zhenshchine-estonia",
       },
       {
         slug: "polnoe-rukovodstvo-portret-po-foto-na-holste",
@@ -16,15 +17,20 @@ const nextConfig: NextConfig = {
       },
       {
         slug: "polnoe-rukovodstvo-cifrovaya-zhivopis-iz-fotografii",
-        destination: "/ru/blog/digitaalne-kunstiline-portree",
+        destination: "/ru/blog/portree-fotost-tallinn",
       },
       {
         slug: "polnoe-rukovodstvo-portret-po-foto-v-podarok",
-        destination: "/ru/blog/personaalne-kingitus",
+        destination: "/ru/blog/personalnyy-podarok-zhenshchine-estonia",
       },
     ];
 
     return [
+      ...BLOG_EDITORIAL_REDIRECTS.map(({ locale, slug, destinationSlug }) => ({
+        source: `/${locale}/blog/${slug}`,
+        destination: `/${locale}/blog/${destinationSlug}`,
+        permanent: true,
+      })),
       ...removedArticles.flatMap(({ slug, destination }) => [
         { source: `/ru/blog/${slug}`, destination, permanent: true },
         { source: `/blog/${slug}`, destination, permanent: true },

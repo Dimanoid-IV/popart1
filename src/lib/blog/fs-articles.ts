@@ -3,6 +3,7 @@ import path from "path";
 import type { BlogArticle, BlogCategoryId, BlogLocale } from "./types";
 import { BLOG_LOCALES } from "./constants";
 import { BLOG_CATEGORY_IDS } from "./categories";
+import { isEditoriallyPublished } from "./editorial-policy";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
@@ -38,6 +39,8 @@ export function getArticle(
   locale: BlogLocale,
   slug: string
 ): BlogArticle | null {
+  if (!isEditoriallyPublished(locale, slug)) return null;
+
   const file = path.join(DATA_ROOT, locale, `${slug}.json`);
   if (!fs.existsSync(file)) return null;
   const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as Omit<
