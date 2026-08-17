@@ -598,7 +598,15 @@ async function createArticleFile(input: {
   );
 
   if (!result.ok) {
-    throw new Error(`github_create_${result.status}`);
+    const githubBody = result.body as {
+      message?: unknown;
+      errors?: unknown;
+    } | null;
+    const message =
+      typeof githubBody?.message === "string"
+        ? githubBody.message.replace(/[^a-z0-9 _.,:'()/-]/gi, "").slice(0, 240)
+        : "unknown_error";
+    throw new Error(`github_create_${result.status}:${message}`);
   }
 
   return result.body as { content?: { sha?: string; html_url?: string }; commit?: { sha?: string } };
@@ -745,6 +753,10 @@ export async function POST(request: NextRequest) {
       commitSha: created.commit?.sha ?? null,
     });
   } catch (error) {
+    console.error(
+      "RankBoost article publication failed:",
+      error instanceof Error ? error.message : "github_publish_failed"
+    );
     return json(502, {
       ok: false,
       error: error instanceof Error ? error.message : "github_publish_failed",
