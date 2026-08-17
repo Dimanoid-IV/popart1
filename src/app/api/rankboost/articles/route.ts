@@ -342,6 +342,49 @@ function applyMetadataFix(source: string, payload: RankBoostPayload) {
   return { applied: false, reason: "unsupported_fix_field", content: source };
 }
 
+function parseInternalLinkFix(payload: RankBoostPayload) {
+  if (payload.fix?.field !== "internal_links" || !payload.fix.suggestedValue) return null;
+  try {
+    const value = JSON.parse(payload.fix.suggestedValue) as Record<string, unknown>;
+    if (value.operation !== "ADD_INTERNAL_LINK") return null;
+    const sourceUrl = typeof value.sourceUrl === "string" ? new URL(value.sourceUrl) : null;
+    const targetUrl = typeof value.targetUrl === "string" ? new URL(value.targetUrl) : null;
+    const anchor = typeof value.anchor === "string" ? value.anchor.replace(/\s+/g, " ").trim().slice(0, 100) : "";
+    if (!sourceUrl || !targetUrl || !anchor) return null;
+    const allowedHosts = new Set(["popart.ee", "www.popart.ee"]);
+    if (!allowedHosts.has(sourceUrl.hostname) || !allowedHosts.has(targetUrl.hostname)) return null;
+    const match = sourceUrl.pathname.match(/^\/(en|ru|et)\/blog\/([a-z0-9-]+)\/?$/);
+    if (!match) return null;
+    return {
+      path: `src/data/blog/${match[1]}/${match[2]}.json`,
+      href: `${targetUrl.pathname}${targetUrl.search}`,
+      anchor,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function applyInternalLinkFix(source: string, payload: RankBoostPayload) {
+  const fix = parseInternalLinkFix(payload);
+  if (!fix) return { applied: false, reason: "invalid_internal_link_fix", content: source };
+  try {
+    const article = JSON.parse(source) as BlogArticle;
+    const links = article.internalLinks ?? [];
+    if (links.some((link) => link.href === fix.href)) {
+      return { applied: true, reason: "already_applied_internal_link", content: source };
+    }
+    if (links.length >= 16) {
+      return { applied: false, reason: "internal_link_limit_reached", content: source };
+    }
+    article.internalLinks = [...links, { href: fix.href, label: fix.anchor }];
+    article.updatedAt = new Date().toISOString().slice(0, 10);
+    return { applied: true, reason: "applied_internal_link", content: `${JSON.stringify(article, null, 2)}\n` };
+  } catch {
+    return { applied: false, reason: "invalid_blog_article_json", content: source };
+  }
+}
+
 function fixHaystack(payload: RankBoostPayload) {
   return [
     payload.fix?.field,
@@ -593,8 +636,14 @@ export async function POST(request: NextRequest) {
     const owner = process.env.POPART_GITHUB_OWNER || DEFAULT_OWNER;
     const repo = process.env.POPART_GITHUB_REPO || DEFAULT_REPO;
     const branch = process.env.POPART_GITHUB_BRANCH || DEFAULT_BRANCH;
+    const internalLinkFix = parseInternalLinkFix(payload);
     const target =
-      isThinContentFix(payload)
+      internalLinkFix
+        ? {
+            path: internalLinkFix.path,
+            apply: (source: string) => applyInternalLinkFix(source, payload),
+          }
+        : isThinContentFix(payload)
         ? {
             path: "src/app/page.tsx",
             apply: applyHomepageContentFix,
