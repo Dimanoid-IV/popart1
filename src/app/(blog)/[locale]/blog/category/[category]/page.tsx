@@ -166,12 +166,13 @@ export default async function BlogCategoryPage({
         <p className="mt-5 text-lg leading-8 text-slate-600">{copy.description}</p>
       </div>
       <ul className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-        {articles.map((a) => (
+        {articles.map((a, index) => (
           <BlogArticleCard
             key={a.slug}
             article={a}
             locale={locale}
             readMoreLabel={labels.readMore}
+            priority={index === 0}
           />
         ))}
       </ul>

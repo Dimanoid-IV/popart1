@@ -7,12 +7,14 @@ type Props = {
   article: BlogArticle;
   locale: BlogLocale;
   readMoreLabel: string;
+  priority?: boolean;
 };
 
 export default function BlogArticleCard({
   article,
   locale,
   readMoreLabel,
+  priority = false,
 }: Props) {
   const href = blogArticlePath(locale, article.slug);
 
@@ -24,6 +26,7 @@ export default function BlogArticleCard({
           alt={article.title}
           width={720}
           height={450}
+          priority={priority}
           className="aspect-[16/10] w-full rounded-none object-cover transition duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />

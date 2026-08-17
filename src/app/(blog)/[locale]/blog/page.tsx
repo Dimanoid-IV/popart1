@@ -135,12 +135,13 @@ export default async function BlogIndexPage({
       </div>
       <BlogCategoryChips locale={locale} heading={labels.categoriesHeading} />
       <ul className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-        {articles.map((a) => (
+        {articles.map((a, index) => (
           <BlogArticleCard
             key={a.slug}
             article={a}
             locale={locale}
             readMoreLabel={labels.readMore}
+            priority={index === 0}
           />
         ))}
       </ul>
