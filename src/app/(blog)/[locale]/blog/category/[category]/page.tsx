@@ -35,6 +35,7 @@ export async function generateMetadata({
   if (!isValidBlogLocale(loc) || !isValidBlogCategory(cat)) return {};
   const locale = loc as BlogLocale;
   const category = cat as BlogCategoryId;
+  if (listArticlesByCategory(locale, category).length === 0) return {};
   const copy = getCategoryCopy(category, locale);
   const canonical = blogCategoryUrl(locale, category);
   const languages = Object.fromEntries(
@@ -82,6 +83,7 @@ export default async function BlogCategoryPage({
   const locale = loc as BlogLocale;
   const category = cat as BlogCategoryId;
   const articles = listArticlesByCategory(locale, category);
+  if (articles.length === 0) notFound();
   const labels = getBlogUiLabels(locale);
   const cro = getBlogCroLabels(locale);
   const copy = getCategoryCopy(category, locale);

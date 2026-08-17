@@ -94,7 +94,9 @@ export function getAllCategoryPageParams(): {
   const params: { locale: BlogLocale; category: BlogCategoryId }[] = [];
   for (const locale of BLOG_LOCALES) {
     for (const category of BLOG_CATEGORY_IDS) {
-      params.push({ locale, category });
+      if (listArticlesByCategory(locale, category).length > 0) {
+        params.push({ locale, category });
+      }
     }
   }
   return params;

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { BlogLocale } from "@/lib/blog/types";
 import {
   BLOG_LOCALES,
+  BLOG_CATEGORY_IDS,
   SITE_URL,
   blogArticleUrl,
   blogIndexUrl,
@@ -75,6 +76,9 @@ export default async function BlogIndexPage({
   if (!isValidBlogLocale(loc)) notFound();
   const locale = loc as BlogLocale;
   const articles = listArticlesForLocale(locale);
+  const visibleCategories = BLOG_CATEGORY_IDS.filter((category) =>
+    articles.some((article) => article.category === category)
+  );
   const labels = getBlogUiLabels(locale);
   const cro = getBlogCroLabels(locale);
 
@@ -133,7 +137,11 @@ export default async function BlogIndexPage({
         </h1>
         <p className="mt-5 text-lg leading-8 text-slate-600">{labels.blogIntro}</p>
       </div>
-      <BlogCategoryChips locale={locale} heading={labels.categoriesHeading} />
+      <BlogCategoryChips
+        locale={locale}
+        heading={labels.categoriesHeading}
+        categoryIds={visibleCategories}
+      />
       <ul className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((a, index) => (
           <BlogArticleCard

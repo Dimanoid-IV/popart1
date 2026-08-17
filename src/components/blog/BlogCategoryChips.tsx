@@ -1,19 +1,24 @@
 import Link from "next/link";
-import type { BlogLocale } from "@/lib/blog/types";
+import type { BlogCategoryId, BlogLocale } from "@/lib/blog/types";
 import { BLOG_CATEGORY_IDS, getCategoryCopy } from "@/lib/blog/categories";
 import { blogCategoryPath } from "@/lib/blog/paths";
 
 type Props = {
   locale: BlogLocale;
   heading: string;
+  categoryIds?: BlogCategoryId[];
 };
 
-export default function BlogCategoryChips({ locale, heading }: Props) {
+export default function BlogCategoryChips({
+  locale,
+  heading,
+  categoryIds = BLOG_CATEGORY_IDS,
+}: Props) {
   return (
     <nav aria-label={heading} className="mt-8">
       <p className="text-sm font-semibold text-gray-700">{heading}</p>
       <ul className="mt-3 flex flex-wrap gap-2">
-        {BLOG_CATEGORY_IDS.map((id) => {
+        {categoryIds.map((id) => {
           const { short } = getCategoryCopy(id, locale);
           return (
             <li key={id}>
