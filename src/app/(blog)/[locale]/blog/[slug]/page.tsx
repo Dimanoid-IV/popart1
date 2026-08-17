@@ -15,6 +15,8 @@ import {
 import { getBlogUiLabels } from "@/lib/blog/ui-labels";
 import ArticleTemplate from "@/components/blog/ArticleTemplate";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   return getAllArticleParams();
 }
@@ -43,7 +45,7 @@ export async function generateMetadata({
   alternatesLang["x-default"] = blogArticleUrl("et", slug);
 
   return {
-    title: `${article.title} | PopArt.ee`,
+    title: article.title,
     description: article.description,
     keywords: article.keywords,
     alternates: {

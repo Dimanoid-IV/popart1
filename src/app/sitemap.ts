@@ -11,6 +11,8 @@ import {
 } from "@/lib/blog";
 import { getMarketingSitemapEntries } from "@/lib/seo/marketing-sitemap-urls";
 
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [
     {

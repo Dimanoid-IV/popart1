@@ -15,6 +15,8 @@ import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 import BlogArticleCard from "@/components/blog/BlogArticleCard";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   return BLOG_LOCALES.map((locale) => ({ locale }));
 }
@@ -30,7 +32,7 @@ export async function generateMetadata({
   const labels = getBlogUiLabels(locale);
   const canonical = blogIndexUrl(locale);
   return {
-    title: `${labels.blogTitle} | PopArt.ee`,
+    title: labels.blogTitle,
     description: labels.blogIntro,
     alternates: {
       canonical,

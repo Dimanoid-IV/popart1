@@ -2,6 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 import type { BlogArticle, BlogCategoryId, BlogLocale } from "@/lib/blog/types";
+import { validateIncomingArticle } from "@/lib/blog/incoming-article-quality";
 
 export const runtime = "nodejs";
 
@@ -127,10 +128,22 @@ function buildArticle(payload: RankBoostPayload): BlogArticle {
     throw new Error("missing_title");
   }
 
-  const bodyHtml = sanitizeHtml(article.html?.trim() || "");
-  if (!bodyHtml || bodyHtml.length < 200) {
+  const rawHtml = sanitizeHtml(article.html?.trim() || "");
+  if (!rawHtml) {
     throw new Error("missing_html");
   }
+
+  const quality = validateIncomingArticle({
+    title,
+    targetKeyword: article.targetKeyword,
+    metaDescription: article.metaDescription,
+    html: rawHtml,
+    qualityScore: article.qualityScore,
+  });
+  if (!quality.ok) {
+    throw new Error(quality.error);
+  }
+  const bodyHtml = quality.html;
 
   const locale = validLocale(article.language);
   const slug = slugify(article.slug || title);

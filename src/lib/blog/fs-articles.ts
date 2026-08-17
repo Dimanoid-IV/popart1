@@ -6,6 +6,11 @@ import { BLOG_CATEGORY_IDS } from "./categories";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
+function isPublished(publishedAt: string, now = new Date()) {
+  const publicationDate = new Date(`${publishedAt}T00:00:00.000Z`);
+  return Number.isFinite(publicationDate.getTime()) && publicationDate <= now;
+}
+
 function normalizeBodyHtml(html: string): string {
   const articleMatch = html.match(/<article(?:\s[^>]*)?>([\s\S]*?)<\/article>/i);
   const content = articleMatch?.[1] ?? html;
@@ -39,19 +44,20 @@ export function getArticle(
     BlogArticle,
     "locale" | "slug"
   > & { slug?: string };
-  return {
+  const article = {
     ...raw,
     locale,
     slug: raw.slug ?? slug,
     bodyHtml: normalizeBodyHtml(raw.bodyHtml),
   };
+  return isPublished(article.publishedAt) ? article : null;
 }
 
 export function getAllArticleParams(): { locale: BlogLocale; slug: string }[] {
   const params: { locale: BlogLocale; slug: string }[] = [];
   for (const locale of BLOG_LOCALES) {
     for (const slug of listSlugsForLocale(locale)) {
-      params.push({ locale, slug });
+      if (getArticle(locale, slug)) params.push({ locale, slug });
     }
   }
   return params;

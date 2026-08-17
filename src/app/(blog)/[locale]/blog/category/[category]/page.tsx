@@ -20,6 +20,8 @@ import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 import BlogArticleCard from "@/components/blog/BlogArticleCard";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   return getAllCategoryPageParams();
 }
