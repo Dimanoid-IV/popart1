@@ -22,11 +22,11 @@ export async function POST(req: NextRequest) {
     A masterpiece of digital painting. Avoid photorealism.`;
 
     const backgroundTypes = [
-      "Pastel gradient with soft light",
-      "Watercolor washes, light and airy",
-      "Abstract brushstrokes",
-      "Soft colored mist",
-      "Canvas texture with light strokes"
+      "Dream-art inspired layered background in deep turquoise, indigo and violet: luminous watercolor clouds, energetic paint splashes, fine ink lines, subtle bokeh particles and a soft radiant glow behind the subject; rich depth, brighter near the face and darker toward the edges",
+      "Dream-art inspired layered background in magenta, lavender and electric blue: translucent watercolor blooms, expressive acrylic splatters, delicate flowing light trails, tiny glowing particles and soft atmospheric haze; vivid but harmonious, with clear separation around the subject",
+      "Dream-art inspired layered background in teal, aqua and cool silver: abstract painted textures, dynamic white paint droplets, elegant curved linework, soft mist and scattered points of light; cinematic depth with a gentle central glow",
+      "Dream-art inspired layered background in coral, rose, purple and warm gold: watercolor washes, sweeping brush textures, controlled paint splashes, subtle sparkling dust and diffused light; dreamy, elegant and premium rather than childish",
+      "Dream-art inspired layered background in sapphire blue, violet and white: dramatic grunge texture softened by watercolor, radial light accents, floating bokeh, fine ornamental strokes and crisp paint splashes; balanced negative space around the head and shoulders"
     ];
 
     // Select 2 random backgrounds
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     const tasks = await Promise.all(
       selectedBackgrounds.map(async (bg) => {
-        const fullPrompt = `${basePrompt} Background: ${bg}. Artistic, masterpiece, high quality.`;
+        const fullPrompt = `${basePrompt} Background only: ${bg}. Keep the person exactly as rendered by the portrait treatment: do not change the face, identity, expression, pose, body, hair, clothing, hands, proportions, or skin tone. Apply all splashes, particles, lines, mist, and light effects behind and around the silhouette, never across the eyes or central facial features. Create a cohesive premium Dream Art canvas composition with no scenery, objects, text, frames, borders, logos, or watermark. Artistic, masterpiece, high quality.`;
         
         let processedImage = image;
         
