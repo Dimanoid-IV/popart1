@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getErrorMessage } from '@/lib/errors';
+import { selectBackgrounds } from '@/lib/background-options';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { image } = await req.json();
+    const { image, backgroundColor } = await req.json();
 
     if (!image) {
       return NextResponse.json({ error: 'Image is required' }, { status: 400 });
@@ -21,16 +22,7 @@ export async function POST(req: NextRequest) {
     Expressive artistic eyes, simplified clothing with painterly textures. 
     A masterpiece of digital painting. Avoid photorealism.`;
 
-    const backgroundTypes = [
-      "Dream-art inspired layered background in deep turquoise, indigo and violet: luminous watercolor clouds, energetic paint splashes, fine ink lines, subtle bokeh particles and a soft radiant glow behind the subject; rich depth, brighter near the face and darker toward the edges",
-      "Dream-art inspired layered background in magenta, lavender and electric blue: translucent watercolor blooms, expressive acrylic splatters, delicate flowing light trails, tiny glowing particles and soft atmospheric haze; vivid but harmonious, with clear separation around the subject",
-      "Dream-art inspired layered background in teal, aqua and cool silver: abstract painted textures, dynamic white paint droplets, elegant curved linework, soft mist and scattered points of light; cinematic depth with a gentle central glow",
-      "Dream-art inspired layered background in coral, rose, purple and warm gold: watercolor washes, sweeping brush textures, controlled paint splashes, subtle sparkling dust and diffused light; dreamy, elegant and premium rather than childish",
-      "Dream-art inspired layered background in sapphire blue, violet and white: dramatic grunge texture softened by watercolor, radial light accents, floating bokeh, fine ornamental strokes and crisp paint splashes; balanced negative space around the head and shoulders"
-    ];
-
-    // Select 2 random backgrounds
-    const selectedBackgrounds = backgroundTypes.sort(() => 0.5 - Math.random()).slice(0, 2);
+    const selectedBackgrounds = selectBackgrounds(backgroundColor);
 
     const baseUrl = 'https://api.nanobananaapi.ai/api/v1/nanobanana';
 

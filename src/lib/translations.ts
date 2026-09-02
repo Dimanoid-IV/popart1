@@ -80,6 +80,11 @@ export const translations = {
         back: "Back",
         button: "Process",
       },
+      background: {
+        title: "Choose background colors",
+        desc: "Both previews will use your chosen palette. Choose Surprise for two different palettes.",
+        options: { surprise: "Surprise", turquoise: "Turquoise", lavender: "Lavender", aqua: "Aqua", coral: "Coral & gold", sapphire: "Sapphire" },
+      },
       processing: {
         title: "Your art is being created...",
         desc: "Creating your digital masterpieces with different artistic backgrounds.",
@@ -196,6 +201,11 @@ export const translations = {
         back: "Назад",
         button: "Обработать",
       },
+      background: {
+        title: "Выберите цвета фона",
+        desc: "Оба варианта будут в выбранной гамме. «Сюрприз» создаст две разные гаммы.",
+        options: { surprise: "Сюрприз", turquoise: "Бирюзовый", lavender: "Лавандовый", aqua: "Аквамарин", coral: "Коралл и золото", sapphire: "Сапфировый" },
+      },
       processing: {
         title: "Ваш портрет создается...",
         desc: "Создаем ваши цифровые шедевры с различными художественными фонами.",
@@ -311,6 +321,11 @@ export const translations = {
         premium: "Premium lõuend",
         back: "Tagasi",
         button: "Töötle",
+      },
+      background: {
+        title: "Vali tausta värvid",
+        desc: "Mõlemad eelvaated kasutavad valitud värvigammat. Üllatus loob kaks erinevat värvigammat.",
+        options: { surprise: "Üllatus", turquoise: "Türkiis", lavender: "Lavendel", aqua: "Akvamariin", coral: "Korall ja kuld", sapphire: "Safiir" },
       },
       processing: {
         title: "Sinu portree luuakse...",

@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { Upload, Check, Loader2, ArrowRight } from 'lucide-react';
 import { getErrorMessage } from '@/lib/errors';
+import type { BackgroundPaletteId } from '@/lib/background-options';
 
 import { useLanguage } from '@/lib/LanguageContext';
 
@@ -13,6 +14,18 @@ const SIZES = [
   { label: '90x60 cm', price: 75 },
 ];
 
+const BACKGROUND_PALETTES: Array<{
+  id: BackgroundPaletteId;
+  swatch: string;
+}> = [
+  { id: 'surprise', swatch: 'conic-gradient(from 45deg, #4f46e5, #c026d3, #f59e0b, #0891b2, #4f46e5)' },
+  { id: 'turquoise', swatch: 'linear-gradient(135deg, #0f766e, #4338ca, #6d28d9)' },
+  { id: 'lavender', swatch: 'linear-gradient(135deg, #db2777, #a78bfa, #2563eb)' },
+  { id: 'aqua', swatch: 'linear-gradient(135deg, #0d9488, #67e8f9, #d1d5db)' },
+  { id: 'coral', swatch: 'linear-gradient(135deg, #fb7185, #a855f7, #f59e0b)' },
+  { id: 'sapphire', swatch: 'linear-gradient(135deg, #1d4ed8, #7c3aed, #f8fafc)' },
+];
+
 type Step = 'upload' | 'size' | 'processing' | 'selection' | 'checkout';
 
 export default function OrderFlow() {
@@ -21,6 +34,7 @@ export default function OrderFlow() {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
+  const [backgroundColor, setBackgroundColor] = useState<BackgroundPaletteId>('surprise');
   const [aiResults, setAiResults] = useState<string[]>([]);
   const [selectedResult, setSelectedResult] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -46,7 +60,7 @@ export default function OrderFlow() {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: selectedImage }),
+        body: JSON.stringify({ image: selectedImage, backgroundColor }),
       });
       
       const data = await response.json();
@@ -209,6 +223,31 @@ export default function OrderFlow() {
               </div>
             ))}
           </div>
+          <fieldset className="mb-8">
+            <legend className="mb-2 text-center text-xl font-bold">{t.order.background.title}</legend>
+            <p className="mb-5 text-center text-sm text-gray-500">{t.order.background.desc}</p>
+            <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+              {BACKGROUND_PALETTES.map((palette) => {
+                const selected = backgroundColor === palette.id;
+                return (
+                  <button
+                    key={palette.id}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setBackgroundColor(palette.id)}
+                    className={`group flex min-h-24 flex-col items-center justify-center gap-2 rounded-xl border-2 px-2 py-3 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 ${selected ? 'border-indigo-600 bg-indigo-50 text-indigo-700 shadow-sm' : 'border-gray-200 text-gray-600 hover:border-indigo-300'}`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-10 w-10 rounded-full border-2 border-white shadow-md transition-transform group-hover:scale-105 ${selected ? 'ring-2 ring-indigo-500 ring-offset-2' : ''}`}
+                      style={{ background: palette.swatch }}
+                    />
+                    <span>{t.order.background.options[palette.id]}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
           <div className="flex justify-between items-center">
             <button onClick={() => setStep('upload')} className="text-gray-500 font-semibold hover:text-gray-700 underline">{t.order.size.back}</button>
             <button 
