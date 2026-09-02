@@ -81,8 +81,10 @@ export const translations = {
         button: "Process",
       },
       background: {
-        title: "Choose background colors",
-        desc: "Both previews will use your chosen palette. Choose Surprise for two different palettes.",
+        title: "Choose colors for both portraits",
+        desc: "Set a separate background palette for each generated variant.",
+        variant1: "Portrait variant 1",
+        variant2: "Portrait variant 2",
         options: { surprise: "Surprise", turquoise: "Turquoise", lavender: "Lavender", aqua: "Aqua", coral: "Coral & gold", sapphire: "Sapphire" },
       },
       processing: {
@@ -202,8 +204,10 @@ export const translations = {
         button: "Обработать",
       },
       background: {
-        title: "Выберите цвета фона",
-        desc: "Оба варианта будут в выбранной гамме. «Сюрприз» создаст две разные гаммы.",
+        title: "Выберите цвета для двух портретов",
+        desc: "Назначьте отдельную гамму фона каждому создаваемому варианту.",
+        variant1: "Вариант портрета 1",
+        variant2: "Вариант портрета 2",
         options: { surprise: "Сюрприз", turquoise: "Бирюзовый", lavender: "Лавандовый", aqua: "Аквамарин", coral: "Коралл и золото", sapphire: "Сапфировый" },
       },
       processing: {
@@ -323,8 +327,10 @@ export const translations = {
         button: "Töötle",
       },
       background: {
-        title: "Vali tausta värvid",
-        desc: "Mõlemad eelvaated kasutavad valitud värvigammat. Üllatus loob kaks erinevat värvigammat.",
+        title: "Vali mõlema portree värvid",
+        desc: "Määra kummalegi loodavale variandile eraldi tausta värvigamma.",
+        variant1: "Portree variant 1",
+        variant2: "Portree variant 2",
         options: { surprise: "Üllatus", turquoise: "Türkiis", lavender: "Lavendel", aqua: "Akvamariin", coral: "Korall ja kuld", sapphire: "Safiir" },
       },
       processing: {

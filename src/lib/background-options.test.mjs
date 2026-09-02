@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { selectBackgrounds } from "./background-options.ts";
+import { selectBackgroundPair, selectBackgrounds } from "./background-options.ts";
+
+test("each portrait variant uses its independently chosen palette", () => {
+  const selected = selectBackgroundPair(["turquoise", "coral"]);
+
+  assert.match(selected[0], /deep turquoise, indigo and violet/);
+  assert.match(selected[1], /coral, rose, purple and warm gold/);
+});
 
 test("a chosen palette is used for both generated portrait variants", () => {
   const selected = selectBackgrounds("lavender", () => 0.99);

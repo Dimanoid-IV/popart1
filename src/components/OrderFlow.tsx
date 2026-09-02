@@ -34,7 +34,7 @@ export default function OrderFlow() {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
-  const [backgroundColor, setBackgroundColor] = useState<BackgroundPaletteId>('surprise');
+  const [backgroundColors, setBackgroundColors] = useState<[BackgroundPaletteId, BackgroundPaletteId]>(['surprise', 'surprise']);
   const [aiResults, setAiResults] = useState<string[]>([]);
   const [selectedResult, setSelectedResult] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -60,7 +60,7 @@ export default function OrderFlow() {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: selectedImage, backgroundColor }),
+        body: JSON.stringify({ image: selectedImage, backgroundColors }),
       });
       
       const data = await response.json();
@@ -223,31 +223,44 @@ export default function OrderFlow() {
               </div>
             ))}
           </div>
-          <fieldset className="mb-8">
-            <legend className="mb-2 text-center text-xl font-bold">{t.order.background.title}</legend>
+          <div className="mb-8">
+            <h4 className="mb-2 text-center text-xl font-bold">{t.order.background.title}</h4>
             <p className="mb-5 text-center text-sm text-gray-500">{t.order.background.desc}</p>
-            <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-              {BACKGROUND_PALETTES.map((palette) => {
-                const selected = backgroundColor === palette.id;
-                return (
-                  <button
-                    key={palette.id}
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => setBackgroundColor(palette.id)}
-                    className={`group flex min-h-24 flex-col items-center justify-center gap-2 rounded-xl border-2 px-2 py-3 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 ${selected ? 'border-indigo-600 bg-indigo-50 text-indigo-700 shadow-sm' : 'border-gray-200 text-gray-600 hover:border-indigo-300'}`}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={`h-10 w-10 rounded-full border-2 border-white shadow-md transition-transform group-hover:scale-105 ${selected ? 'ring-2 ring-indigo-500 ring-offset-2' : ''}`}
-                      style={{ background: palette.swatch }}
-                    />
-                    <span>{t.order.background.options[palette.id]}</span>
-                  </button>
-                );
-              })}
+            <div className="grid gap-4 lg:grid-cols-2">
+              {backgroundColors.map((selectedColor, variantIndex) => (
+                <fieldset key={variantIndex} className="rounded-2xl border border-gray-200 bg-gray-50/70 p-4">
+                  <legend className="px-2 text-sm font-bold text-gray-800">
+                    {variantIndex === 0 ? t.order.background.variant1 : t.order.background.variant2}
+                  </legend>
+                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-6 lg:grid-cols-3">
+                    {BACKGROUND_PALETTES.map((palette) => {
+                      const selected = selectedColor === palette.id;
+                      return (
+                        <button
+                          key={palette.id}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() => setBackgroundColors((current) =>
+                            variantIndex === 0
+                              ? [palette.id, current[1]]
+                              : [current[0], palette.id]
+                          )}
+                          className={`group flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl border-2 px-1 py-2 text-[11px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 ${selected ? 'border-indigo-600 bg-white text-indigo-700 shadow-sm' : 'border-transparent text-gray-600 hover:border-indigo-300 hover:bg-white'}`}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={`h-9 w-9 rounded-full border-2 border-white shadow-md transition-transform group-hover:scale-105 ${selected ? 'ring-2 ring-indigo-500 ring-offset-2' : ''}`}
+                            style={{ background: palette.swatch }}
+                          />
+                          <span>{t.order.background.options[palette.id]}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              ))}
             </div>
-          </fieldset>
+          </div>
           <div className="flex justify-between items-center">
             <button onClick={() => setStep('upload')} className="text-gray-500 font-semibold hover:text-gray-700 underline">{t.order.size.back}</button>
             <button 

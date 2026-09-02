@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getErrorMessage } from '@/lib/errors';
-import { selectBackgrounds } from '@/lib/background-options';
+import { selectBackgroundPair, selectBackgrounds } from '@/lib/background-options';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { image, backgroundColor } = await req.json();
+    const { image, backgroundColor, backgroundColors } = await req.json();
 
     if (!image) {
       return NextResponse.json({ error: 'Image is required' }, { status: 400 });
@@ -22,7 +22,9 @@ export async function POST(req: NextRequest) {
     Expressive artistic eyes, simplified clothing with painterly textures. 
     A masterpiece of digital painting. Avoid photorealism.`;
 
-    const selectedBackgrounds = selectBackgrounds(backgroundColor);
+    const selectedBackgrounds = Array.isArray(backgroundColors)
+      ? selectBackgroundPair(backgroundColors)
+      : selectBackgrounds(backgroundColor);
 
     const baseUrl = 'https://api.nanobananaapi.ai/api/v1/nanobanana';
 

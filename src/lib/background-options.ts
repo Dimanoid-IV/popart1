@@ -24,6 +24,33 @@ const BACKGROUNDS: Record<Exclude<BackgroundPaletteId, "surprise">, string> = {
 
 const PALETTE_IDS = Object.keys(BACKGROUNDS) as Array<Exclude<BackgroundPaletteId, "surprise">>;
 
+function resolveBackground(
+  requestedPalette: unknown,
+  random: () => number
+): string {
+  if (
+    typeof requestedPalette === "string" &&
+    requestedPalette !== "surprise" &&
+    Object.hasOwn(BACKGROUNDS, requestedPalette)
+  ) {
+    return BACKGROUNDS[requestedPalette as keyof typeof BACKGROUNDS];
+  }
+
+  const index = Math.floor(random() * PALETTE_IDS.length);
+  return BACKGROUNDS[PALETTE_IDS[index]];
+}
+
+export function selectBackgroundPair(
+  requestedPalettes: unknown,
+  random: () => number = Math.random
+): [string, string] {
+  const palettes = Array.isArray(requestedPalettes) ? requestedPalettes : [];
+  return [
+    resolveBackground(palettes[0], random),
+    resolveBackground(palettes[1], random),
+  ];
+}
+
 export function selectBackgrounds(
   requestedPalette: unknown,
   random: () => number = Math.random
