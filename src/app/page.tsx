@@ -14,6 +14,11 @@ export default function Home() {
     "/interiors/family-portrait-scandinavian-living-room.jpg",
     "/interiors/couple-portrait-soft-neutral-interior.jpg",
     "/interiors/woman-portrait-modern-teal-interior.jpg",
+    "/interiors/blue-dream-art-man-home-office.jpg",
+    "/interiors/coral-child-trophy-bedroom.jpg",
+    "/interiors/turquoise-child-trophy-hallway.jpg",
+    "/interiors/formal-man-portrait-modern-study.jpg",
+    "/interiors/pink-dream-art-woman-living-room.jpg",
   ];
 
   return (
@@ -120,7 +125,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2">
+            <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
               {galleryImages.map((src, index) => (
                 <figure
                   key={src}
