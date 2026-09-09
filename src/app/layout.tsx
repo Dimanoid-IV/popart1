@@ -34,7 +34,13 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <RootJsonLd />
-        <LanguageProvider>
+        <LanguageProvider
+          initialLanguage={
+            locale === "et" || locale === "ru" || locale === "en"
+              ? locale
+              : "en"
+          }
+        >
           {children}
         </LanguageProvider>
       </body>

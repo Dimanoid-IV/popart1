@@ -42,7 +42,7 @@ export function buildStorefrontMetadata(
   const path = pathname === "/" ? "" : pathname;
   const canonical = `${SITE_ORIGIN}${path}`;
   return {
-    title: copy.title,
+    title: { absolute: copy.title },
     description: copy.description,
     alternates: {
       canonical,
@@ -109,6 +109,12 @@ export function buildLegalMetadata(
           alt: content.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${content.title} | ${SITE_NAME}`,
+      description: content.description,
+      images: [OG_IMAGE],
     },
   };
 }

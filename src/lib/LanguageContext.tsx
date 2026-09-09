@@ -15,10 +15,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname() || "/";
+export function LanguageProvider({
+  children,
+  initialLanguage = "en",
+}: {
+  children: React.ReactNode;
+  initialLanguage?: Language;
+}) {
+  const pathname = usePathname();
   const router = useRouter();
-  const language = getLocaleFromPath(pathname);
+  const language = pathname ? getLocaleFromPath(pathname) : initialLanguage;
 
   const setLanguage = (lang: Language) => {
     const next = localizePath(pathname, lang);

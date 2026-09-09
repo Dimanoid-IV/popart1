@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { getLocaleFromPath } from "@/lib/locales";
 
 /** Expose the URL locale so the root layout can set <html lang>. */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const locale = getLocaleFromPath(request.nextUrl.pathname);
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", locale);
