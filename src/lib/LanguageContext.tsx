@@ -1,7 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Language, translations } from './translations';
+import React, { createContext, useContext } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { Language, translations } from "./translations";
+import { getLocaleFromPath, localizePath } from "./locales";
 
 type LanguageContextType = {
   language: Language;
@@ -9,26 +11,25 @@ type LanguageContextType = {
   t: typeof translations.en;
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const pathname = usePathname() || "/";
+  const router = useRouter();
+  const language = getLocaleFromPath(pathname);
 
-  useEffect(() => {
-    const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && (savedLang === 'en' || savedLang === 'ru' || savedLang === 'et')) {
-      queueMicrotask(() => setLanguage(savedLang));
+  const setLanguage = (lang: Language) => {
+    const next = localizePath(pathname, lang);
+    if (next !== pathname) {
+      router.push(next);
     }
-  }, []);
-
-  const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang);
-    localStorage.setItem('language', lang);
   };
 
   const value = {
     language,
-    setLanguage: handleSetLanguage,
+    setLanguage,
     t: translations[language],
   };
 
@@ -42,7 +43,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }

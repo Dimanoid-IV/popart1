@@ -347,6 +347,7 @@ export default function OrderFlow() {
             
             <div className="flex flex-col space-y-4">
               <h4 className="text-xl font-bold mb-2">{t.order.checkout.shippingTitle}</h4>
+              <p className="text-sm leading-6 text-gray-600">{t.order.checkout.delivery}</p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input 

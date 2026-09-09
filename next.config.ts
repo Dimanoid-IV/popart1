@@ -37,6 +37,10 @@ const nextConfig: NextConfig = {
       ]),
       { source: "/blog", destination: "/et/blog", permanent: true },
       { source: "/blog/:slug", destination: "/ru/blog/:slug", permanent: true },
+      { source: "/en", destination: "/", permanent: true },
+      { source: "/en/privacy", destination: "/privacy", permanent: true },
+      { source: "/en/terms", destination: "/terms", permanent: true },
+      { source: "/en/delivery", destination: "/delivery", permanent: true },
     ];
   },
 };

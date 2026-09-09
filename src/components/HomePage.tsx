@@ -1,0 +1,325 @@
+"use client";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import OrderFlow from "@/components/OrderFlow";
+import TrustStrip from "@/components/TrustStrip";
+import Image from "next/image";
+import { Zap, Palette, Heart } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
+import { homeSectionPath } from "@/lib/locales";
+
+const CANVAS_PRICES = [
+  { size: "45x30", price: "45", scale: 0.5 },
+  { size: "60x40", price: "55", scale: 0.67 },
+  { size: "80x54", price: "68", scale: 0.89 },
+  { size: "90x60", price: "75", scale: 1.0 },
+];
+
+export default function HomePage() {
+  const { t, language } = useLanguage();
+  const galleryImages = [
+    "/interiors/wedding-portrait-cozy-living-room.jpg",
+    "/interiors/family-portrait-scandinavian-living-room.jpg",
+    "/interiors/couple-portrait-soft-neutral-interior.jpg",
+    "/interiors/woman-portrait-modern-teal-interior.jpg",
+    "/interiors/blue-dream-art-man-home-office.jpg",
+    "/interiors/coral-child-trophy-bedroom.jpg",
+    "/interiors/turquoise-child-trophy-hallway.jpg",
+    "/interiors/formal-man-portrait-modern-study.jpg",
+    "/interiors/pink-dream-art-woman-living-room.jpg",
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <Header />
+
+      <main className="flex-grow">
+        <section className="relative py-32 overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
+          <div className="absolute inset-0 z-0 flex items-center overflow-hidden opacity-50 hover:opacity-100 transition-opacity duration-700">
+            <div className="animate-marquee flex gap-8 py-10">
+              {[...Array(2)].map((_, groupIndex) => (
+                <div key={groupIndex} className="flex gap-8">
+                  {["/pic1.jpg", "/pic2.jpg", "/pic3.jpg", "/pic4.jpg"].map(
+                    (src, i) => (
+                      <div
+                        key={`${groupIndex}-${i}`}
+                        className="relative w-[300px] h-[450px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 transform rotate-2"
+                      >
+                        <Image
+                          src={src}
+                          alt={`Art example ${i + 1}`}
+                          fill
+                          sizes="300px"
+                          className="object-cover"
+                          priority={groupIndex === 0 && i === 0}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </div>
+                    )
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
+            <div className="text-center max-w-4xl mx-auto pointer-events-auto">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 mb-8 leading-[1]">
+                {t.hero.title1} <br />
+                <span className="text-indigo-600 drop-shadow-sm">
+                  {t.hero.title2}
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
+                {t.hero.description}
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
+                <a
+                  href={homeSectionPath(language, "#order-now")}
+                  className="bg-indigo-600 text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95"
+                >
+                  {t.hero.ctaPrimary}
+                </a>
+                <a
+                  href={homeSectionPath(language, "#how-it-works")}
+                  className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-12 py-5 rounded-full font-bold text-xl hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-lg"
+                >
+                  {t.hero.ctaSecondary}
+                </a>
+              </div>
+              <TrustStrip />
+            </div>
+          </div>
+
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
+            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div className="absolute top-1/3 -right-20 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+          </div>
+        </section>
+
+        <section id="how-it-works" className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">
+                {t.features.sectionTitle}
+              </h2>
+              <p className="text-gray-500">{t.features.sectionDesc}</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: <Zap className="w-8 h-8 text-yellow-500" />,
+                  title: t.features.feature1.title,
+                  desc: t.features.feature1.desc,
+                },
+                {
+                  icon: <Palette className="w-8 h-8 text-indigo-500" />,
+                  title: t.features.feature2.title,
+                  desc: t.features.feature2.desc,
+                },
+                {
+                  icon: <Heart className="w-8 h-8 text-red-500" />,
+                  title: t.features.feature3.title,
+                  desc: t.features.feature3.desc,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 transition-hover hover:shadow-lg"
+                >
+                  <div className="mb-6 p-4 bg-white rounded-full shadow-sm">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 italic underline">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="gallery"
+          className="scroll-mt-20 bg-slate-950 py-20 text-white md:py-28"
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-300">
+                {t.gallery.eyebrow}
+              </p>
+              <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
+                {t.gallery.title}
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                {t.gallery.description}
+              </p>
+            </div>
+
+            <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {galleryImages.map((src, index) => (
+                <figure
+                  key={src}
+                  className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl"
+                >
+                  <div className="relative aspect-[3/2] overflow-hidden">
+                    <Image
+                      src={src}
+                      alt={t.gallery.items[index]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.025]"
+                    />
+                  </div>
+                  <figcaption className="px-5 py-4 text-sm font-semibold text-slate-200">
+                    {t.gallery.items[index]}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <a
+                href={homeSectionPath(language, "#order-now")}
+                className="inline-flex rounded-full bg-indigo-500 px-7 py-3.5 font-bold text-white shadow-lg transition hover:bg-indigo-400"
+              >
+                {t.gallery.cta}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="rankboost-seo-content" className="py-20 bg-indigo-50/50">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-4xl rounded-3xl border border-indigo-100 bg-white p-8 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                {t.guide.eyebrow}
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-gray-900 md:text-4xl">
+                {t.guide.title}
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-8 text-gray-700">
+                {t.guide.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div
+                id="rankboost-seo-content-expanded"
+                className="mt-6 grid gap-4 md:grid-cols-2"
+              >
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {t.guide.personalTitle}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    {t.guide.personalText}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {t.guide.timingTitle}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-gray-700">
+                    {t.guide.timingText}
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href={homeSectionPath(language, "#order-now")}
+                className="mt-6 inline-flex rounded-full bg-indigo-600 px-6 py-3 font-bold text-white transition hover:bg-indigo-700"
+              >
+                {t.guide.cta}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="py-24 bg-white overflow-hidden">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16 italic">
+              {t.nav.pricing}
+            </h2>
+
+            <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/10]">
+                <Image
+                  src="/divan.png"
+                  alt="Living room setup"
+                  fill
+                  className="object-cover"
+                />
+
+                <div className="absolute top-[5%] left-0 w-full h-[55%] flex items-end justify-center gap-4 md:gap-12 px-4">
+                  {CANVAS_PRICES.map((p, i) => (
+                    <div
+                      key={p.size}
+                      className="flex flex-col items-center group transition-all hover:-translate-y-2"
+                      style={{
+                        width: `${p.scale * 20}%`,
+                        minWidth: "60px",
+                      }}
+                    >
+                      <div className="relative w-full aspect-[2/3] bg-gray-200 border-[3px] md:border-[6px] border-white shadow-2xl rounded-sm overflow-hidden mb-2">
+                        <Image
+                          src={`/pic${i + 1}${i + 1}.JPG`}
+                          alt={p.size}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="hidden sm:block bg-white/95 backdrop-blur-sm px-2 py-1 rounded-md shadow-lg border border-gray-100">
+                        <p className="text-xs font-bold text-gray-900 whitespace-nowrap">
+                          {p.size} cm
+                        </p>
+                        <p className="text-xs font-black text-indigo-600">
+                          €{p.price}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <ul className="mx-auto mt-8 grid max-w-xl grid-cols-2 gap-3 text-left sm:hidden">
+              {CANVAS_PRICES.map((p) => (
+                <li
+                  key={p.size}
+                  className="flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3"
+                >
+                  <span className="text-sm font-bold text-gray-900">
+                    {p.size} cm
+                  </span>
+                  <span className="text-base font-black text-indigo-600">
+                    €{p.price}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                {t.order.sectionTitle}
+              </h2>
+              <p className="text-gray-500 italic">{t.order.sectionDesc}</p>
+            </div>
+            <OrderFlow />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

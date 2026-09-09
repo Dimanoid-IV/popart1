@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { LOCALE_ALTERNATES, SITE_NAME, SITE_ORIGIN } from "./site-config";
-
-const ogImage = "/pic1.jpg";
+import { buildStorefrontMetadata } from "./storefront-metadata";
+import { SITE_NAME, SITE_ORIGIN } from "./site-config";
 
 /**
- * Root layout metadata: canonical, OG, Twitter, hreflang hints via blog hubs.
- * Homepage remains single URL; localized blog indexes serve as language alternates.
+ * Root layout metadata for the English homepage.
+ * Locale landings override title/description/canonical via generateMetadata.
  */
 export const rootMetadata: Metadata = {
+  ...buildStorefrontMetadata("en", "/"),
   metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: `${SITE_NAME} - Custom Digital Painting Portraits`,
     template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Turn your photos into stunning digital art portraits. Unique backgrounds, high-quality canvas prints, and fast delivery. Professional AI-powered art editor.",
+  applicationName: SITE_NAME,
+  category: "art",
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   keywords: [
     "popart",
     "digital painting",
@@ -24,47 +26,12 @@ export const rootMetadata: Metadata = {
     "photo to art",
     "Estonia",
     "Tallinn",
+    "tasuta tarne",
   ],
-  applicationName: SITE_NAME,
-  category: "art",
-  creator: SITE_NAME,
-  publisher: SITE_NAME,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
-  },
-  alternates: {
-    canonical: SITE_ORIGIN,
-    languages: {
-      "x-default": SITE_ORIGIN,
-      en: LOCALE_ALTERNATES.en,
-      et: LOCALE_ALTERNATES.et,
-      ru: LOCALE_ALTERNATES.ru,
-    },
-  },
-  openGraph: {
-    title: "PopArt.ee - Your Photos, Pure Art",
-    description:
-      "Create stunning digital painting portraits from your photos in seconds.",
-    url: SITE_ORIGIN,
-    siteName: SITE_NAME,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: "Custom portrait printed on canvas by PopArt.ee",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PopArt.ee - Custom Digital Painting Portraits",
-    description: "Turn your photos into stunning digital art portraits.",
-    images: [ogImage],
   },
   robots: {
     index: true,
