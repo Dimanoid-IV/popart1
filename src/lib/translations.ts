@@ -80,13 +80,17 @@ export const translations = {
       cta: "Create a portrait for my home",
     },
     reviews: {
-      eyebrow: "Sample reviews",
-      title: "Review layout",
+      eyebrow: "Reviews",
+      title: "Facebook recommendations",
       description:
-        "These are labeled sample quotes for layout only — not real customer testimonials. We will replace them with Facebook reviews once the page or post URL is provided.",
-      sampleBadge: "Sample",
-      sampleAttribution: "Sample quote",
+        "Public Facebook recommendations for DreamArt Portree. Quotes are shown in the customer’s original Russian.",
       empty: "Customer reviews will appear here.",
+      recommends: "Recommends",
+      facebook: "Facebook",
+      seeAllOnFacebook: "See reviews on Facebook",
+      published: {
+        "2020-07": "July 2020",
+      },
     },
     order: {
       sectionTitle: "Start Your Transformation",
@@ -248,13 +252,17 @@ export const translations = {
       cta: "Создать портрет для моего дома",
     },
     reviews: {
-      eyebrow: "Примеры отзывов",
-      title: "Макет блока отзывов",
+      eyebrow: "Отзывы",
+      title: "Рекомендации в Facebook",
       description:
-        "Это помеченные примеры для вёрстки, а не реальные отзывы покупателей. Заменим их отзывами с Facebook, когда будет ссылка на страницу или пост.",
-      sampleBadge: "Пример",
-      sampleAttribution: "Пример цитаты",
+        "Публичные рекомендации Facebook для DreamArt Portree. Тексты оставлены в оригинале.",
       empty: "Здесь появятся отзывы покупателей.",
+      recommends: "Рекомендует",
+      facebook: "Facebook",
+      seeAllOnFacebook: "Смотреть отзывы в Facebook",
+      published: {
+        "2020-07": "Июль 2020",
+      },
     },
     order: {
       sectionTitle: "Начните трансформацию",
@@ -415,13 +423,17 @@ export const translations = {
       cta: "Loo portree minu koju",
     },
     reviews: {
-      eyebrow: "Näidistsitaadid",
-      title: "Arvustuste paigutus",
+      eyebrow: "Tagasiside",
+      title: "Facebooki soovitused",
       description:
-        "Need on selgelt märgitud näidistsitaadid paigutuse jaoks, mitte päris kliendiarvustused. Asendame need Facebooki arvustustega, kui lehe või postituse URL on olemas.",
-      sampleBadge: "Näidis",
-      sampleAttribution: "Näidistsitaat",
+        "DreamArt Portree avalikud Facebooki soovitused. Tsitaadid on kliendi algses vene keeles.",
       empty: "Kliendiarvustused ilmuvad siia.",
+      recommends: "Soovitab",
+      facebook: "Facebook",
+      seeAllOnFacebook: "Vaata arvustusi Facebookis",
+      published: {
+        "2020-07": "Juuli 2020",
+      },
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",

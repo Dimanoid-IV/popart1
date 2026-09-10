@@ -1,5 +1,4 @@
 import type { Language } from "@/lib/translations";
-import { getVerifiedReviews } from "@/lib/reviews";
 import { homeSectionPath } from "@/lib/locales";
 import { CANVAS_OFFERS } from "./canvas-offers";
 import { OG_IMAGE, SITE_NAME, SITE_ORIGIN, storefrontUrl } from "./site-config";
@@ -80,35 +79,6 @@ export function buildStorefrontProductJsonLd(locale: Language) {
       })),
     },
   };
-
-  const verified = getVerifiedReviews();
-  // Never emit Review / AggregateRating for placeholders or invented quotes.
-  if (verified.length > 0) {
-    const ratings = verified.map((review) => review.rating);
-    product.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: (
-        ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
-      ).toFixed(1),
-      reviewCount: verified.length,
-      bestRating: 5,
-      worstRating: 1,
-    };
-    product.review = verified.map((review) => ({
-      "@type": "Review",
-      reviewBody: review.quote[locale],
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      author: {
-        "@type": "Person",
-        name: review.name,
-      },
-    }));
-  }
 
   return {
     "@context": "https://schema.org",

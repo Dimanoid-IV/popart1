@@ -1,11 +1,15 @@
 "use client";
 
-import { Quote, Star } from "lucide-react";
+import { Quote } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
-import { REVIEWS } from "@/lib/reviews";
+import {
+  FACEBOOK_PAGE_NAME,
+  FACEBOOK_REVIEWS_URL,
+  REVIEWS,
+} from "@/lib/reviews";
 
 export default function ReviewsSection() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="reviews" className="bg-indigo-50/40 py-24">
@@ -27,48 +31,57 @@ export default function ReviewsSection() {
             {t.reviews.empty}
           </p>
         ) : (
-          <ul className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
-            {REVIEWS.map((review, index) => (
+          <ul className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+            {REVIEWS.map((review) => (
               <li
-                key={`${review.city}-${index}`}
-                className="relative flex h-full flex-col rounded-3xl border border-dashed border-indigo-200 bg-white p-7 shadow-sm"
+                key={review.name}
+                className="relative flex h-full flex-col rounded-3xl border border-indigo-100 bg-white p-7 shadow-sm"
               >
-                {review.isPlaceholder ? (
-                  <span className="absolute right-5 top-5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-800">
-                    {t.reviews.sampleBadge}
-                  </span>
-                ) : null}
                 <Quote className="h-8 w-8 text-indigo-200" aria-hidden />
-                {!review.isPlaceholder ? (
-                  <div
-                    className="mt-4 flex gap-1"
-                    aria-label={`${review.rating} / 5`}
-                  >
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <Star
-                        key={starIndex}
-                        className={`h-4 w-4 ${
-                          starIndex < review.rating
-                            ? "fill-amber-400 text-amber-400"
-                            : "text-gray-200"
-                        }`}
-                        aria-hidden
-                      />
-                    ))}
-                  </div>
+                {review.recommends ? (
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-indigo-600">
+                    {t.reviews.recommends}
+                  </p>
                 ) : null}
-                <blockquote className="mt-4 flex-1 text-sm leading-7 text-gray-700">
-                  {review.quote[language]}
+                <blockquote
+                  lang="ru"
+                  className="mt-3 flex-1 text-base leading-7 text-gray-800"
+                >
+                  {review.quote}
                 </blockquote>
                 <p className="mt-6 text-sm font-bold text-gray-900">
-                  {review.isPlaceholder
-                    ? `${t.reviews.sampleAttribution} · ${review.city}`
-                    : `${review.name} · ${review.city}`}
+                  {review.name}
                 </p>
+                <p className="mt-1 text-sm text-gray-500">
+                  {t.reviews.published[review.publishedMonth] ??
+                    review.publishedMonth}{" "}
+                  · {FACEBOOK_PAGE_NAME}
+                </p>
+                <a
+                  href={review.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-sm font-semibold text-indigo-600 underline-offset-2 hover:underline"
+                >
+                  {t.reviews.facebook}
+                </a>
               </li>
             ))}
           </ul>
         )}
+
+        {REVIEWS.length > 0 ? (
+          <p className="mt-8 text-center text-sm text-gray-500">
+            <a
+              href={FACEBOOK_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-indigo-600 underline-offset-2 hover:underline"
+            >
+              {t.reviews.seeAllOnFacebook}
+            </a>
+          </p>
+        ) : null}
       </div>
     </section>
   );
