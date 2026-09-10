@@ -18,6 +18,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@media (max-width: 767px) {
+  header nav[aria-label],
+  header .container {
+    min-width: 0;
+  }
+}
+
 .blog-content {
   font-size: 1.0625rem;
   line-height: 1.8;

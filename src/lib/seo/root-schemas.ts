@@ -1,6 +1,9 @@
-import { SITE_NAME, SITE_ORIGIN } from "./site-config";
+import { CONTACT_EMAIL } from "@/lib/site-contact";
+import { OG_IMAGE, SITE_NAME, SITE_ORIGIN } from "./site-config";
 
-/** Organization + LocalBusiness + WebSite (SearchAction optional). */
+const ogImageUrl = `${SITE_ORIGIN}${OG_IMAGE}`;
+
+/** Organization + LocalBusiness + WebSite + delivery FAQ. */
 export function buildRootJsonLd() {
   const sameAs: string[] = [];
 
@@ -12,9 +15,10 @@ export function buildRootJsonLd() {
         "@id": `${SITE_ORIGIN}#organization`,
         name: SITE_NAME,
         url: SITE_ORIGIN,
+        email: CONTACT_EMAIL,
         logo: {
           "@type": "ImageObject",
-          url: `${SITE_ORIGIN}/og-image.jpg`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
         },
@@ -25,7 +29,8 @@ export function buildRootJsonLd() {
         "@id": `${SITE_ORIGIN}#localbusiness`,
         name: SITE_NAME,
         url: SITE_ORIGIN,
-        image: `${SITE_ORIGIN}/og-image.jpg`,
+        email: CONTACT_EMAIL,
+        image: ogImageUrl,
         address: {
           "@type": "PostalAddress",
           addressLocality: "Tallinn",
@@ -46,7 +51,7 @@ export function buildRootJsonLd() {
             name: "How do I order a portrait from a photo?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Upload your photo, choose a canvas size, review the preview, and confirm the order before printing.",
+              text: "Upload your photo, choose a canvas size, review the digital preview, and pay. The preview is ready in seconds.",
             },
           },
           {
@@ -62,7 +67,7 @@ export function buildRootJsonLd() {
             name: "Do you deliver in Estonia?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Orders can be prepared online and delivered across Estonia after preview approval and printing.",
+              text: "Yes. Shipping to the customer is free across all of Estonia. Dispatch is the next working day after the portrait is generated.",
             },
           },
         ],
@@ -73,7 +78,7 @@ export function buildRootJsonLd() {
         name: SITE_NAME,
         url: SITE_ORIGIN,
         publisher: { "@id": `${SITE_ORIGIN}#organization` },
-        inLanguage: ["en-US", "et-EE", "ru-RU"],
+        inLanguage: ["en", "et", "ru"],
       },
     ],
   };
@@ -112,7 +117,7 @@ export function buildArticleJsonLd(input: {
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_ORIGIN}/og-image.jpg`,
+        url: ogImageUrl,
       },
     },
     inLanguage: input.inLanguage,

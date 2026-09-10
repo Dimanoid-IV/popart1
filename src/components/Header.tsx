@@ -1,49 +1,107 @@
 "use client";
 
-import Link from 'next/link';
-import { useLanguage } from '@/lib/LanguageContext';
-import { Language } from '@/lib/translations';
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
+import { Language } from "@/lib/translations";
+import { homePath, homeSectionPath, localizePath } from "@/lib/locales";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
+  const pathname = usePathname() || "/";
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: homeSectionPath(language, "#how-it-works"), label: t.nav.howItWorks },
+    { href: homeSectionPath(language, "#pricing"), label: t.nav.pricing },
+    { href: homeSectionPath(language, "#gallery"), label: t.nav.gallery },
+    { href: `/${language}/blog`, label: t.nav.blog },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold tracking-tighter text-indigo-600">PopArt.ee</span>
+      <div className="container mx-auto flex h-16 items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
+        <Link
+          href={homePath(language)}
+          className="flex shrink-0 items-center space-x-2"
+        >
+          <span className="text-xl font-bold tracking-tighter text-indigo-600 sm:text-2xl">
+            PopArt.ee
+          </span>
         </Link>
         <nav className="hidden md:flex space-x-8 text-sm font-medium">
-          <Link href="#how-it-works" className="text-gray-600 hover:text-indigo-600">{t.nav.howItWorks}</Link>
-          <Link href="#pricing" className="text-gray-600 hover:text-indigo-600">{t.nav.pricing}</Link>
-          <Link href="#gallery" className="text-gray-600 hover:text-indigo-600">{t.nav.gallery}</Link>
-          <Link href={`/${language}/blog`} className="text-gray-600 hover:text-indigo-600">{t.nav.blog}</Link>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-gray-600 hover:text-indigo-600"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
-        <div className="flex items-center space-x-4">
-          <div className="flex bg-gray-100 p-1 rounded-lg">
-            {(['en', 'ru', 'et'] as Language[]).map((lang) => (
-              <button
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex rounded-lg bg-gray-100 p-1" role="group" aria-label="Language">
+            {(["en", "et", "ru"] as Language[]).map((lang) => (
+              <Link
                 key={lang}
-                onClick={() => setLanguage(lang)}
-                className={`px-2 py-1 text-xs font-bold rounded-md transition-all ${
-                  language === lang 
-                    ? 'bg-white text-indigo-600 shadow-sm' 
-                    : 'text-gray-500 hover:text-gray-700'
+                href={localizePath(pathname, lang)}
+                hrefLang={lang}
+                className={`rounded-md px-2 py-1 text-xs font-bold transition-all ${
+                  language === lang
+                    ? "bg-white text-indigo-600 shadow-sm"
+                    : "text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {lang.toUpperCase()}
-              </button>
+              </Link>
             ))}
           </div>
           <Link
-            href="#order-now"
-            className="inline-flex h-9 items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-700"
+            href={homeSectionPath(language, "#order-now")}
+            className="hidden h-9 items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-indigo-700 sm:inline-flex"
           >
             {t.nav.orderNow}
           </Link>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-gray-700 md:hidden"
+            aria-expanded={open}
+            aria-label={open ? t.nav.close : t.nav.menu}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+      {open && (
+        <nav className="border-t bg-white px-4 py-4 md:hidden">
+          <ul className="flex flex-col gap-3 text-base font-medium">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-2 text-gray-800"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href={homeSectionPath(language, "#order-now")}
+                className="mt-1 inline-flex w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-3 text-white"
+                onClick={() => setOpen(false)}
+              >
+                {t.nav.orderNow}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }
-

@@ -1,4 +1,4 @@
-export type Language = 'en' | 'ru' | 'et';
+export type Language = "en" | "ru" | "et";
 
 export const translations = {
   en: {
@@ -8,48 +8,64 @@ export const translations = {
       gallery: "Gallery",
       blog: "Blog",
       orderNow: "Order Now",
+      menu: "Menu",
+      close: "Close",
     },
     hero: {
       title1: "Your Photos.",
       title2: "Pure Art.",
-      description: "Turn your favorite memories into professional digital painting portraits. Choose a size, upload your photo, and let our engine create something magical.",
+      description:
+        "Turn your favourite photos into painted canvas portraits. Review a digital preview, then we print and ship across Estonia — free, the next working day after generation.",
       ctaPrimary: "Create My Portrait",
       ctaSecondary: "How it Works",
     },
+    trust: {
+      delivery: "Free delivery across Estonia.",
+      ships:
+        "Ships the next working day after your portrait is generated.",
+      preview:
+        "The on-screen preview is ready in seconds. The printed canvas is what we ship.",
+      payment: "Secure payment with Stripe — cards accepted.",
+      contact: "Questions? info@popart.ee",
+    },
     features: {
-      sectionTitle: "Artistic Perfection in 3 Steps",
-      sectionDesc: "Fast, easy, and absolutely stunning results every time.",
+      sectionTitle: "From photo to wall in 3 steps",
+      sectionDesc:
+        "A digital preview first, then a printed canvas delivered across Estonia.",
       feature1: {
-        title: "Instant Magic",
-        desc: "Our engine processes your photo in seconds, keeping every detail while adding artistic flair.",
+        title: "Digital preview in seconds",
+        desc: "Our engine turns your photo into a painted preview in seconds, keeping the likeness while adding artistic style. This is the on-screen preview — not the courier.",
       },
       feature2: {
-        title: "Digital Painting",
+        title: "Digital painting",
         desc: "No filters here. Each portrait is transformed into a digital painting style with artistic backgrounds.",
       },
       feature3: {
-        title: "Premium Quality",
-        desc: "Printed on high-quality museum-grade canvas that lasts a lifetime. Perfect for home or as a gift.",
+        title: "Printed canvas, free Estonia delivery",
+        desc: "Printed on high-quality museum-grade canvas. Free delivery across Estonia. We ship the next working day after your portrait is generated.",
       },
     },
     guide: {
       eyebrow: "Custom portrait guide",
       title: "Custom digital painting portraits from your photo",
       paragraphs: [
-        "PopArt.ee turns your favourite photos into custom digital painting portraits for gifts, wall art, family memories, and special occasions. The process is simple: upload a clear photo, choose a canvas size, review the preview, and confirm the final print when the portrait feels right.",
-        "A good portrait starts with a sharp image and a story worth keeping. Natural light, visible facial details, and a relaxed expression help the artwork feel personal instead of generic. If you are ordering for a birthday, wedding, anniversary, or holiday gift, add your deadline early so production and delivery can be planned honestly.",
-        "Every order is made for real homes: canvas sizes are easy to compare, the preview step protects the result before printing, and delivery can be arranged across Estonia. Start with the photo you love most, then use the order flow below to create a portrait that looks intentional, warm, and ready to give.",
+        "PopArt.ee turns your favourite photos into custom digital painting portraits for gifts, wall art, family memories, and special occasions. The process is simple: upload a clear photo, choose a canvas size, review the preview, and confirm the print when the portrait feels right.",
+        "A good portrait starts with a sharp image and a story worth keeping. Natural light, visible facial details, and a relaxed expression help the artwork feel personal instead of generic. If you are ordering for a birthday, wedding, anniversary, or holiday gift, start the preview early so the next-working-day dispatch is easy to plan.",
+        "Every order is made for real homes: canvas sizes are easy to compare, the preview step lets you choose a look before printing, and delivery is free across Estonia. Start with the photo you love most, then use the order flow below.",
       ],
       personalTitle: "What makes the portrait feel personal?",
-      personalText: "The best result usually comes from one meaningful photo, not a large album of almost-right images. Choose a photo where the face, eyes, and expression are clear. Tell us whether the portrait is for a partner, parent, friend, child, pet owner, or business gift so the final artwork can match the occasion.",
-      timingTitle: "How to plan timing and delivery",
-      timingText: "For birthdays, weddings, Christmas, and anniversaries, leave time for preview feedback, printing, packaging, and delivery. If the date is important, mention it before checkout. Clear timing helps avoid rushed artwork and gives you a calmer gift experience.",
+      personalText:
+        "The best result usually comes from one meaningful photo, not a large album of almost-right images. Choose a photo where the face, eyes, and expression are clear. Tell us whether the portrait is for a partner, parent, friend, child, pet owner, or business gift so the final artwork can match the occasion.",
+      timingTitle: "Preview, print, and delivery",
+      timingText:
+        "The digital preview is ready in seconds. After your portrait is generated, we ship the printed canvas the next working day — free across Estonia.",
       cta: "Start your portrait order",
     },
     gallery: {
       eyebrow: "Portraits in real interiors",
       title: "Imagine your portrait at home",
-      description: "See how a personal canvas portrait becomes part of a warm, modern interior. Each example shows a realistic scale, natural light, and the character of a gallery-wrapped canvas.",
+      description:
+        "See how a personal canvas portrait becomes part of a warm, modern interior. Each example shows a realistic scale, natural light, and the character of a gallery-wrapped canvas.",
       items: [
         "Wedding portrait in a warm living room",
         "Family portrait in a Scandinavian interior",
@@ -77,7 +93,8 @@ export const translations = {
         title: "Upload your photo",
         desc: "High resolution photos work best (JPG, PNG)",
         button: "Choose File",
-        footer: "Get your custom masterpiece in minutes!",
+        footer:
+          "Your digital preview is created in seconds. The printed canvas ships the next working day — free across Estonia.",
       },
       size: {
         title: "Choose Canvas Size",
@@ -90,11 +107,18 @@ export const translations = {
         desc: "Set a separate background palette for each generated variant.",
         variant1: "Portrait variant 1",
         variant2: "Portrait variant 2",
-        options: { surprise: "Surprise", turquoise: "Turquoise", lavender: "Lavender", aqua: "Aqua", coral: "Coral & gold", sapphire: "Sapphire" },
+        options: {
+          surprise: "Surprise",
+          turquoise: "Turquoise",
+          lavender: "Lavender",
+          aqua: "Aqua",
+          coral: "Coral & gold",
+          sapphire: "Sapphire",
+        },
       },
       processing: {
         title: "Your art is being created...",
-        desc: "Creating your digital masterpieces with different artistic backgrounds.",
+        desc: "Creating your digital preview with different artistic backgrounds.",
       },
       selection: {
         title: "Select Your Result",
@@ -115,17 +139,24 @@ export const translations = {
         phone: "Phone Number",
         payButton: "Pay with Stripe",
         secure: "Secure payment via Stripe. No credit card details stored.",
-        notification: "Get notified about your order status faster than anyone else! We will send the final file to your email immediately after printing.",
+        delivery:
+          "Free delivery across Estonia. Ships the next working day after your portrait is generated.",
+        notification:
+          "We email order updates to you. The printed canvas ships the next working day after generation — free across Estonia.",
         back: "Back to Selection",
       },
     },
     footer: {
-      desc: "Transforming your precious memories into artistic digital paintings.",
+      desc: "Painted canvas portraits from your photos, with free delivery across Estonia.",
       contact: "Contact",
       legal: "Legal",
       terms: "Terms of Service",
       privacy: "Privacy Policy",
+      delivery: "Delivery",
       blog: "Blog",
+      quickLinks: "Quick links",
+      location: "Tallinn, Estonia",
+      emailLabel: "Email",
       rights: "All rights reserved.",
     },
   },
@@ -136,48 +167,64 @@ export const translations = {
       gallery: "Галерея",
       blog: "Блог",
       orderNow: "Заказать сейчас",
+      menu: "Меню",
+      close: "Закрыть",
     },
     hero: {
       title1: "Ваши фото.",
       title2: "Чистое искусство.",
-      description: "Превратите ваши любимые воспоминания в профессиональные цифровые портреты. Выберите размер, загрузите фото, и мы создадим нечто волшебное.",
+      description:
+        "Превратите любимые фотографии в портреты на холсте. Сначала цифровой предпросмотр, затем печать и доставка по Эстонии — бесплатно, на следующий рабочий день после генерации.",
       ctaPrimary: "Создать портрет",
       ctaSecondary: "Как это работает",
     },
+    trust: {
+      delivery: "Бесплатная доставка по всей Эстонии.",
+      ships:
+        "Отправка на следующий рабочий день после генерации портрета.",
+      preview:
+        "Предпросмотр на экране готов за секунды. На холсте мы печатаем и отправляем выбранный портрет.",
+      payment: "Безопасная оплата через Stripe — карты принимаются.",
+      contact: "Вопросы? info@popart.ee",
+    },
     features: {
-      sectionTitle: "Художественное совершенство в 3 шага",
-      sectionDesc: "Быстро, просто и потрясающий результат каждый раз.",
+      sectionTitle: "От фото до стены в 3 шага",
+      sectionDesc:
+        "Сначала цифровой предпросмотр, затем печатный холст с доставкой по Эстонии.",
       feature1: {
-        title: "Мгновенная магия",
-        desc: "Наша система обрабатывает ваше фото за считанные секунды, сохраняя детали и добавляя художественный стиль.",
+        title: "Предпросмотр за секунды",
+        desc: "Система превращает фото в художественный предпросмотр за секунды, сохраняя сходство. Это изображение на экране — не курьер.",
       },
       feature2: {
         title: "Цифровая живопись",
         desc: "Никаких простых фильтров. Каждый портрет превращается в цифровую картину с уникальным фоном.",
       },
       feature3: {
-        title: "Премиальное качество",
-        desc: "Печать на высококачественном музейном холсте, который служит вечно. Идеально для дома или подарка.",
+        title: "Холст и бесплатная доставка по Эстонии",
+        desc: "Печать на качественном музейном холсте. Бесплатная доставка по всей Эстонии. Отправка на следующий рабочий день после генерации портрета.",
       },
     },
     guide: {
       eyebrow: "Гид по портретам на заказ",
       title: "Цифровые художественные портреты по вашей фотографии",
       paragraphs: [
-        "PopArt.ee превращает любимые фотографии в цифровые художественные портреты для подарков, украшения интерьера, семейных воспоминаний и особых событий. Всё просто: загрузите чёткое фото, выберите размер холста, оцените результат и подтвердите печать понравившегося портрета.",
-        "Хороший портрет начинается с качественной фотографии и истории, которую хочется сохранить. Естественный свет, хорошо видимые черты лица и непринуждённое выражение помогают сделать работу по-настоящему личной. Если портрет нужен ко дню рождения, свадьбе, годовщине или празднику, заранее сообщите дату, чтобы спокойно спланировать изготовление и доставку.",
-        "Каждый заказ создаётся для реального интерьера: размеры холста легко сравнить, предварительный просмотр помогает проверить результат до печати, а доставка доступна по всей Эстонии. Начните с любимой фотографии и используйте форму ниже, чтобы создать тёплый, продуманный и готовый к вручению портрет.",
+        "PopArt.ee превращает любимые фотографии в цифровые художественные портреты для подарков, интерьера, семейных воспоминаний и особых событий. Всё просто: загрузите чёткое фото, выберите размер холста, оцените предпросмотр и подтвердите печать.",
+        "Хороший портрет начинается с качественной фотографии и истории, которую хочется сохранить. Естественный свет, хорошо видимые черты лица и непринуждённое выражение помогают сделать работу личной. Если портрет нужен к дате, начните с предпросмотра заранее — отправка на следующий рабочий день после генерации.",
+        "Каждый заказ создаётся для реального интерьера: размеры холста легко сравнить, предпросмотр помогает выбрать вариант до печати, а доставка по Эстонии бесплатная. Начните с любимой фотографии и используйте форму ниже.",
       ],
       personalTitle: "Что делает портрет действительно личным?",
-      personalText: "Лучший результат обычно получается из одной значимой фотографии, а не из большого альбома почти подходящих кадров. Выберите снимок, где хорошо видны лицо, глаза и выражение. Укажите, кому предназначен портрет, чтобы оформление соответствовало поводу.",
-      timingTitle: "Как спланировать сроки и доставку",
-      timingText: "Для дня рождения, свадьбы, Рождества или годовщины оставьте время на проверку результата, печать, упаковку и доставку. Если дата важна, сообщите её до оплаты. Понятный график помогает избежать спешки.",
+      personalText:
+        "Лучший результат обычно получается из одной значимой фотографии, а не из большого альбома почти подходящих кадров. Выберите снимок, где хорошо видны лицо, глаза и выражение. Укажите, кому предназначен портрет, чтобы оформление соответствовало поводу.",
+      timingTitle: "Предпросмотр, печать и доставка",
+      timingText:
+        "Цифровой предпросмотр готов за секунды. После генерации портрета мы отправляем печатный холст на следующий рабочий день — бесплатно по всей Эстонии.",
       cta: "Начать создание портрета",
     },
     gallery: {
       eyebrow: "Портреты в настоящем интерьере",
       title: "Представьте ваш портрет у себя дома",
-      description: "Посмотрите, как персональный портрет на холсте становится частью уютного современного интерьера. На примерах показаны реалистичный масштаб, естественное освещение и фактура холста на подрамнике.",
+      description:
+        "Посмотрите, как персональный портрет на холсте становится частью уютного современного интерьера. На примерах показаны реалистичный масштаб, естественное освещение и фактура холста на подрамнике.",
       items: [
         "Свадебный портрет в тёплой гостиной",
         "Семейный портрет в скандинавском интерьере",
@@ -205,7 +252,8 @@ export const translations = {
         title: "Загрузите ваше фото",
         desc: "Лучше всего подходят фото высокого разрешения (JPG, PNG)",
         button: "Выбрать файл",
-        footer: "Получите шедевр за считанные минуты!",
+        footer:
+          "Цифровой предпросмотр создаётся за секунды. Печатный холст отправим на следующий рабочий день — бесплатно по всей Эстонии.",
       },
       size: {
         title: "Выберите размер холста",
@@ -218,11 +266,18 @@ export const translations = {
         desc: "Назначьте отдельную гамму фона каждому создаваемому варианту.",
         variant1: "Вариант портрета 1",
         variant2: "Вариант портрета 2",
-        options: { surprise: "Сюрприз", turquoise: "Бирюзовый", lavender: "Лавандовый", aqua: "Аквамарин", coral: "Коралл и золото", sapphire: "Сапфировый" },
+        options: {
+          surprise: "Сюрприз",
+          turquoise: "Бирюзовый",
+          lavender: "Лавандовый",
+          aqua: "Аквамарин",
+          coral: "Коралл и золото",
+          sapphire: "Сапфировый",
+        },
       },
       processing: {
         title: "Ваш портрет создается...",
-        desc: "Создаем ваши цифровые шедевры с различными художественными фонами.",
+        desc: "Создаём цифровой предпросмотр с различными художественными фонами.",
       },
       selection: {
         title: "Выберите результат",
@@ -243,17 +298,24 @@ export const translations = {
         phone: "Номер телефона",
         payButton: "Оплатить через Stripe",
         secure: "Безопасная оплата через Stripe. Мы не храним данные карт.",
-        notification: "Узнайте о статусе заказа быстрее всех! Мы отправим файл на вашу почту сразу после печати.",
+        delivery:
+          "Бесплатная доставка по всей Эстонии. Отправка на следующий рабочий день после генерации портрета.",
+        notification:
+          "Мы пришлём обновления заказа на почту. Печатный холст отправим на следующий рабочий день после генерации — бесплатно по всей Эстонии.",
         back: "Назад к выбору",
       },
     },
     footer: {
-      desc: "Превращаем ваши драгоценные воспоминания в художественные цифровые картины.",
+      desc: "Художественные портреты на холсте по вашим фото, с бесплатной доставкой по Эстонии.",
       contact: "Контакты",
       legal: "Юридическая информация",
       terms: "Условия использования",
       privacy: "Политика конфиденциальности",
+      delivery: "Доставка",
       blog: "Блог",
+      quickLinks: "Разделы",
+      location: "Таллин, Эстония",
+      emailLabel: "Email",
       rights: "Все права защищены.",
     },
   },
@@ -264,48 +326,63 @@ export const translations = {
       gallery: "Galerii",
       blog: "Blogi",
       orderNow: "Telli kohe",
+      menu: "Menüü",
+      close: "Sulge",
     },
     hero: {
       title1: "Sinu fotod.",
       title2: "Puhas kunst.",
-      description: "Muuda oma lemmikmälestused professionaalseteks digitaalseteks maalideks. Vali suurus, laadi üles foto ja lase meil luua midagi maagilist.",
+      description:
+        "Muuda lemmikfotod maalitud lõuendiportreedeks. Vaata digitaalset eelvaadet, seejärel trükime ja saadame üle Eesti — tasuta, järgmisel tööpäeval pärast genereerimist.",
       ctaPrimary: "Loo minu portree",
       ctaSecondary: "Kuidas see toimib",
     },
+    trust: {
+      delivery: "Tasuta tarne üle Eesti.",
+      ships: "Saadame järgmisel tööpäeval pärast portree genereerimist.",
+      preview:
+        "Eelvaade ekraanil valmib sekunditega. Trükitud lõuend on see, mille me saadame.",
+      payment: "Turvaline makse Stripe'iga — kaardid on teretulnud.",
+      contact: "Küsimused? info@popart.ee",
+    },
     features: {
-      sectionTitle: "Kunstiline täiuslikkus 3 sammuga",
-      sectionDesc: "Kiire, lihtne ja vapustavad tulemused iga kord.",
+      sectionTitle: "Fotost seinale 3 sammuga",
+      sectionDesc:
+        "Kõigepealt digitaalne eelvaade, seejärel trükitud lõuend tarnega üle Eesti.",
       feature1: {
-        title: "Kiire maagia",
-        desc: "Meie süsteem töötleb sinu fotot sekunditega, säilitades detailid ja lisades kunstilist hõngu.",
+        title: "Digitaalne eelvaade sekunditega",
+        desc: "Süsteem muudab foto maalitud eelvaateks sekunditega, hoides sarnasuse ja lisades kunstilist stiili. See on eelvaade ekraanil — mitte kuller.",
       },
       feature2: {
         title: "Digitaalne maal",
         desc: "Siin pole filtreid. Iga portree muudetakse kunstilise taustaga digitaalseks maaliks.",
       },
       feature3: {
-        title: "Premium kvaliteet",
-        desc: "Trükitud kvaliteetsele muuseumiklassi lõuendile, mis kestab igavesti. Ideaalne koju või kingituseks.",
+        title: "Lõuend ja tasuta tarne üle Eesti",
+        desc: "Trükitud kvaliteetsele muuseumiklassi lõuendile. Tasuta tarne üle Eesti. Saadame järgmisel tööpäeval pärast portree genereerimist.",
       },
     },
     guide: {
       eyebrow: "Eritellimusportree juhend",
       title: "Sinu fotost loodud digitaalne kunstiline portree",
       paragraphs: [
-        "PopArt.ee muudab sinu lemmikfotod digitaalseteks kunstilisteks portreedeks, mis sobivad kingituseks, kodu kaunistamiseks, peremälestuste jäädvustamiseks ja erilisteks tähtpäevadeks. Protsess on lihtne: laadi üles selge foto, vali lõuendi suurus, vaata tulemus üle ja kinnita sobiva portree trükk.",
-        "Hea portree algab teravast fotost ja loost, mida tasub hoida. Loomulik valgus, nähtavad näodetailid ja vaba ilme aitavad muuta kunstiteose isiklikuks. Kui tellid sünnipäeva-, pulma-, aastapäeva- või jõulukingi, anna tähtajast varakult teada, et valmistamist ja tarnet saaks rahulikult planeerida.",
-        "Iga tellimus valmib päris kodu jaoks: lõuendisuurusi on lihtne võrrelda, eelvaade aitab tulemust enne trükki kontrollida ning tarne on võimalik üle Eesti. Alusta fotost, mida kõige rohkem armastad, ja kasuta allolevat tellimisvormi, et luua läbimõeldud, soe ning kinkimiseks valmis portree.",
+        "PopArt.ee muudab sinu lemmikfotod digitaalseteks kunstilisteks portreedeks kingituseks, kodu kaunistuseks, peremälestusteks ja tähtpäevadeks. Protsess on lihtne: laadi üles selge foto, vali lõuendi suurus, vaata eelvaade üle ja kinnita trükk.",
+        "Hea portree algab teravast fotost ja loost, mida tasub hoida. Loomulik valgus, nähtavad näodetailid ja vaba ilme aitavad teose isiklikuks muuta. Kui kingitusel on kuupäev, alusta eelvaatest varakult — saadame järgmisel tööpäeval pärast genereerimist.",
+        "Iga tellimus valmib päris kodu jaoks: lõuendisuurusi on lihtne võrrelda, eelvaade aitab variandi enne trükki valida ning tarne üle Eesti on tasuta. Alusta lemmikfotost ja kasuta allolevat tellimisvormi.",
       ],
       personalTitle: "Mis muudab portree isiklikuks?",
-      personalText: "Parim tulemus sünnib tavaliselt ühest tähenduslikust fotost, mitte suurest peaaegu sobivate piltide albumist. Vali foto, millel nägu, silmad ja ilme on selgelt nähtavad. Anna teada, kellele portree on mõeldud, et kujundus sobiks sündmusega.",
-      timingTitle: "Kuidas planeerida valmimist ja tarnet",
-      timingText: "Sünnipäeva, pulma, jõulude või aastapäeva puhul jäta aega tulemuse ülevaatamiseks, trükiks, pakkimiseks ja tarneks. Kui kuupäev on oluline, maini seda enne maksmist. Selge ajakava aitab vältida kiirustamist.",
+      personalText:
+        "Parim tulemus sünnib tavaliselt ühest tähenduslikust fotost, mitte suurest peaaegu sobivate piltide albumist. Vali foto, millel nägu, silmad ja ilme on selgelt nähtavad. Anna teada, kellele portree on mõeldud, et kujundus sobiks sündmusega.",
+      timingTitle: "Eelvaade, trükk ja tarne",
+      timingText:
+        "Digitaalne eelvaade valmib sekunditega. Pärast portree genereerimist saadame trükitud lõuendi järgmisel tööpäeval — tasuta üle Eesti.",
       cta: "Alusta portree tellimist",
     },
     gallery: {
       eyebrow: "Portreed päris interjööris",
       title: "Kujutle oma portreed koduseinal",
-      description: "Vaata, kuidas personaalne lõuendiportree saab osaks hubasest ja moodsast interjöörist. Näited annavad ettekujutuse tegelikust mõõdust, loomulikust valgusest ning alusraamile pingutatud lõuendi ilmest.",
+      description:
+        "Vaata, kuidas personaalne lõuendiportree saab osaks hubasest ja moodsast interjöörist. Näited annavad ettekujutuse tegelikust mõõdust, loomulikust valgusest ning alusraamile pingutatud lõuendi ilmest.",
       items: [
         "Pulmaportree soojas elutoas",
         "Pereportree skandinaavialikus interjööris",
@@ -321,7 +398,7 @@ export const translations = {
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",
-      sectionDesc: "Valimiseks ja foto üleslaadimiseks vali suurus.",
+      sectionDesc: "Vali suurus ja laadi foto üles, et alustada.",
       steps: {
         upload: "Laadi üles",
         size: "Suurus",
@@ -333,7 +410,8 @@ export const translations = {
         title: "Laadi üles oma foto",
         desc: "Parimad on kõrge eraldusvõimega fotod (JPG, PNG)",
         button: "Vali fail",
-        footer: "Saa oma eritellimusel valminud meistriteos minutitega!",
+        footer:
+          "Digitaalne eelvaade valmib sekunditega. Trükitud lõuendi saadame järgmisel tööpäeval — tasuta üle Eesti.",
       },
       size: {
         title: "Vali lõuendi suurus",
@@ -346,11 +424,18 @@ export const translations = {
         desc: "Määra kummalegi loodavale variandile eraldi tausta värvigamma.",
         variant1: "Portree variant 1",
         variant2: "Portree variant 2",
-        options: { surprise: "Üllatus", turquoise: "Türkiis", lavender: "Lavendel", aqua: "Akvamariin", coral: "Korall ja kuld", sapphire: "Safiir" },
+        options: {
+          surprise: "Üllatus",
+          turquoise: "Türkiis",
+          lavender: "Lavendel",
+          aqua: "Akvamariin",
+          coral: "Korall ja kuld",
+          sapphire: "Safiir",
+        },
       },
       processing: {
         title: "Sinu portree luuakse...",
-        desc: "Loome sinu digitaalseid meistriteoseid erinevate kunstiliste taustadega.",
+        desc: "Loome digitaalset eelvaadet erinevate kunstiliste taustadega.",
       },
       selection: {
         title: "Vali oma tulemus",
@@ -371,17 +456,24 @@ export const translations = {
         phone: "Telefoninumber",
         payButton: "Maksa Stripe'iga",
         secure: "Turvaline makse Stripe'i kaudu. Kaardiandmeid ei salvestata.",
-        notification: "Saa teavet oma tellimuse oleku kohta kiiremini kui keegi teine! Saadame lõpliku faili sinu e-postile kohe pärast trükkimist.",
+        delivery:
+          "Tasuta tarne üle Eesti. Saadame järgmisel tööpäeval pärast portree genereerimist.",
+        notification:
+          "Saadame tellimuse uuendused e-postile. Trükitud lõuendi saadame järgmisel tööpäeval pärast genereerimist — tasuta üle Eesti.",
         back: "Tagasi valiku juurde",
       },
     },
     footer: {
-      desc: "Sinu väärtuslike mälestuste muutmine kunstilisteks digitaalseteks maalideks.",
+      desc: "Maalitud lõuendiportreed sinu fotodest, tasuta tarnega üle Eesti.",
       contact: "Kontakt",
       legal: "Õiguslik teave",
       terms: "Kasutustingimused",
       privacy: "Privaatsuspoliitika",
+      delivery: "Tarne",
       blog: "Blogi",
+      quickLinks: "Kiirlingid",
+      location: "Tallinn, Eesti",
+      emailLabel: "E-post",
       rights: "Kõik õigused kaitstud.",
     },
   },
