@@ -13,11 +13,13 @@ export const FACEBOOK_REVIEWS_URL =
 
 export const FACEBOOK_PAGE_NAME = "DreamArt Portree";
 
+export type ReviewPublishedMonth = "2020-07";
+
 export type StorefrontReview = {
   name: string;
   quote: string;
   recommends: boolean;
-  publishedMonth: string;
+  publishedMonth: ReviewPublishedMonth;
   sourceUrl: string;
   isPlaceholder: boolean;
 };
