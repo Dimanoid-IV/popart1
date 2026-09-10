@@ -79,6 +79,19 @@ export const translations = {
       ],
       cta: "Create a portrait for my home",
     },
+    reviews: {
+      eyebrow: "Reviews",
+      title: "Facebook recommendations",
+      description:
+        "Public Facebook recommendations for DreamArt Portree. Quotes are shown in the customer’s original Russian.",
+      empty: "Customer reviews will appear here.",
+      recommends: "Recommends",
+      facebook: "Facebook",
+      seeAllOnFacebook: "See reviews on Facebook",
+      published: {
+        "2020-07": "July 2020",
+      },
+    },
     order: {
       sectionTitle: "Start Your Transformation",
       sectionDesc: "Select your size and upload your photo to begin.",
@@ -238,6 +251,19 @@ export const translations = {
       ],
       cta: "Создать портрет для моего дома",
     },
+    reviews: {
+      eyebrow: "Отзывы",
+      title: "Рекомендации в Facebook",
+      description:
+        "Публичные рекомендации Facebook для DreamArt Portree. Тексты оставлены в оригинале.",
+      empty: "Здесь появятся отзывы покупателей.",
+      recommends: "Рекомендует",
+      facebook: "Facebook",
+      seeAllOnFacebook: "Смотреть отзывы в Facebook",
+      published: {
+        "2020-07": "Июль 2020",
+      },
+    },
     order: {
       sectionTitle: "Начните трансформацию",
       sectionDesc: "Выберите размер и загрузите фото, чтобы начать.",
@@ -395,6 +421,19 @@ export const translations = {
         "Ere Dream Art portree elutoas",
       ],
       cta: "Loo portree minu koju",
+    },
+    reviews: {
+      eyebrow: "Tagasiside",
+      title: "Facebooki soovitused",
+      description:
+        "DreamArt Portree avalikud Facebooki soovitused. Tsitaadid on kliendi algses vene keeles.",
+      empty: "Kliendiarvustused ilmuvad siia.",
+      recommends: "Soovitab",
+      facebook: "Facebook",
+      seeAllOnFacebook: "Vaata arvustusi Facebookis",
+      published: {
+        "2020-07": "Juuli 2020",
+      },
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",

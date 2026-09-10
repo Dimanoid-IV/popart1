@@ -1,9 +1,11 @@
 import Link from "next/link";
 import type { BlogCroLabels } from "@/lib/blog/cro-labels";
+import type { BlogLocale } from "@/lib/blog/types";
+import { homePath, homeSectionPath } from "@/lib/locales";
 
-type Props = { cro: BlogCroLabels };
+type Props = { cro: BlogCroLabels; locale: BlogLocale };
 
-export default function BlogCroMidCta({ cro }: Props) {
+export default function BlogCroMidCta({ cro, locale }: Props) {
   return (
     <section
       className="my-10 rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50 to-white p-6 shadow-sm"
@@ -23,13 +25,13 @@ export default function BlogCroMidCta({ cro }: Props) {
       </p>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Link
-          href="/#order-now"
+          href={homeSectionPath(locale, "#order-now")}
           className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-8 py-3 text-center text-sm font-bold text-white shadow-lg transition hover:bg-indigo-700"
         >
           {cro.ctaMidButton}
         </Link>
         <Link
-          href="/"
+          href={homePath(locale)}
           className="text-center text-sm font-semibold text-indigo-600 underline-offset-2 hover:underline sm:text-left"
         >
           {cro.ctaBottomSecondary}

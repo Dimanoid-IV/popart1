@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import OrderFlow from "@/components/OrderFlow";
 import TrustStrip from "@/components/TrustStrip";
+import ReviewsSection from "@/components/ReviewsSection";
 import Image from "next/image";
 import { Zap, Palette, Heart } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -240,6 +241,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <ReviewsSection />
 
         <section id="pricing" className="py-24 bg-white overflow-hidden">
           <div className="container mx-auto px-4 text-center">

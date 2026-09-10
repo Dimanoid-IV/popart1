@@ -15,6 +15,7 @@ import BlogCategoryChips from "@/components/blog/BlogCategoryChips";
 import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 import BlogArticleCard from "@/components/blog/BlogArticleCard";
+import { storefrontUrl } from "@/lib/seo/site-config";
 
 export const revalidate = 3600;
 
@@ -112,7 +113,7 @@ export default async function BlogIndexPage({
             "@type": "ListItem",
             position: 1,
             name: "PopArt.ee",
-            item: SITE_URL,
+            item: storefrontUrl(locale),
           },
           {
             "@type": "ListItem",
@@ -153,7 +154,7 @@ export default async function BlogIndexPage({
           />
         ))}
       </ul>
-      <BlogListCroBanner cro={cro} />
+      <BlogListCroBanner cro={cro} locale={locale} />
     </main>
   );
 }

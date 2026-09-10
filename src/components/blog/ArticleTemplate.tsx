@@ -85,13 +85,13 @@ export default function ArticleTemplate({
         className="blog-content mx-auto mt-10 max-w-3xl text-gray-800"
         dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
       />
-      <BlogCroMidCta cro={cro} />
+      <BlogCroMidCta cro={cro} locale={article.locale} />
       <InternalLinks
         links={article.internalLinks ?? []}
         heading={labels.internalLinksHeading}
       />
       <FaqSection faqs={article.faqs ?? []} heading={labels.faqHeading} />
-      <BlogCroBottomCta cro={cro} />
+      <BlogCroBottomCta cro={cro} locale={article.locale} />
       <AuthorBlock author={article.author} sectionTitle={labels.authorTitle} />
       <RelatedArticles
         locale={article.locale}

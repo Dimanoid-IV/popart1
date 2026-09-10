@@ -33,6 +33,11 @@ export {
 export { getBlogUiLabels, type BlogUiLabels } from "./ui-labels";
 export { getBlogCroLabels, type BlogCroLabels } from "./cro-labels";
 export {
+  localizeStorefrontHref,
+  localizeStorefrontHrefsInHtml,
+} from "./storefront-links";
+export { DELIVERY_POLICY } from "./delivery-policy";
+export {
   BLOG_CATEGORY_IDS,
   getCategoryCopy,
   isValidBlogCategory,

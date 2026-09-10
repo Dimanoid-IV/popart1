@@ -4,6 +4,11 @@ import type { BlogArticle, BlogCategoryId, BlogLocale } from "./types";
 import { BLOG_LOCALES } from "./constants";
 import { BLOG_CATEGORY_IDS } from "./categories";
 import { isEditoriallyPublished } from "./editorial-policy";
+import { rewriteOutdatedDeliveryHtml, normalizeFaqAnswer } from "./delivery-policy";
+import {
+  localizeStorefrontHref,
+  localizeStorefrontHrefsInHtml,
+} from "./storefront-links";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
@@ -51,7 +56,18 @@ export function getArticle(
     ...raw,
     locale,
     slug: raw.slug ?? slug,
-    bodyHtml: normalizeBodyHtml(raw.bodyHtml),
+    bodyHtml: localizeStorefrontHrefsInHtml(
+      rewriteOutdatedDeliveryHtml(normalizeBodyHtml(raw.bodyHtml), locale),
+      locale
+    ),
+    faqs: raw.faqs?.map((faq) => ({
+      ...faq,
+      answer: normalizeFaqAnswer(faq.answer, locale),
+    })),
+    internalLinks: raw.internalLinks?.map((link) => ({
+      ...link,
+      href: localizeStorefrontHref(link.href, locale),
+    })),
   };
   return isPublished(article.publishedAt) ? article : null;
 }

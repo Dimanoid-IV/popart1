@@ -15,16 +15,16 @@ const HOME_COPY: Record<
     ogTitle: "PopArt.ee - Your Photos, Pure Art",
   },
   et: {
-    title: `${SITE_NAME} - Digitaalsed maaliportreed fotost`,
+    title: `Portree fotost kingituseks | ${SITE_NAME}`,
     description:
-      "Muuda fotod maalitud lõuendiportreedeks. Digitaalne eelvaade sekunditega. Tasuta tarne üle Eesti. Saadame järgmisel tööpäeval pärast portree genereerimist.",
-    ogTitle: "PopArt.ee - Sinu fotod, puhas kunst",
+      "Telli portree fotost: digitaalne eelvaade sekunditega, lõuend 45–75 € ja tasuta tarne üle Eesti. Saadame järgmisel tööpäeval pärast portree genereerimist.",
+    ogTitle: "Portree fotost lõuendil | PopArt.ee",
   },
   ru: {
-    title: `${SITE_NAME} - Художественные портреты по фото`,
+    title: `Портрет по фото в подарок | ${SITE_NAME}`,
     description:
-      "Превратите фото в портреты на холсте. Цифровой предпросмотр за секунды. Бесплатная доставка по всей Эстонии. Отправка на следующий рабочий день после генерации портрета.",
-    ogTitle: "PopArt.ee - Ваши фото, чистое искусство",
+      "Закажите портрет по фото: предпросмотр за секунды, холст 45–75 € и бесплатная доставка по Эстонии. Отправка на следующий рабочий день после генерации портрета.",
+    ogTitle: "Портрет по фото на холсте | PopArt.ee",
   },
 };
 
@@ -41,9 +41,28 @@ export function buildStorefrontMetadata(
   const copy = HOME_COPY[locale];
   const path = pathname === "/" ? "" : pathname;
   const canonical = `${SITE_ORIGIN}${path}`;
+  const keywords =
+    locale === "et"
+      ? [
+          "portree fotost",
+          "portree kingitus",
+          "lõuendiportree",
+          "tasuta tarne Eesti",
+          "PopArt.ee",
+        ]
+      : locale === "ru"
+        ? [
+            "портрет по фото",
+            "портрет в подарок",
+            "портрет на холсте",
+            "доставка Эстония",
+            "PopArt.ee",
+          ]
+        : undefined;
   return {
     title: { absolute: copy.title },
     description: copy.description,
+    ...(keywords ? { keywords } : {}),
     alternates: {
       canonical,
       languages: { ...LOCALE_ALTERNATES },

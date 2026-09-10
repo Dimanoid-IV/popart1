@@ -14,6 +14,7 @@ import {
 } from "@/lib/blog";
 import { getBlogUiLabels } from "@/lib/blog/ui-labels";
 import ArticleTemplate from "@/components/blog/ArticleTemplate";
+import { homePath } from "@/lib/locales";
 
 export const revalidate = 3600;
 
@@ -95,7 +96,7 @@ export default async function BlogArticlePage({
     .filter((a): a is BlogArticle => a !== null);
 
   const breadcrumbItems = [
-    { label: "PopArt.ee", href: "/" },
+    { label: "PopArt.ee", href: homePath(locale) },
     { label: labels.breadcrumbBlog, href: blogIndexPath(locale) },
     ...(article.category
       ? [
