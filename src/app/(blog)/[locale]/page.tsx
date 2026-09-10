@@ -4,6 +4,8 @@ import HomePage from "@/components/HomePage";
 import { isValidBlogLocale } from "@/lib/blog";
 import { isStorefrontLocale } from "@/lib/locales";
 import { buildStorefrontMetadata } from "@/lib/seo/storefront-metadata";
+import StorefrontJsonLd from "@/components/seo/StorefrontJsonLd";
+import type { Language } from "@/lib/translations";
 
 export function generateStaticParams() {
   return [{ locale: "et" }, { locale: "ru" }];
@@ -27,5 +29,10 @@ export default async function LocaleStorefrontPage({
   const { locale } = await params;
   if (!isValidBlogLocale(locale)) notFound();
   if (locale === "en") redirect("/");
-  return <HomePage />;
+  return (
+    <>
+      <StorefrontJsonLd locale={locale as Language} />
+      <HomePage />
+    </>
+  );
 }

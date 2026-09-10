@@ -79,6 +79,14 @@ export const translations = {
       ],
       cta: "Create a portrait for my home",
     },
+    reviews: {
+      eyebrow: "Customer reviews",
+      title: "What gift buyers say",
+      description:
+        "Sample quotes showing how a portrait from a photo is used as a gift in Estonia. Replace these with real reviews when you have them.",
+      sampleBadge: "Sample",
+      empty: "Customer reviews will appear here.",
+    },
     order: {
       sectionTitle: "Start Your Transformation",
       sectionDesc: "Select your size and upload your photo to begin.",
@@ -238,6 +246,14 @@ export const translations = {
       ],
       cta: "Создать портрет для моего дома",
     },
+    reviews: {
+      eyebrow: "Отзывы",
+      title: "Что говорят о подарках",
+      description:
+        "Примеры формулировок, как портрет по фото заказывают в подарок в Эстонии. Их нужно заменить реальными отзывами, когда они появятся.",
+      sampleBadge: "Пример",
+      empty: "Здесь появятся отзывы покупателей.",
+    },
     order: {
       sectionTitle: "Начните трансформацию",
       sectionDesc: "Выберите размер и загрузите фото, чтобы начать.",
@@ -395,6 +411,14 @@ export const translations = {
         "Ere Dream Art portree elutoas",
       ],
       cta: "Loo portree minu koju",
+    },
+    reviews: {
+      eyebrow: "Tagasiside",
+      title: "Mida kingiostjad ütlevad",
+      description:
+        "Näidistsitaadid, kuidas portreed fotost Eestis kingituseks tellitakse. Asenda need päris arvustustega, kui need on olemas.",
+      sampleBadge: "Näidis",
+      empty: "Kliendiarvustused ilmuvad siia.",
     },
     order: {
       sectionTitle: "Alusta transformatsiooni",

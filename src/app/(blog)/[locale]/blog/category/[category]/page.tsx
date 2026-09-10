@@ -19,6 +19,8 @@ import { getBlogUiLabels } from "@/lib/blog/ui-labels";
 import BlogListCroBanner from "@/components/blog/BlogListCroBanner";
 import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 import BlogArticleCard from "@/components/blog/BlogArticleCard";
+import { homePath } from "@/lib/locales";
+import { storefrontUrl } from "@/lib/seo/site-config";
 
 export const revalidate = 3600;
 
@@ -119,7 +121,7 @@ export default async function BlogCategoryPage({
             "@type": "ListItem",
             position: 1,
             name: "PopArt.ee",
-            item: SITE_URL,
+            item: storefrontUrl(locale),
           },
           {
             "@type": "ListItem",
@@ -147,7 +149,7 @@ export default async function BlogCategoryPage({
       <nav className="mb-6 text-sm text-gray-600">
         <ol className="flex flex-wrap items-center gap-2">
           <li>
-            <Link href="/" className="hover:text-indigo-600">
+            <Link href={homePath(locale)} className="hover:text-indigo-600">
               PopArt.ee
             </Link>
           </li>
@@ -181,7 +183,7 @@ export default async function BlogCategoryPage({
       {articles.length === 0 ? (
         <p className="mt-8 text-gray-500">{labels.emptyCategory}</p>
       ) : null}
-      <BlogListCroBanner cro={cro} />
+      <BlogListCroBanner cro={cro} locale={locale} />
     </main>
   );
 }

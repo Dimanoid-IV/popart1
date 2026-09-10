@@ -2,6 +2,7 @@ import type { BlogArticle } from "./types";
 import { SITE_URL } from "./constants";
 import { blogArticleUrl, blogCategoryPath, blogIndexPath } from "./paths";
 import { getCategoryCopy } from "./categories";
+import { storefrontUrl } from "@/lib/seo/site-config";
 
 function absoluteImageUrl(coverImage: string): string {
   if (coverImage.startsWith("http")) return coverImage;
@@ -55,7 +56,7 @@ export function buildArticleGraphLd(article: BlogArticle, slug: string) {
     {
       position: 1,
       name: "PopArt.ee",
-      item: SITE_URL,
+      item: storefrontUrl(article.locale),
     },
     {
       position: 2,

@@ -11,4 +11,8 @@ export const LOCALE_ALTERNATES = {
   ru: `${SITE_ORIGIN}/ru`,
 } as const;
 
+export function storefrontUrl(locale: "en" | "et" | "ru"): string {
+  return locale === "en" ? SITE_ORIGIN : `${SITE_ORIGIN}/${locale}`;
+}
+
 export const OG_IMAGE = "/pic1.jpg";
