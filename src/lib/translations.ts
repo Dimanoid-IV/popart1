@@ -80,11 +80,12 @@ export const translations = {
       cta: "Create a portrait for my home",
     },
     reviews: {
-      eyebrow: "Customer reviews",
-      title: "What gift buyers say",
+      eyebrow: "Sample reviews",
+      title: "Review layout",
       description:
-        "Sample quotes showing how a portrait from a photo is used as a gift in Estonia. Replace these with real reviews when you have them.",
+        "These are labeled sample quotes for layout only — not real customer testimonials. We will replace them with Facebook reviews once the page or post URL is provided.",
       sampleBadge: "Sample",
+      sampleAttribution: "Sample quote",
       empty: "Customer reviews will appear here.",
     },
     order: {
@@ -247,11 +248,12 @@ export const translations = {
       cta: "Создать портрет для моего дома",
     },
     reviews: {
-      eyebrow: "Отзывы",
-      title: "Что говорят о подарках",
+      eyebrow: "Примеры отзывов",
+      title: "Макет блока отзывов",
       description:
-        "Примеры формулировок, как портрет по фото заказывают в подарок в Эстонии. Их нужно заменить реальными отзывами, когда они появятся.",
+        "Это помеченные примеры для вёрстки, а не реальные отзывы покупателей. Заменим их отзывами с Facebook, когда будет ссылка на страницу или пост.",
       sampleBadge: "Пример",
+      sampleAttribution: "Пример цитаты",
       empty: "Здесь появятся отзывы покупателей.",
     },
     order: {
@@ -413,11 +415,12 @@ export const translations = {
       cta: "Loo portree minu koju",
     },
     reviews: {
-      eyebrow: "Tagasiside",
-      title: "Mida kingiostjad ütlevad",
+      eyebrow: "Näidistsitaadid",
+      title: "Arvustuste paigutus",
       description:
-        "Näidistsitaadid, kuidas portreed fotost Eestis kingituseks tellitakse. Asenda need päris arvustustega, kui need on olemas.",
+        "Need on selgelt märgitud näidistsitaadid paigutuse jaoks, mitte päris kliendiarvustused. Asendame need Facebooki arvustustega, kui lehe või postituse URL on olemas.",
       sampleBadge: "Näidis",
+      sampleAttribution: "Näidistsitaat",
       empty: "Kliendiarvustused ilmuvad siia.",
     },
     order: {

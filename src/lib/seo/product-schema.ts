@@ -82,6 +82,7 @@ export function buildStorefrontProductJsonLd(locale: Language) {
   };
 
   const verified = getVerifiedReviews();
+  // Never emit Review / AggregateRating for placeholders or invented quotes.
   if (verified.length > 0) {
     const ratings = verified.map((review) => review.rating);
     product.aggregateRating = {
