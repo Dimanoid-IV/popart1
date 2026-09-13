@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, Truck, X } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { Language } from "@/lib/translations";
 import { homePath, homeSectionPath, localizePath } from "@/lib/locales";
 import { usePathname } from "next/navigation";
+import { getShippingBanner } from "@/lib/shipping-banner";
 
 export default function Header() {
   const { language, t } = useLanguage();
@@ -22,6 +23,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+      <div className="bg-indigo-600 px-4 py-2 text-center text-sm font-bold text-white shadow-sm">
+        <span className="inline-flex items-center justify-center gap-2">
+          <Truck aria-hidden="true" className="h-4 w-4" />
+          {getShippingBanner(language)}
+        </span>
+      </div>
       <div className="container mx-auto flex h-16 items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <Link
           href={homePath(language)}

@@ -2,21 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { getErrorMessage } from '@/lib/errors';
+import { finalizeOrderDeposit, grantPaidCredits } from '@/lib/generation-credit-store';
+import { CREDIT_PACK_PRICE_CENTS } from '@/lib/generation-credits.mjs';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-01-27.acacia' as Stripe.LatestApiVersion,
-  });
-
-  // Check if Resend API key is configured
-  if (!process.env.RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is not configured');
-    return NextResponse.json({ error: 'Email service not configured' }, { status: 500 });
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   const body = await req.text();
   const signature = req.headers.get('stripe-signature')!;
@@ -37,6 +29,26 @@ export async function POST(req: NextRequest) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
+
+    if (session.metadata?.purchaseType === 'generation_credits') {
+      const visitorId = session.metadata.visitorId;
+      const creditCount = Number.parseInt(session.metadata.creditCount || '0', 10);
+      if (!visitorId || creditCount !== 3 || session.payment_status !== 'paid') {
+        return NextResponse.json({ error: 'Invalid credit purchase metadata' }, { status: 400 });
+      }
+      await grantPaidCredits(visitorId, session.id, creditCount, CREDIT_PACK_PRICE_CENTS);
+      return NextResponse.json({ received: true });
+    }
+
+    if (session.metadata?.visitorId && session.metadata?.depositReservationId) {
+      await finalizeOrderDeposit(session.metadata.visitorId, session.metadata.depositReservationId);
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json({ error: 'Email service not configured' }, { status: 500 });
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
     
     // Extract metadata
     const { size, imageUrl, fullName, address, postalCode, phone } = session.metadata || {};

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getErrorMessage } from '@/lib/errors';
 import { selectBackgroundPair, selectBackgrounds } from '@/lib/background-options';
+import { consumeGenerationCredit, getVisitorIdentity, refundGenerationCredit, VISITOR_COOKIE } from '@/lib/generation-credit-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,11 +11,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'NANOBANANA_API_KEY is missing' }, { status: 500 });
   }
 
+  let reservation: Awaited<ReturnType<typeof consumeGenerationCredit>> | null = null;
+  let identity: Awaited<ReturnType<typeof getVisitorIdentity>> | null = null;
   try {
     const { image, backgroundColor, backgroundColors } = await req.json();
 
     if (!image) {
       return NextResponse.json({ error: 'Image is required' }, { status: 400 });
+    }
+
+    identity = await getVisitorIdentity();
+    reservation = await consumeGenerationCredit(identity.visitorId, identity.ipHash);
+    if (!reservation.allowed) {
+      const response = NextResponse.json({ error: 'GENERATION_LIMIT_REACHED', credits: reservation }, { status: 429 });
+      if (identity.isNew) response.cookies.set(VISITOR_COOKIE, identity.visitorId, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 365 * 24 * 60 * 60, path: '/' });
+      return response;
     }
 
     const basePrompt = `Professional digital art portrait in a beautiful painterly style. 
@@ -81,8 +92,13 @@ export async function POST(req: NextRequest) {
       })
     );
 
-    return NextResponse.json({ taskIds: tasks });
+    const response = NextResponse.json({ taskIds: tasks, credits: reservation });
+    if (identity.isNew) response.cookies.set(VISITOR_COOKIE, identity.visitorId, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 365 * 24 * 60 * 60, path: '/' });
+    return response;
   } catch (error: unknown) {
+    if (reservation?.allowed && reservation.source && identity) {
+      try { await refundGenerationCredit(identity.visitorId, identity.ipHash, reservation.source); } catch (refundError) { console.error('Credit refund failed:', refundError); }
+    }
     console.error('Generation Error:', error);
     return NextResponse.json(
       { error: getErrorMessage(error, 'Failed to generate images') },

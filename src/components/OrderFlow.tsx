@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Upload, Check, Loader2, ArrowRight } from 'lucide-react';
 import { getErrorMessage } from '@/lib/errors';
 import type { BackgroundPaletteId } from '@/lib/background-options';
@@ -27,6 +27,7 @@ const BACKGROUND_PALETTES: Array<{
 ];
 
 type Step = 'upload' | 'size' | 'processing' | 'selection' | 'checkout';
+type CreditSnapshot = { freeRemaining: number; paidRemaining: number; totalRemaining: number; depositCents?: number };
 
 export default function OrderFlow() {
   const { t } = useLanguage();
@@ -38,6 +39,27 @@ export default function OrderFlow() {
   const [aiResults, setAiResults] = useState<string[]>([]);
   const [selectedResult, setSelectedResult] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [credits, setCredits] = useState<CreditSnapshot | null>(null);
+  const [creditsUnavailable, setCreditsUnavailable] = useState(false);
+
+  const loadCredits = async () => {
+    try {
+      const response = await fetch('/api/generation-credits', { cache: 'no-store' });
+      if (!response.ok) throw new Error('credits unavailable');
+      setCredits(await response.json());
+      setCreditsUnavailable(false);
+    } catch {
+      setCreditsUnavailable(true);
+    }
+  };
+
+  useEffect(() => { void loadCredits(); }, []);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('generation_credits') !== 'success') return;
+    const timers = [1000, 3000, 6000].map((delay) => window.setTimeout(() => void loadCredits(), delay));
+    return () => timers.forEach(window.clearTimeout);
+  }, []);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -64,11 +86,13 @@ export default function OrderFlow() {
       });
       
       const data = await response.json();
+      if (data.credits) setCredits((current) => ({ ...current, ...data.credits, depositCents: current?.depositCents || 0 }));
       
       if (data.taskIds) {
         // Start polling for results
         const results = await Promise.all(data.taskIds.map((id: string) => pollTask(id)));
-        setAiResults(results);
+        setAiResults((current) => [...current, ...results]);
+        setSelectedResult(null);
         setStep('selection');
       } else {
         throw new Error(data.error || 'Failed to start generation');
@@ -77,6 +101,17 @@ export default function OrderFlow() {
       console.error(error);
       alert('Error: ' + getErrorMessage(error, 'Failed to generate images'));
       setStep('size');
+    }
+  };
+
+  const buyMoreGenerations = async () => {
+    try {
+      const response = await fetch('/api/generation-credits', { method: 'POST' });
+      const data = await response.json();
+      if (!response.ok || !data.url) throw new Error(data.error || 'Checkout failed');
+      window.location.href = data.url;
+    } catch (error) {
+      alert(getErrorMessage(error, 'Checkout failed'));
     }
   };
 
@@ -179,6 +214,20 @@ export default function OrderFlow() {
         })}
       </div>
 
+      <div className="mb-7 rounded-2xl border border-indigo-100 bg-indigo-50 px-5 py-4 text-center">
+        {creditsUnavailable ? (
+          <p className="font-semibold text-red-700">{t.order.credits.unavailable}</p>
+        ) : (
+          <>
+            <p className="font-bold text-indigo-950">{t.order.credits.remaining}: {credits?.totalRemaining ?? '…'}</p>
+            <p className="mt-1 text-xs text-indigo-700">{t.order.credits.freeNote}</p>
+            {credits?.totalRemaining === 0 && (
+              <button onClick={buyMoreGenerations} className="mt-3 rounded-full bg-indigo-600 px-6 py-2 text-sm font-bold text-white hover:bg-indigo-700">{t.order.credits.buy} — €2.99</button>
+            )}
+          </>
+        )}
+      </div>
+
       {/* Step: Upload */}
       {step === 'upload' && (
         <div className="text-center py-12">
@@ -265,7 +314,8 @@ export default function OrderFlow() {
             <button onClick={() => setStep('upload')} className="text-gray-500 font-semibold hover:text-gray-700 underline">{t.order.size.back}</button>
             <button 
               onClick={startProcessing}
-              className="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-indigo-700 shadow-lg transition-all"
+              disabled={creditsUnavailable || credits?.totalRemaining === 0}
+              className="bg-indigo-600 disabled:bg-gray-300 text-white px-10 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-indigo-700 shadow-lg transition-all"
             >
               {t.order.size.button} <ArrowRight className="w-5 h-5" />
             </button>
@@ -309,6 +359,11 @@ export default function OrderFlow() {
             ))}
           </div>
           <div className="flex justify-center">
+            {credits && credits.totalRemaining > 0 && (
+              <button onClick={startProcessing} className="mr-3 rounded-full border-2 border-indigo-600 px-7 py-4 font-bold text-indigo-700 hover:bg-indigo-50">
+                {t.order.credits.more}
+              </button>
+            )}
             <button 
               disabled={selectedResult === null}
               onClick={() => setStep('checkout')}
@@ -317,6 +372,14 @@ export default function OrderFlow() {
               {t.order.selection.button}
             </button>
           </div>
+          {credits?.totalRemaining === 0 && (
+            <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-amber-200 bg-amber-50 p-6 text-center">
+              <h4 className="text-xl font-black text-gray-900">{t.order.credits.exhausted}</h4>
+              <p className="mt-2 font-semibold text-gray-800">{t.order.credits.pack}</p>
+              <p className="mt-1 text-sm text-gray-600">{t.order.credits.deposit}</p>
+              <button onClick={buyMoreGenerations} className="mt-5 rounded-full bg-indigo-600 px-8 py-3 font-bold text-white hover:bg-indigo-700">{t.order.credits.buy}</button>
+            </div>
+          )}
         </div>
       )}
 
@@ -337,8 +400,9 @@ export default function OrderFlow() {
                 </div>
                 <div className="flex justify-between items-center text-xl">
                   <span className="text-gray-900 font-black">{t.order.checkout.total}</span>
-                  <span className="font-black text-indigo-600">€{selectedSize.price}</span>
+                  <span className="font-black text-indigo-600">€{Math.max(0.5, selectedSize.price - (credits?.depositCents || 0) / 100).toFixed(2)}</span>
                 </div>
+                {!!credits?.depositCents && <p className="text-right text-sm font-semibold text-green-700">{t.order.credits.depositApplied}: −€{(credits.depositCents / 100).toFixed(2)}</p>}
               </div>
               <p className="mt-6 text-sm text-gray-500 leading-relaxed italic">
                 {t.order.checkout.notification}
