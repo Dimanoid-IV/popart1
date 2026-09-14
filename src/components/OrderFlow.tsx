@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
-import { Upload, Check, Loader2, ArrowRight } from 'lucide-react';
+import { Upload, Check, Loader2, ArrowRight, Mail, MessageCircle } from 'lucide-react';
 import { getErrorMessage } from '@/lib/errors';
 import type { BackgroundPaletteId } from '@/lib/background-options';
+import { getGenerationFollowUpVisibility } from '@/lib/order-flow-visibility.mjs';
 
 import { useLanguage } from '@/lib/LanguageContext';
 
@@ -41,6 +42,7 @@ export default function OrderFlow() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [credits, setCredits] = useState<CreditSnapshot | null>(null);
   const [creditsUnavailable, setCreditsUnavailable] = useState(false);
+  const followUpVisibility = getGenerationFollowUpVisibility(aiResults.length);
 
   const loadCredits = async () => {
     try {
@@ -198,6 +200,13 @@ export default function OrderFlow() {
 
   return (
     <div id="order-now" className="w-full max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl border border-gray-100">
+      <input
+        type="file"
+        ref={fileInputRef}
+        className="hidden"
+        accept="image/*"
+        onChange={handleImageUpload}
+      />
       {/* Progress Bar */}
       <div className="flex justify-between mb-8">
         {[t.order.steps.upload, t.order.steps.size, t.order.steps.process, t.order.steps.select, t.order.steps.pay].map((label, i) => {
@@ -242,13 +251,6 @@ export default function OrderFlow() {
               {t.order.upload.button}
             </button>
             <p className="text-xs text-gray-400 mt-4 italic">{t.order.upload.footer}</p>
-            <input 
-              type="file" 
-              ref={fileInputRef} 
-              className="hidden" 
-              accept="image/*"
-              onChange={handleImageUpload} 
-            />
           </div>
         </div>
       )}
@@ -358,9 +360,14 @@ export default function OrderFlow() {
               </div>
             ))}
           </div>
-          <div className="flex justify-center">
+          <div className="flex flex-wrap justify-center gap-3">
+            {followUpVisibility.canChangePhoto && (
+              <button onClick={() => fileInputRef.current?.click()} className="rounded-full border-2 border-gray-300 px-7 py-4 font-bold text-gray-700 hover:bg-gray-50">
+                {t.order.credits.changePhoto}
+              </button>
+            )}
             {credits && credits.totalRemaining > 0 && (
-              <button onClick={startProcessing} className="mr-3 rounded-full border-2 border-indigo-600 px-7 py-4 font-bold text-indigo-700 hover:bg-indigo-50">
+              <button onClick={startProcessing} className="rounded-full border-2 border-indigo-600 px-7 py-4 font-bold text-indigo-700 hover:bg-indigo-50">
                 {t.order.credits.more}
               </button>
             )}
@@ -378,6 +385,20 @@ export default function OrderFlow() {
               <p className="mt-2 font-semibold text-gray-800">{t.order.credits.pack}</p>
               <p className="mt-1 text-sm text-gray-600">{t.order.credits.deposit}</p>
               <button onClick={buyMoreGenerations} className="mt-5 rounded-full bg-indigo-600 px-8 py-3 font-bold text-white hover:bg-indigo-700">{t.order.credits.buy}</button>
+            </div>
+          )}
+          {followUpVisibility.showContact && (
+            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-indigo-200 bg-indigo-50 p-6 text-center">
+              <h4 className="text-xl font-black text-gray-900">{t.order.credits.contactTitle}</h4>
+              <p className="mt-2 text-sm leading-6 text-gray-600">{t.order.credits.contactDesc}</p>
+              <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+                <a href="mailto:popartee@gmail.com" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-indigo-700 shadow-sm ring-1 ring-indigo-200 hover:bg-indigo-100">
+                  <Mail className="h-5 w-5" /> {t.order.credits.email}
+                </a>
+                <a href="https://www.facebook.com/DreamArtTallinn?locale=ru_RU" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-600 px-6 py-3 font-bold text-white hover:bg-indigo-700">
+                  <MessageCircle className="h-5 w-5" /> {t.order.credits.facebook}
+                </a>
+              </div>
             </div>
           )}
         </div>

@@ -95,7 +95,7 @@ export const translations = {
     order: {
       sectionTitle: "Start Your Transformation",
       sectionDesc: "Select your size and upload your photo to begin.",
-      credits: { remaining: "Generation rounds remaining", freeNote: "3 free rounds every 24 hours. Each round creates two portraits.", more: "Create two more portraits", exhausted: "Your free generations are finished", pack: "Get 3 more rounds for €2.99", deposit: "The €2.99 is credited toward your canvas order.", depositApplied: "Generation payment applied", buy: "Buy 3 more generations", unavailable: "Generation service is temporarily unavailable." },
+      credits: { remaining: "Generation rounds remaining", freeNote: "2 free rounds every 24 hours. Each round creates two portraits.", more: "Create two more portraits", changePhoto: "Change photo", exhausted: "Your free generations are finished", pack: "Get 3 more rounds for €2.99", deposit: "The €2.99 is credited toward your canvas order.", depositApplied: "Generation payment applied", buy: "Buy 3 more generations", unavailable: "Generation service is temporarily unavailable.", contactTitle: "Not happy with the portraits?", contactDesc: "Contact us directly and we will help create a portrait for your order.", email: "Email us", facebook: "Facebook Messenger" },
       steps: {
         upload: "Upload",
         size: "Size",
@@ -268,7 +268,7 @@ export const translations = {
     order: {
       sectionTitle: "Начните трансформацию",
       sectionDesc: "Выберите размер и загрузите фото, чтобы начать.",
-      credits: { remaining: "Осталось генераций", freeNote: "3 бесплатные генерации каждые 24 часа. За один раз создаются два портрета.", more: "Создать ещё два портрета", exhausted: "Бесплатные генерации закончились", pack: "Ещё 3 генерации за 2,99 €", deposit: "Эти 2,99 € будут зачтены в стоимость заказа на холсте.", depositApplied: "Оплата генераций зачтена", buy: "Купить ещё 3 генерации", unavailable: "Генерация временно недоступна." },
+      credits: { remaining: "Осталось генераций", freeNote: "2 бесплатные генерации каждые 24 часа. За один раз создаются два портрета.", more: "Создать ещё два портрета", changePhoto: "Поменять фотографию", exhausted: "Бесплатные генерации закончились", pack: "Ещё 3 генерации за 2,99 €", deposit: "Эти 2,99 € будут зачтены в стоимость заказа на холсте.", depositApplied: "Оплата генераций зачтена", buy: "Купить ещё 3 генерации", unavailable: "Генерация временно недоступна.", contactTitle: "Портреты не понравились?", contactDesc: "Свяжитесь с нами напрямую — мы поможем подготовить портрет и оформить заказ.", email: "Написать на email", facebook: "Facebook Messenger" },
       steps: {
         upload: "Загрузка",
         size: "Размер",
@@ -440,7 +440,7 @@ export const translations = {
     order: {
       sectionTitle: "Alusta transformatsiooni",
       sectionDesc: "Vali suurus ja laadi foto üles, et alustada.",
-      credits: { remaining: "Generatsioone alles", freeNote: "3 tasuta generatsiooni iga 24 tunni järel. Iga korraga luuakse kaks portreed.", more: "Loo veel kaks portreed", exhausted: "Tasuta generatsioonid on kasutatud", pack: "Veel 3 generatsiooni hinnaga 2,99 €", deposit: "2,99 € arvestatakse lõuenditellimuse hinnast maha.", depositApplied: "Generatsioonide makse on arvestatud", buy: "Osta veel 3 generatsiooni", unavailable: "Piltide loomine pole ajutiselt saadaval." },
+      credits: { remaining: "Generatsioone alles", freeNote: "2 tasuta generatsiooni iga 24 tunni järel. Iga korraga luuakse kaks portreed.", more: "Loo veel kaks portreed", changePhoto: "Vaheta fotot", exhausted: "Tasuta generatsioonid on kasutatud", pack: "Veel 3 generatsiooni hinnaga 2,99 €", deposit: "2,99 € arvestatakse lõuenditellimuse hinnast maha.", depositApplied: "Generatsioonide makse on arvestatud", buy: "Osta veel 3 generatsiooni", unavailable: "Piltide loomine pole ajutiselt saadaval.", contactTitle: "Portreed ei meeldinud?", contactDesc: "Võta meiega otse ühendust — aitame portree valmis teha ja tellimuse vormistada.", email: "Kirjuta e-postiga", facebook: "Facebook Messenger" },
       steps: {
         upload: "Laadi üles",
         size: "Suurus",

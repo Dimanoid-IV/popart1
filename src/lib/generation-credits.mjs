@@ -1,4 +1,4 @@
-export const FREE_GENERATION_ROUNDS = 3;
+export const FREE_GENERATION_ROUNDS = 2;
 export const PAID_GENERATION_ROUNDS = 3;
 export const CREDIT_PACK_PRICE_CENTS = 299;
 

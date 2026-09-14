@@ -1,6 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { cookies, headers } from 'next/headers';
-import { normalizeCreditSnapshot } from './generation-credits.mjs';
+import { FREE_GENERATION_ROUNDS, normalizeCreditSnapshot } from './generation-credits.mjs';
 
 export const VISITOR_COOKIE = 'popart_visitor';
 const FREE_WINDOW_SECONDS = 24 * 60 * 60;
@@ -65,7 +65,7 @@ end
 return {0, math.max(0, tonumber(ARGV[1]) - freeUsed), paid, 0}
 `;
   const [allowed, freeRemaining, paidRemaining, sourceCode] = await redis<[number, number, number, number]>([
-    'EVAL', script, 3, keys.free, keys.paid, keys.ip, 3, IP_FREE_LIMIT, FREE_WINDOW_SECONDS,
+    'EVAL', script, 3, keys.free, keys.paid, keys.ip, FREE_GENERATION_ROUNDS, IP_FREE_LIMIT, FREE_WINDOW_SECONDS,
   ]);
   const source: 'free' | 'paid' | null = sourceCode === 1 ? 'free' : sourceCode === 2 ? 'paid' : null;
   return { allowed: allowed === 1, source, freeRemaining, paidRemaining, totalRemaining: freeRemaining + paidRemaining };
