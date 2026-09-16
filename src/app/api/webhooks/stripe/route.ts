@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     
     // Extract metadata
-    const { size, imageUrl, fullName, address, postalCode, phone } = session.metadata || {};
+    const { size, imageUrl, previewUrl, fullName, address, postalCode, phone } = session.metadata || {};
     const customerEmail = session.customer_details?.email || session.customer_email || '';
 
     console.log('Processing checkout.session.completed event:', {
@@ -108,10 +108,10 @@ export async function POST(req: NextRequest) {
                     <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
                   </div>
                   
-                  ${imageUrl ? `
+                  ${previewUrl ? `
                     <div class="image-container">
                       <p><strong>Your Selected Portrait:</strong></p>
-                      <img src="${imageUrl}" alt="Your Selection" />
+                      <img src="${previewUrl}" alt="Your Selection" />
                     </div>
                   ` : ''}
                   

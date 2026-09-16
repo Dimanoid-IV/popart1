@@ -8,7 +8,7 @@ const IP_FREE_LIMIT = 12;
 
 type RedisResult<T> = { result?: T; error?: string };
 
-async function redis<T>(command: Array<string | number>): Promise<T> {
+export async function redis<T>(command: Array<string | number>): Promise<T> {
   const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
   if (!url || !token) throw new Error('Generation credit storage is not configured');

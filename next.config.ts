@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import { BLOG_EDITORIAL_REDIRECTS } from "./src/lib/blog/editorial-policy";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/@img/sharp-*/**/*", "./node_modules/sharp/**/*"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

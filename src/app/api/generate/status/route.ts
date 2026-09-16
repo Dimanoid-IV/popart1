@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getErrorMessage } from '@/lib/errors';
+import { getVisitorIdentity } from '@/lib/generation-credit-store';
+import { getPortraitTask, savePortraitResult } from '@/lib/portrait-store';
+import { publicPortraitStatus } from '@/lib/portrait-preview.mjs';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,13 +19,21 @@ export async function GET(req: NextRequest) {
   }
 
   try {
+    const identity = await getVisitorIdentity();
+    const portrait = await getPortraitTask(taskId);
+    if (!portrait || portrait.visitorId !== identity.visitorId) {
+      return NextResponse.json({ error: 'Portrait not found' }, { status: 404 });
+    }
     const baseUrl = 'https://api.nanobananaapi.ai/api/v1/nanobanana';
     const statusRes = await fetch(`${baseUrl}/record-info?taskId=${taskId}`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const statusData = await statusRes.json();
 
-    return NextResponse.json(statusData);
+    const successFlag = statusData.successFlag ?? statusData.data?.successFlag;
+    const originalUrl = (statusData.response || statusData.data?.response)?.resultImageUrl;
+    if (successFlag === 1 && originalUrl) await savePortraitResult(portrait, originalUrl);
+    return NextResponse.json(publicPortraitStatus(statusData, portrait.portraitId), { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error: unknown) {
     console.error('Status Check Error:', error);
     return NextResponse.json(

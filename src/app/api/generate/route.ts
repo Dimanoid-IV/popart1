@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getErrorMessage } from '@/lib/errors';
 import { selectBackgroundPair, selectBackgrounds } from '@/lib/background-options';
 import { consumeGenerationCredit, getVisitorIdentity, refundGenerationCredit, VISITOR_COOKIE } from '@/lib/generation-credit-store';
+import { registerPortraitTask } from '@/lib/portrait-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -92,6 +93,7 @@ export async function POST(req: NextRequest) {
       })
     );
 
+    await Promise.all(tasks.map((taskId) => registerPortraitTask(taskId, identity!.visitorId)));
     const response = NextResponse.json({ taskIds: tasks, credits: reservation });
     if (identity.isNew) response.cookies.set(VISITOR_COOKIE, identity.visitorId, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 365 * 24 * 60 * 60, path: '/' });
     return response;

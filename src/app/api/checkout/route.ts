@@ -4,6 +4,8 @@ import { getErrorMessage } from '@/lib/errors';
 import { randomUUID } from 'node:crypto';
 import { getVisitorIdentity, releaseOrderDeposit, reserveOrderDeposit } from '@/lib/generation-credit-store';
 import { getCanvasPriceCents } from '@/lib/canvas-pricing.mjs';
+import { getPortrait } from '@/lib/portrait-store';
+import { requireOwnedPortrait } from '@/lib/portrait-preview.mjs';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,8 +14,11 @@ export async function POST(req: NextRequest) {
   let depositReservation: { visitorId: string; reservationId: string } | null = null;
 
   try {
-    const { size, email, imageUrl, shippingInfo } = await req.json();
+    const { size, email, portraitId, shippingInfo } = await req.json();
     const identity = await getVisitorIdentity();
+    const portrait = requireOwnedPortrait(await getPortrait(portraitId), identity.visitorId);
+    const imageUrl = portrait.originalUrl;
+    const previewUrl = `${req.nextUrl.origin}/api/portraits/${portraitId}/preview`;
     const reservationId = randomUUID();
     const originalAmount = getCanvasPriceCents(size);
     const discountCents = await reserveOrderDeposit(identity.visitorId, reservationId, originalAmount);
@@ -26,7 +31,7 @@ export async function POST(req: NextRequest) {
             currency: 'eur',
             product_data: {
               name: `PopArt Portrait - ${size}`,
-              images: [imageUrl],
+              images: [previewUrl],
               description: 'Custom digital painting portrait on premium canvas.',
             },
             unit_amount: Math.max(50, originalAmount - discountCents),
@@ -43,6 +48,7 @@ export async function POST(req: NextRequest) {
       metadata: {
         size,
         imageUrl,
+        previewUrl,
         fullName: shippingInfo.fullName,
         address: shippingInfo.address,
         postalCode: shippingInfo.postalCode,

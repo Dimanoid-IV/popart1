@@ -29,6 +29,7 @@ const BACKGROUND_PALETTES: Array<{
 
 type Step = 'upload' | 'size' | 'processing' | 'selection' | 'checkout';
 type CreditSnapshot = { freeRemaining: number; paidRemaining: number; totalRemaining: number; depositCents?: number };
+type PortraitPreview = { url: string; portraitId: string };
 
 export default function OrderFlow() {
   const { t } = useLanguage();
@@ -37,7 +38,7 @@ export default function OrderFlow() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
   const [backgroundColors, setBackgroundColors] = useState<[BackgroundPaletteId, BackgroundPaletteId]>(['surprise', 'surprise']);
-  const [aiResults, setAiResults] = useState<string[]>([]);
+  const [aiResults, setAiResults] = useState<PortraitPreview[]>([]);
   const [selectedResult, setSelectedResult] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [credits, setCredits] = useState<CreditSnapshot | null>(null);
@@ -117,7 +118,7 @@ export default function OrderFlow() {
     }
   };
 
-  const pollTask = async (taskId: string): Promise<string> => {
+  const pollTask = async (taskId: string): Promise<PortraitPreview> => {
     const startTime = Date.now();
     const maxWaitTime = 300000; // 5 minutes
 
@@ -142,7 +143,7 @@ export default function OrderFlow() {
           if (!resultResponse?.resultImageUrl) {
             throw new Error('Result image URL missing in API response');
           }
-          return resultResponse.resultImageUrl;
+          return { url: resultResponse.resultImageUrl, portraitId: resultResponse.portraitId };
         } else if (successFlag === 2 || successFlag === 3) {
           throw new Error(data.errorMessage || data.data?.errorMessage || 'Generation failed');
         }
@@ -180,7 +181,7 @@ export default function OrderFlow() {
           size: selectedSize.label,
           price: selectedSize.price,
           email,
-          imageUrl: aiResults[selectedResult],
+          portraitId: aiResults[selectedResult].portraitId,
           shippingInfo,
         }),
       });
@@ -345,7 +346,7 @@ export default function OrderFlow() {
           <h3 className="text-2xl font-bold mb-2 text-center">{t.order.selection.title}</h3>
           <p className="text-gray-500 text-center mb-8">{t.order.selection.desc}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-            {aiResults.map((url, i) => (
+            {aiResults.map((portrait, i) => (
               <div 
                 key={i}
                 onClick={() => setSelectedResult(i)}
@@ -353,7 +354,7 @@ export default function OrderFlow() {
               >
                 {/* External result hosts are dynamic, so Next Image cannot safely allow-list them. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt={`Result ${i + 1}`} className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={portrait.url} alt={`Result ${i + 1}`} draggable={false} onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()} className="w-full select-none aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur rounded-full p-2 shadow-lg">
                   {selectedResult === i ? <Check className="w-6 h-6 text-indigo-600" /> : <div className="w-6 h-6" />}
                 </div>
