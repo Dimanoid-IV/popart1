@@ -4,15 +4,24 @@ import test, { after, before } from "node:test";
 
 const port = 32147;
 const origin = process.env.SEO_TEST_ORIGIN ?? `http://127.0.0.1:${port}`;
+const bypassToken = process.env.SEO_TEST_BYPASS_TOKEN;
 const startsLocalServer = !process.env.SEO_TEST_ORIGIN;
 let server;
 let output = "";
+
+async function request(input, init = {}) {
+  const headers = new Headers(init.headers);
+  if (bypassToken) {
+    headers.set("x-vercel-protection-bypass", bypassToken);
+  }
+  return fetch(input, { ...init, headers });
+}
 
 async function waitForServer() {
   const deadline = Date.now() + 300_000;
   while (Date.now() < deadline) {
     try {
-      const response = await fetch(`${origin}/robots.txt`);
+      const response = await request(`${origin}/robots.txt`);
       if (response.ok) return;
     } catch {}
     await new Promise((resolve) => setTimeout(resolve, 250));
@@ -41,7 +50,7 @@ after(() => {
 });
 
 async function page(pathname, options) {
-  const response = await fetch(`${origin}${pathname}`, options);
+  const response = await request(`${origin}${pathname}`, options);
   return { response, html: await response.text() };
 }
 
@@ -74,7 +83,7 @@ async function assertAlternatesResolve(pathname) {
   assert.ok(alternates.length > 0, `${pathname} should expose language alternates`);
   for (const alternate of alternates) {
     const target = new URL(alternate.href);
-    const targetResponse = await fetch(`${origin}${target.pathname}`);
+    const targetResponse = await request(`${origin}${target.pathname}`);
     assert.equal(
       targetResponse.status,
       200,
@@ -113,13 +122,13 @@ test("success can be crawled to read noindex and has no canonical", async () => 
   assert.equal(response.status, 200);
   assert.match(html, /<meta[^>]+name=["']robots["'][^>]+noindex[^>]+nofollow/i);
   assert.equal(linkTags(html, "canonical").length, 0);
-  const robots = await (await fetch(`${origin}/robots.txt`)).text();
+  const robots = await (await request(`${origin}/robots.txt`)).text();
   assert.doesNotMatch(robots, /Disallow:\s*\/success/i);
 });
 
 test("test email UI and API are unavailable without an explicit development flag", async () => {
-  assert.equal((await fetch(`${origin}/test-email`)).status, 404);
-  assert.equal((await fetch(`${origin}/api/test-email`)).status, 404);
+  assert.equal((await request(`${origin}/test-email`)).status, 404);
+  assert.equal((await request(`${origin}/api/test-email`)).status, 404);
 });
 
 test("global JSON-LD contains the site entities without an invisible FAQ", async () => {
@@ -160,7 +169,7 @@ test("sitemap URLs are unique HTTPS pages and synthetic lastmod values are absen
 });
 
 test("every sitemap page returns 200 with a self-canonical and matching HTML language", async () => {
-  const xml = await (await fetch(`${origin}/sitemap.xml`)).text();
+  const xml = await (await request(`${origin}/sitemap.xml`)).text();
   const records = sitemapRecords(xml);
   await inBatches(records, 8, async ({ loc }) => {
     const expected = new URL(loc);
@@ -179,7 +188,7 @@ test("every sitemap page returns 200 with a self-canonical and matching HTML lan
 });
 
 test("all emitted hreflang targets return 200 and link back", async () => {
-  const xml = await (await fetch(`${origin}/sitemap.xml`)).text();
+  const xml = await (await request(`${origin}/sitemap.xml`)).text();
   const records = sitemapRecords(xml);
   const htmlCache = new Map();
   async function htmlFor(pathname) {
@@ -205,7 +214,7 @@ test("all emitted hreflang targets return 200 and link back", async () => {
 });
 
 test("internal links emitted by sitemap pages do not end on HTTP errors", async () => {
-  const xml = await (await fetch(`${origin}/sitemap.xml`)).text();
+  const xml = await (await request(`${origin}/sitemap.xml`)).text();
   const records = sitemapRecords(xml);
   const targets = new Set();
   await inBatches(records, 8, async ({ loc }) => {
@@ -221,7 +230,7 @@ test("internal links emitted by sitemap pages do not end on HTTP errors", async 
     }
   });
   await inBatches([...targets], 8, async (target) => {
-    const response = await fetch(`${origin}${target}`);
+    const response = await request(`${origin}${target}`);
     assert.ok(response.status < 400, `${target} returned ${response.status}`);
   });
 });
@@ -234,7 +243,7 @@ test("representative permanent redirects terminate without loops", async () => {
     for (let hop = 0; hop < 6; hop += 1) {
       assert.equal(visited.has(pathname), false, `${start} redirect loop at ${pathname}`);
       visited.add(pathname);
-      const response = await fetch(`${origin}${pathname}`, { redirect: "manual" });
+      const response = await request(`${origin}${pathname}`, { redirect: "manual" });
       finalStatus = response.status;
       if (![301, 302, 307, 308].includes(response.status)) break;
       pathname = new URL(response.headers.get("location"), origin).pathname;

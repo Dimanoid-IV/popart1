@@ -55,7 +55,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${copy.title} | ${getBlogUiLabels(locale).blogTitle}`,
+    title: `${copy.title} | ${getBlogUiLabels(locale).breadcrumbBlog}`,
     description: copy.description,
     alternates: { canonical, languages },
     openGraph: {
