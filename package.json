@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --test --test-concurrency=1 src/lib/*.test.mjs src/lib/blog/*.test.mjs",
     "test:seo": "node --test --test-concurrency=1 'src/lib/blog/*.test.mjs'",
     "test:seo:http": "node --test --test-concurrency=1 src/lib/seo/seo-http.test.mjs"
   },

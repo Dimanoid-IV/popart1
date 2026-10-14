@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import test, { after, before } from "node:test";
 
+import { getBlogRedirects } from "../blog/editorial-policy.ts";
+
 const port = 32147;
 const origin = process.env.SEO_TEST_ORIGIN ?? `http://127.0.0.1:${port}`;
 const bypassToken = process.env.SEO_TEST_BYPASS_TOKEN;
@@ -235,8 +237,12 @@ test("internal links emitted by sitemap pages do not end on HTTP errors", async 
   });
 });
 
-test("representative permanent redirects terminate without loops", async () => {
-  for (const start of ["/blog", "/en", "/ru/blog/dream-art-portree"]) {
+test("every permanent redirect returns 301/308 and terminates at a live page", async () => {
+  for (const redirect of getBlogRedirects()) {
+    const start = redirect.source.replace(
+      ":slug",
+      "personalnyy-podarok-zhenshchine-estonia"
+    );
     const visited = new Set();
     let pathname = start;
     let finalStatus = 0;
@@ -245,6 +251,12 @@ test("representative permanent redirects terminate without loops", async () => {
       visited.add(pathname);
       const response = await request(`${origin}${pathname}`, { redirect: "manual" });
       finalStatus = response.status;
+      if (hop === 0) {
+        assert.ok(
+          response.status === 301 || response.status === 308,
+          `${start} should start with a permanent redirect, received ${response.status}`
+        );
+      }
       if (![301, 302, 307, 308].includes(response.status)) break;
       pathname = new URL(response.headers.get("location"), origin).pathname;
     }
