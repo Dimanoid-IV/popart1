@@ -4,8 +4,21 @@ import { getErrorMessage, getErrorStack } from '@/lib/errors';
 
 export const dynamic = 'force-dynamic';
 
+function testEmailUnavailable() {
+  return NextResponse.json({ error: 'Not Found' }, { status: 404 });
+}
+
+function isTestEmailEnabled() {
+  return (
+    process.env.NODE_ENV === 'development' &&
+    process.env.ENABLE_TEST_EMAIL_ROUTE === 'true'
+  );
+}
+
 // GET endpoint to check configuration
 export async function GET() {
+  if (!isTestEmailEnabled()) return testEmailUnavailable();
+
   const config = {
     hasResendKey: !!process.env.RESEND_API_KEY,
     fromEmail: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev (default)',
@@ -24,6 +37,8 @@ export async function GET() {
 // Test endpoint to verify email sending works
 // Access: POST /api/test-email
 export async function POST(req: NextRequest) {
+  if (!isTestEmailEnabled()) return testEmailUnavailable();
+
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
       { 

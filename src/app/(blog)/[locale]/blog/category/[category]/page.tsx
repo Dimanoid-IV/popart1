@@ -40,13 +40,22 @@ export async function generateMetadata({
   if (listArticlesByCategory(locale, category).length === 0) return {};
   const copy = getCategoryCopy(category, locale);
   const canonical = blogCategoryUrl(locale, category);
+  const publishedLocales = BLOG_LOCALES.filter(
+    (candidateLocale) =>
+      listArticlesByCategory(candidateLocale, category).length > 0
+  );
   const languages = Object.fromEntries(
-    BLOG_LOCALES.map((l) => [l, blogCategoryUrl(l, category)])
+    publishedLocales.map((candidateLocale) => [
+      candidateLocale,
+      blogCategoryUrl(candidateLocale, category),
+    ])
   ) as Record<string, string>;
-  languages["x-default"] = blogCategoryUrl("et", category);
+  if (publishedLocales.includes("et")) {
+    languages["x-default"] = blogCategoryUrl("et", category);
+  }
 
   return {
-    title: `${copy.title} | ${getBlogUiLabels(locale).blogTitle} | PopArt.ee`,
+    title: `${copy.title} | ${getBlogUiLabels(locale).blogTitle}`,
     description: copy.description,
     alternates: { canonical, languages },
     openGraph: {

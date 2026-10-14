@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -27,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of BLOG_LOCALES) {
     entries.push({
       url: blogIndexUrl(locale),
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
     });
@@ -36,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const { locale, category } of getAllCategoryPageParams()) {
     entries.push({
       url: blogCategoryUrl(locale, category),
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.75,
     });
@@ -44,11 +41,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const { locale, slug } of getAllArticleParams()) {
     const article = getArticle(locale, slug);
+    if (!article) continue;
     entries.push({
       url: blogArticleUrl(locale, slug),
-      lastModified: article
-        ? new Date(article.updatedAt ?? article.publishedAt)
-        : new Date(),
+      lastModified: new Date(article.updatedAt ?? article.publishedAt),
       changeFrequency: "monthly",
       priority: 0.65,
     });

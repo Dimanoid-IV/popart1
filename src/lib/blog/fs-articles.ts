@@ -9,6 +9,10 @@ import {
   localizeStorefrontHref,
   localizeStorefrontHrefsInHtml,
 } from "./storefront-links";
+import {
+  getArticleTranslationCandidates,
+  type ArticleTranslationSlugs,
+} from "./article-translations";
 
 const DATA_ROOT = path.join(process.cwd(), "src", "data", "blog");
 
@@ -80,6 +84,21 @@ export function getAllArticleParams(): { locale: BlogLocale; slug: string }[] {
     }
   }
   return params;
+}
+
+export function getPublishedArticleTranslations(
+  locale: BlogLocale,
+  slug: string
+): ArticleTranslationSlugs {
+  const candidates = getArticleTranslationCandidates(locale, slug);
+  const published: ArticleTranslationSlugs = {};
+  for (const candidateLocale of BLOG_LOCALES) {
+    const candidateSlug = candidates[candidateLocale];
+    if (candidateSlug && getArticle(candidateLocale, candidateSlug)) {
+      published[candidateLocale] = candidateSlug;
+    }
+  }
+  return published;
 }
 
 export function listArticlesForLocale(locale: BlogLocale): BlogArticle[] {
