@@ -6,6 +6,36 @@ export type BlogEditorialRedirect = {
   destinationSlug: string;
 };
 
+export type BlogRemovedArticleRedirect = {
+  slug: string;
+  destination: string;
+};
+
+export type BlogRedirect = {
+  source: string;
+  destination: string;
+  permanent: true;
+};
+
+export const BLOG_REMOVED_ARTICLE_REDIRECTS: BlogRemovedArticleRedirect[] = [
+  {
+    slug: "polnoe-rukovodstvo-popart-ee-v-podarok-kak-vybrat-luchshii-variant",
+    destination: "/ru/blog/personalnyy-podarok-zhenshchine-estonia",
+  },
+  {
+    slug: "polnoe-rukovodstvo-portret-po-foto-na-holste",
+    destination: "/ru/blog/portree-fotost-tallinn",
+  },
+  {
+    slug: "polnoe-rukovodstvo-cifrovaya-zhivopis-iz-fotografii",
+    destination: "/ru/blog/portree-fotost-tallinn",
+  },
+  {
+    slug: "polnoe-rukovodstvo-portret-po-foto-v-podarok",
+    destination: "/ru/blog/personalnyy-podarok-zhenshchine-estonia",
+  },
+];
+
 // These legacy pages were extremely short, duplicated another article, or both.
 // Keep the source files for editorial history while consolidating their search intent.
 export const BLOG_EDITORIAL_REDIRECTS: BlogEditorialRedirect[] = [
@@ -41,4 +71,24 @@ const archivedArticleKeys = new Set(
 
 export function isEditoriallyPublished(locale: BlogLocale, slug: string) {
   return !archivedArticleKeys.has(`${locale}:${slug}`);
+}
+
+export function getBlogRedirects(): BlogRedirect[] {
+  return [
+    ...BLOG_EDITORIAL_REDIRECTS.map(({ locale, slug, destinationSlug }) => ({
+      source: `/${locale}/blog/${slug}`,
+      destination: `/${locale}/blog/${destinationSlug}`,
+      permanent: true as const,
+    })),
+    ...BLOG_REMOVED_ARTICLE_REDIRECTS.flatMap(({ slug, destination }) => [
+      { source: `/ru/blog/${slug}`, destination, permanent: true as const },
+      { source: `/blog/${slug}`, destination, permanent: true as const },
+    ]),
+    { source: "/blog", destination: "/et/blog", permanent: true },
+    { source: "/blog/:slug", destination: "/ru/blog/:slug", permanent: true },
+    { source: "/en", destination: "/", permanent: true },
+    { source: "/en/privacy", destination: "/privacy", permanent: true },
+    { source: "/en/terms", destination: "/terms", permanent: true },
+    { source: "/en/delivery", destination: "/delivery", permanent: true },
+  ];
 }

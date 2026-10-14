@@ -16,7 +16,7 @@
 ## Minimal integration (already applied)
 
 1. **`src/app/layout.tsx`** — `metadata` is now imported from `rootMetadata` (same copy as before, plus `metadataBase`, canonical `https://www.popart.ee`, hreflang alternates, robots hints). `<RootJsonLd />` is rendered once at the top of `<body>` (no UI change).
-2. **`src/app/sitemap.ts`** — appends entries from `getMarketingSitemapEntries()` (e.g. `/success`).
+2. **`src/app/sitemap.ts`** — appends indexable entries from `getMarketingSitemapEntries()`; service routes such as `/success` are excluded.
 3. **`next.config.ts`** — `images.formats`: AVIF + WebP for `next/image` (Core Web Vitals–friendly, non-breaking).
 
 ## Hreflang (et / ru / en)
@@ -39,7 +39,7 @@ Blog articles already emit their own Article + FAQ JSON-LD; you may optionally a
 
 ## Robots
 
-- Allows `/`, disallows `/api/` and `/test-email`.
+- Allows `/` and disallows `/api/`. `/success` remains crawlable so its `noindex` can be read; `/test-email` returns `404`.
 - `Sitemap`: `https://www.popart.ee/sitemap.xml`
 
 ## Verification

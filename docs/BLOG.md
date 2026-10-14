@@ -60,7 +60,7 @@ src/
 ## Adding articles (300+)
 
 1. Create `src/data/blog/{et|ru|en}/{slug}.json`.
-2. Same logical article across languages: use the **same `slug`** in each locale folder (for hreflang and sitemap).
+2. Same logical article across languages: use the **same `slug`** when possible. Confirmed translations with different slugs must be added to `src/lib/blog/article-translations.ts` so hreflang remains reciprocal.
 3. Required JSON fields: `slug`, `title`, `description`, `publishedAt`, `author`, `coverImage`, `keywords`, `bodyHtml`.
 4. Optional: `category` (one of the four ids), `updatedAt`, `faqs[]`, `relatedSlugs[]` (same locale slugs), `internalLinks[]` (`href` + `label`).
 5. Run `npm run build` — `generateStaticParams` discovers all JSON files via `fs.readdirSync`.
@@ -69,7 +69,7 @@ src/
 
 ## SEO features
 
-- Per-page `generateMetadata`: title, description, keywords, canonical, `alternates.languages` (hreflang + `x-default` → Estonian), Open Graph article, Twitter card.
+- Per-page `generateMetadata`: title, description, keywords, canonical, and published reciprocal `alternates.languages`. `x-default` is emitted only when a real Estonian translation exists.
 - JSON-LD: `@graph` with `Article`, `BreadcrumbList`, optional `FAQPage` (when `faqs` present). Blog index: `CollectionPage` + `BreadcrumbList`.
 - Reading time: `estimateReadingMinutes(bodyHtml)`.
 

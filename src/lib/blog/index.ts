@@ -25,6 +25,7 @@ export {
   getAllArticleParams,
   getAllCategoryPageParams,
   getArticle,
+  getPublishedArticleTranslations,
   isValidBlogLocale,
   listArticlesByCategory,
   listArticlesForLocale,

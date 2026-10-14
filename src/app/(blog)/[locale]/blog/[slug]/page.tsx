@@ -2,13 +2,13 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { BlogArticle, BlogLocale } from "@/lib/blog/types";
 import {
-  BLOG_LOCALES,
   SITE_URL,
   blogArticleUrl,
   blogCategoryPath,
   blogIndexPath,
   getAllArticleParams,
   getArticle,
+  getPublishedArticleTranslations,
   getCategoryCopy,
   isValidBlogLocale,
 } from "@/lib/blog";
@@ -38,12 +38,19 @@ export async function generateMetadata({
   if (!article) return {};
   const canonical = blogArticleUrl(article.locale, slug);
   const image = ogImageUrl(article.coverImage);
+  const translations = getPublishedArticleTranslations(article.locale, slug);
   const alternatesLang: Record<string, string> = {};
-  for (const l of BLOG_LOCALES) {
-    const sibling = getArticle(l, slug);
-    if (sibling) alternatesLang[l] = blogArticleUrl(l, slug);
+  for (const [translationLocale, translationSlug] of Object.entries(translations)) {
+    if (translationSlug) {
+      alternatesLang[translationLocale] = blogArticleUrl(
+        translationLocale as BlogLocale,
+        translationSlug
+      );
+    }
   }
-  alternatesLang["x-default"] = blogArticleUrl("et", slug);
+  if (translations.et) {
+    alternatesLang["x-default"] = blogArticleUrl("et", translations.et);
+  }
 
   return {
     title: article.title,

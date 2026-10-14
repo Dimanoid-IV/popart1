@@ -19,7 +19,6 @@ export function getMarketingSitemapEntries(): MetadataRoute.Sitemap {
 
   return paths.map((path) => ({
     url: `${SITE_ORIGIN}${path}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: path === "/et" || path === "/ru" ? 0.95 : 0.4,
   }));
