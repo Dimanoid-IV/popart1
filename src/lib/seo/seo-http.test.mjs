@@ -131,6 +131,10 @@ test("success can be crawled to read noindex and has no canonical", async () => 
 test("test email UI and API are unavailable without an explicit development flag", async () => {
   assert.equal((await request(`${origin}/test-email`)).status, 404);
   assert.equal((await request(`${origin}/api/test-email`)).status, 404);
+  assert.equal(
+    (await request(`${origin}/api/test-email`, { method: "POST" })).status,
+    404
+  );
 });
 
 test("global JSON-LD contains the site entities without an invisible FAQ", async () => {
