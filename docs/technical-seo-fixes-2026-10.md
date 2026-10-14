@@ -41,8 +41,9 @@ This change set addresses confirmed technical issues T1, T2, T3, T4, T6 and T8 f
 
 - Passed `npm run test:seo` (4/4): reciprocal translation mapping, published related articles and valid curated article links.
 - Passed the selected existing regression suite (12/12): order flow visibility, pricing, generation credits, background options and shipping banner behavior.
-- Added `npm run test:seo:http` for rendered metadata, hreflang status and reciprocity, sitemap integrity, canonical URLs, HTML language, service page directives, structured data, internal links and representative redirect chains.
-- The local `node_modules` directory contains iCloud dataless placeholders. Next.js and ESLint block while reading those files, so the HTTP suite, `npm run lint` and `npm run build` could not complete locally. No dependency installation was performed; run these three checks in CI or a hydrated checkout before merge.
+- Passed `npm run test:seo:http` against the protected Vercel preview (11/11): rendered metadata, hreflang status and reciprocity, sitemap integrity, canonical URLs, HTML language, service page directives, structured data, internal links and representative redirect chains.
+- The Vercel preview production build completed successfully, and GitGuardian passed.
+- The local `node_modules` directory contains iCloud dataless placeholders. Next.js and ESLint block while reading those files, so local `npm run lint` and `npm run build` could not complete. No dependency installation was performed; run lint in CI or a hydrated checkout before merge.
 
 ## Manual configuration still required
 
