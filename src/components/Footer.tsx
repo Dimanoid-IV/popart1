@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/LanguageContext";
 import Link from "next/link";
 import { homePath, localizePath } from "@/lib/locales";
+import { CookieSettingsButton } from "@/components/consent/CookieConsent";
 import { CONTACT_EMAIL } from "@/lib/site-contact";
 
 export default function Footer() {
@@ -79,6 +80,7 @@ export default function Footer() {
                   {t.footer.privacy}
                 </Link>
               </li>
+              <li><CookieSettingsButton /></li>
             </ul>
           </div>
         </div>

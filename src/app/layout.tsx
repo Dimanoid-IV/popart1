@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { headers } from "next/headers";
-import Script from "next/script";
+import { headers, cookies } from "next/headers";
+import CookieConsent from "@/components/consent/CookieConsent";
+import { CONSENT_COOKIE, parseConsent } from "@/lib/cookie-consent.mjs";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import { rootMetadata } from "@/lib/seo/root-metadata";
@@ -21,12 +22,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = rootMetadata;
 
+function decodeConsent(value?: string) {
+  try { return decodeURIComponent(value ?? ""); } catch { return ""; }
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const headerList = await headers();
+  const consent = parseConsent(decodeConsent((await cookies()).get(CONSENT_COOKIE)?.value));
   const localeHeader = headerList.get("x-locale");
   const locale = localeHeader ?? getLocaleFromPath("/");
   return (
@@ -34,16 +40,6 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script id="popart-ga-init" strategy="beforeInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-H52TSV34MX', {
-            send_page_view: false,
-            page_location: location.origin + location.pathname,
-            page_referrer: document.referrer ? new URL(document.referrer).origin + new URL(document.referrer).pathname : ''
-          });
-        `}</Script>
         <RootJsonLd />
         <LanguageProvider
           initialLanguage={
@@ -52,8 +48,10 @@ export default async function RootLayout({
               : "en"
           }
         >
-          {children}
-          <SiteAnalytics />
+          <CookieConsent initialConsent={consent}>
+            {children}
+            <SiteAnalytics />
+          </CookieConsent>
         </LanguageProvider>
       </body>
     </html>

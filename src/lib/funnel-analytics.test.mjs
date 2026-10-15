@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { beforeEach, afterEach } from 'node:test';
+import { createConsent } from './cookie-consent.mjs';
+beforeEach(() => { globalThis.document = { createElement: () => ({}), head: { appendChild() {} }, cookie: `popart_consent=${encodeURIComponent(JSON.stringify(createConsent(true)))}` }; });
+afterEach(() => { delete globalThis.document; });
+const events = () => window.dataLayer.filter(x => x[0] === 'event');
 
 import * as analytics from './funnel-analytics.mjs';
 import * as purchase from './purchase-analytics.mjs';
@@ -51,12 +55,12 @@ test('purchase tracking preserves landing context, strips PII and suppresses rep
     const event = purchase.verifiedPurchase(paid, 'owner');
     analytics.trackPurchase(event);
     analytics.trackPurchase({ ...event });
-    window.dataLayer[0][2].event_callback();
+    events()[0][2].event_callback();
     // Simulate a fresh JS module on a repeat visit while keeping browser storage.
     const reloaded = await import(`./funnel-analytics.mjs?reload=1`);
     reloaded.trackPurchase(event);
-    assert.equal(window.dataLayer.length, 1);
-    const [command, name, parameters] = Array.from(window.dataLayer[0]);
+    assert.equal(events().length, 1);
+    const [command, name, parameters] = Array.from(events()[0]);
     assert.equal(command, 'event');
     assert.equal(name, 'purchase');
     assert.equal(parameters.landing_page, '/ru/portret-po-foto');
@@ -74,9 +78,9 @@ test('a failed analytics queue does not permanently suppress a purchase retry', 
     assert.equal(memory.size, 0);
     window.dataLayer = [];
     analytics.trackPurchase(event);
-    assert.equal(window.dataLayer.length, 1);
+    assert.equal(events().length, 1);
     assert.equal(memory.size, 0, 'queueing is not confirmation of processing');
-    window.dataLayer[0][2].event_callback();
+    events()[0][2].event_callback();
     assert.equal(memory.size, 1);
   } finally { delete globalThis.window; }
 });
@@ -113,7 +117,7 @@ test('checkout waits for analytics processing with an independent fallback and o
   try {
     let redirects = 0;
     analytics.trackFunnelEvent('checkout_start', 'et', () => { redirects++; });
-    const event = window.dataLayer[0][2];
+    const event = events()[0][2];
     assert.equal(typeof event.event_callback, 'function');
     assert.equal(redirects, 0);
     event.event_callback(); event.event_callback();
@@ -128,7 +132,7 @@ test('a new success tab does not invent an English language or a landing page', 
   globalThis.window = { location: { pathname: '/success' }, sessionStorage: { getItem: () => null, setItem: () => {} }, localStorage: { getItem: () => null, setItem: () => {} }, dataLayer: [] };
   try {
     analytics.trackPurchase(purchase.verifiedPurchase({ ...paid, id: 'cs_test_newtab' }, 'owner'));
-    const parameters = window.dataLayer[0][2];
+    const parameters = events()[0][2];
     assert.equal(parameters.language, undefined);
     assert.equal(parameters.landing_page, undefined);
     assert.equal(parameters.page_path, '/success');

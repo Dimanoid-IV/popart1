@@ -1,9 +1,11 @@
 import type { Language } from "./translations";
+import { cookieCopy } from "./cookie-copy";
 import { CONTACT_EMAIL } from "./site-contact";
 
 export type LegalDocId = "privacy" | "terms" | "delivery";
 
 export type LegalSection = {
+  id?: string;
   heading: string;
   paragraphs: string[];
 };
@@ -38,7 +40,7 @@ const documents: Record<Language, Record<LegalDocId, LegalDocument>> = {
             "The photo you upload so we can generate a digital painting preview.",
             "Name, email, shipping address, and phone number you enter at checkout so we can confirm the order and deliver the canvas.",
             "Payment is processed by Stripe. We do not store card numbers on our servers.",
-            "The site uses Google Analytics to understand aggregate visits. We do not sell personal data.",
+            "With your consent, the site uses Google Analytics to understand visits and orders. We do not sell personal data.",
           ],
         },
         {
@@ -150,7 +152,7 @@ const documents: Record<Language, Record<LegalDocId, LegalDocument>> = {
             "Üleslaaditud foto, et luua digitaalne maalitud eelvaade.",
             "Kassa juures sisestatud nimi, e-post, tarneaadress ja telefon, et tellimust kinnitada ja lõuend kohale toimetada.",
             "Makse käib Stripe'i kaudu. Me ei salvesta kaardinumbreid oma serverites.",
-            "Sait kasutab Google Analyticsit külastuste mõistmiseks. Me ei müü isikuandmeid.",
+            "Sait kasutab sinu nõusolekul Google Analyticsit külastuste ja tellimuste mõistmiseks. Me ei müü isikuandmeid.",
           ],
         },
         {
@@ -261,7 +263,7 @@ const documents: Record<Language, Record<LegalDocId, LegalDocument>> = {
             "Загруженное фото, чтобы создать цифровой художественный предпросмотр.",
             "Имя, email, адрес доставки и телефон на оформлении — чтобы подтвердить заказ и доставить холст.",
             "Оплату обрабатывает Stripe. Номера карт на наших серверах не хранятся.",
-            "Сайт использует Google Analytics для статистики посещений. Мы не продаём персональные данные.",
+            "С вашего согласия сайт использует Google Analytics для статистики посещений и заказов. Мы не продаём персональные данные.",
           ],
         },
         {
@@ -358,5 +360,9 @@ export function getLegalDocument(
   locale: Language,
   doc: LegalDocId
 ): LegalDocument {
-  return documents[locale][doc];
+  const document = documents[locale][doc];
+  if (doc !== "privacy") return document;
+  const copy = cookieCopy[locale];
+  const updates = { en: "Last updated: 15 October 2026", et: "Viimati uuendatud: 15. oktoober 2026", ru: "Обновлено: 15 октября 2026" };
+  return { ...document, updated: updates[locale], sections: [...document.sections, { id: "cookies", heading: copy.policyHeading, paragraphs: copy.policyParagraphs }] };
 }

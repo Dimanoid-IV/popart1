@@ -1,3 +1,4 @@
+import { hasAnalyticsConsent, consentRevision, startGoogleAnalytics } from './cookie-consent.mjs';
 const BASE = 'https://www.popart.ee';
 const LANDING_KEY = 'popart.landing.v1';
 const sentPurchases = new Set();
@@ -31,7 +32,7 @@ export function funnelParameters({ pathname, landingPage, language }) {
 }
 
 export function getLandingPage() {
-  if (typeof window === 'undefined') return '/';
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return '/';
   const path = safePagePath(window.location.pathname);
   try {
     const stored = window.sessionStorage.getItem(LANDING_KEY);
@@ -42,8 +43,11 @@ export function getLandingPage() {
 }
 
 export function sendAnalyticsCommand(...args) {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return false;
   try {
+    let referrer = '';
+    try { if (document.referrer) { const url = new URL(document.referrer); referrer = `${url.origin}${safePagePath(url.href)}`; } } catch {}
+    startGoogleAnalytics({ ...safeCampaignParameters(window.location.search), page_location: `${window.location.origin}${safePagePath(window.location.pathname)}`, page_referrer: referrer }, false);
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push((function () { return arguments; })(...args));
     return true;
@@ -56,6 +60,7 @@ export function sendAnalyticsEvent(name, parameters) {
 
 export function trackFunnelEvent(name, language, onProcessed) {
   if (!['upload_start', 'checkout_start'].includes(name) || typeof window === 'undefined') return;
+  if (!hasAnalyticsConsent()) { if (typeof onProcessed === 'function') onProcessed(); return; }
   const parameters = funnelParameters({ pathname: window.location.pathname, landingPage: getLandingPage(), language });
   if (name === 'checkout_start') {
     try { window.sessionStorage.setItem('popart.checkout-context.v1', JSON.stringify(parameters)); } catch {}
@@ -75,7 +80,7 @@ export function trackFunnelEvent(name, language, onProcessed) {
 }
 
 export function trackPurchase(purchase) {
-  if (!purchase || typeof window === 'undefined' || sentPurchases.has(purchase.transaction_id)) return;
+  if (!purchase || typeof window === 'undefined' || !hasAnalyticsConsent() || sentPurchases.has(purchase.transaction_id)) return;
   const key = `popart.purchase.v1.${purchase.transaction_id}`;
   let context = { page_path: '/success' };
   try {
@@ -86,7 +91,9 @@ export function trackPurchase(purchase) {
     }
   } catch { /* Blocked storage must not interrupt the success page. */ }
   sentPurchases.add(purchase.transaction_id);
+  const revision = consentRevision();
   const processed = () => {
+    if (!hasAnalyticsConsent() || consentRevision() !== revision) return;
     try { window.localStorage.setItem(key, '1'); } catch {}
   };
   if (!sendAnalyticsEvent('purchase', { ...context, ...purchase, event_callback: processed })) {

@@ -23,7 +23,7 @@ export default function LegalPage({
           <p className="mt-3 text-sm text-gray-500">{content.updated}</p>
           <div className="mt-10 space-y-8">
             {content.sections.map((section) => (
-              <section key={section.heading}>
+              <section key={section.heading} id={section.id} className="scroll-mt-32">
                 <h2 className="text-xl font-bold text-gray-900">
                   {section.heading}
                 </h2>

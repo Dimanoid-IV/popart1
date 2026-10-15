@@ -5,6 +5,8 @@ import Stripe from 'stripe';
 import PurchaseAnalytics from '@/components/analytics/PurchaseAnalytics';
 import { verifiedPurchase } from '@/lib/purchase-analytics.mjs';
 import { cookies } from 'next/headers';
+import { CONSENT_COOKIE, parseConsent, consentAllowsPurchase } from '@/lib/cookie-consent.mjs';
+import { CookieSettingsButton } from '@/components/consent/CookieConsent';
 import { VISITOR_COOKIE } from '@/lib/generation-credit-store';
 
 export const metadata: Metadata = {
@@ -15,13 +17,17 @@ export const metadata: Metadata = {
 
 export default async function SuccessPage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
   const { session_id: sessionId } = await searchParams;
-  const visitorId = (await cookies()).get(VISITOR_COOKIE)?.value;
+  const cookieStore = await cookies();
+  const visitorId = cookieStore.get(VISITOR_COOKIE)?.value;
+  let consent = null;
+  try { consent = parseConsent(decodeURIComponent(cookieStore.get(CONSENT_COOKIE)?.value ?? '')); } catch {}
   let purchase = null;
   // This read does not fulfill an order: the existing webhook remains authoritative.
-  if (visitorId && typeof sessionId === 'string' && sessionId.length <= 255 && /^cs_(?:test_|live_)?[a-zA-Z0-9]+$/.test(sessionId) && process.env.STRIPE_SECRET_KEY) {
+  if (consent?.analytics && visitorId && typeof sessionId === 'string' && sessionId.length <= 255 && /^cs_(?:test_|live_)?[a-zA-Z0-9]+$/.test(sessionId) && process.env.STRIPE_SECRET_KEY) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { timeout: 5000, maxNetworkRetries: 0 });
-      purchase = verifiedPurchase(await stripe.checkout.sessions.retrieve(sessionId), visitorId);
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      if (consentAllowsPurchase(consent, session.created)) purchase = verifiedPurchase(session, visitorId);
     } catch { /* An analytics failure must not hide the confirmation page. */ }
   }
   return (
@@ -43,6 +49,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
           >
             Back to Home
           </Link>
+          <div className="text-sm text-gray-600"><CookieSettingsButton /></div>
           <p className="text-sm text-gray-400 italic">
             Get notified about new orders faster than anyone else!
           </p>
