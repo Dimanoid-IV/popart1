@@ -5,6 +5,11 @@ const CANVAS_PRICES_CENTS = new Map([
   ['90x60 cm', 7500],
 ]);
 
+/** Public offer derived from the same amounts used by Stripe checkout. */
+export function getCanvasOptions() {
+  return Array.from(CANVAS_PRICES_CENTS, ([size, cents]) => ({ size, cents }));
+}
+
 export function getCanvasPriceCents(size) {
   const amount = CANVAS_PRICES_CENTS.get(size);
   if (!amount) throw new Error('Unknown canvas size');

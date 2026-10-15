@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { SITE_ORIGIN } from "./site-config";
+import { PORTRAIT_PATHS } from "@/lib/locales";
 
 /** Static marketing URLs merged into sitemap (no thank-you /success page). */
 export function getMarketingSitemapEntries(): MetadataRoute.Sitemap {
   const paths = [
     "/et",
     "/ru",
+    ...Object.values(PORTRAIT_PATHS),
     "/privacy",
     "/terms",
     "/delivery",

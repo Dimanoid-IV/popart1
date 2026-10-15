@@ -8,7 +8,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import Image from "next/image";
 import { Zap, Palette, Heart } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
-import { homeSectionPath } from "@/lib/locales";
+import { homeSectionPath, portraitPath } from "@/lib/locales";
 
 const CANVAS_PRICES = [
   { size: "45x30", price: "45", scale: 0.5 },
@@ -90,6 +90,7 @@ export default function HomePage() {
                 </a>
               </div>
               <TrustStrip />
+              {portraitPath(language) && <a href={portraitPath(language)} className="mt-5 inline-block rounded-md font-semibold text-indigo-700 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{language === "et" ? "Portree fotost: näited, hinnad ja tellimine" : "Портрет по фото: примеры, цены и условия заказа"}</a>}
             </div>
           </div>
 

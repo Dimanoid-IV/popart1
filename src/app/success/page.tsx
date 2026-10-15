@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+import Stripe from 'stripe';
+import PurchaseAnalytics from '@/components/analytics/PurchaseAnalytics';
+import { verifiedPurchase } from '@/lib/purchase-analytics.mjs';
 
 export const metadata: Metadata = {
   title: 'Order Successful',
@@ -8,9 +11,19 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function SuccessPage() {
+export default async function SuccessPage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
+  const { session_id: sessionId } = await searchParams;
+  let purchase = null;
+  // This read does not fulfill an order: the existing webhook remains authoritative.
+  if (typeof sessionId === 'string' && /^cs_(?:test_|live_)?[a-zA-Z0-9]+$/.test(sessionId) && process.env.STRIPE_SECRET_KEY) {
+    try {
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { timeout: 5000, maxNetworkRetries: 0 });
+      purchase = verifiedPurchase(await stripe.checkout.sessions.retrieve(sessionId));
+    } catch { /* An analytics failure must not hide the confirmation page. */ }
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <PurchaseAnalytics purchase={purchase} />
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
         <div className="mb-6 flex justify-center">
           <CheckCircle className="w-20 h-20 text-green-500" />

@@ -13,6 +13,7 @@ import { getBlogCroLabels } from "@/lib/blog/cro-labels";
 import BlogCroTrustStrip from "./BlogCroTrustStrip";
 import BlogCroMidCta from "./BlogCroMidCta";
 import BlogCroBottomCta from "./BlogCroBottomCta";
+import CanvasOffer from "@/components/commercial/CanvasOffer";
 
 type Labels = {
   authorTitle: string;
@@ -86,6 +87,17 @@ export default function ArticleTemplate({
         dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
       />
       <BlogCroMidCta cro={cro} locale={article.locale} />
+      {article.locale === "et" && ["pilt-louendil", "kingitus-sobrannale-portree-fotost"].includes(slug) && (
+        <div className="mx-auto max-w-3xl">
+          <div className="mt-10 grid grid-cols-2 gap-4">
+            {[
+              { src: "/interiors/woman-portrait-modern-teal-interior.jpg", alt: "Kunstilise portree näidis interjööris" },
+              { src: "/interiors/couple-portrait-soft-neutral-interior.jpg", alt: "Paarisportree näidis interjööris" },
+            ].map(image => <figure key={image.src}><BlogArticleImage src={image.src} alt={image.alt} width={600} height={400} className="aspect-[3/2] w-full rounded-xl object-cover" sizes="(max-width: 768px) 45vw, 360px" /><figcaption className="mt-2 text-xs text-slate-500">{image.alt}</figcaption></figure>)}
+          </div>
+          <CanvasOffer locale="et" compact />
+        </div>
+      )}
       <InternalLinks
         links={article.internalLinks ?? []}
         heading={labels.internalLinksHeading}

@@ -5,6 +5,7 @@ import { Upload, Check, Loader2, ArrowRight, Mail, MessageCircle } from 'lucide-
 import { getErrorMessage } from '@/lib/errors';
 import type { BackgroundPaletteId } from '@/lib/background-options';
 import { getGenerationFollowUpVisibility } from '@/lib/order-flow-visibility.mjs';
+import { trackFunnelEvent } from '@/lib/funnel-analytics.mjs';
 
 import { useLanguage } from '@/lib/LanguageContext';
 
@@ -32,7 +33,7 @@ type CreditSnapshot = { freeRemaining: number; paidRemaining: number; totalRemai
 type PortraitPreview = { url: string; portraitId: string };
 
 export default function OrderFlow() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [step, setStep] = useState<Step>('upload');
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -67,6 +68,7 @@ export default function OrderFlow() {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      trackFunnelEvent('upload_start', language);
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result as string);
@@ -189,6 +191,7 @@ export default function OrderFlow() {
       const data = await response.json();
       
       if (data.url) {
+        trackFunnelEvent('checkout_start', language);
         window.location.href = data.url;
       } else {
         throw new Error(data.error || 'Failed to create checkout session');
