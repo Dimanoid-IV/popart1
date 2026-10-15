@@ -191,8 +191,7 @@ export default function OrderFlow() {
       const data = await response.json();
       
       if (data.url) {
-        trackFunnelEvent('checkout_start', language);
-        window.location.href = data.url;
+        trackFunnelEvent('checkout_start', language, () => { window.location.href = data.url; });
       } else {
         throw new Error(data.error || 'Failed to create checkout session');
       }

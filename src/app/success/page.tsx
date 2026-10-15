@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Stripe from 'stripe';
 import PurchaseAnalytics from '@/components/analytics/PurchaseAnalytics';
 import { verifiedPurchase } from '@/lib/purchase-analytics.mjs';
+import { cookies } from 'next/headers';
+import { VISITOR_COOKIE } from '@/lib/generation-credit-store';
 
 export const metadata: Metadata = {
   title: 'Order Successful',
@@ -13,12 +15,13 @@ export const metadata: Metadata = {
 
 export default async function SuccessPage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
   const { session_id: sessionId } = await searchParams;
+  const visitorId = (await cookies()).get(VISITOR_COOKIE)?.value;
   let purchase = null;
   // This read does not fulfill an order: the existing webhook remains authoritative.
-  if (typeof sessionId === 'string' && /^cs_(?:test_|live_)?[a-zA-Z0-9]+$/.test(sessionId) && process.env.STRIPE_SECRET_KEY) {
+  if (visitorId && typeof sessionId === 'string' && sessionId.length <= 255 && /^cs_(?:test_|live_)?[a-zA-Z0-9]+$/.test(sessionId) && process.env.STRIPE_SECRET_KEY) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { timeout: 5000, maxNetworkRetries: 0 });
-      purchase = verifiedPurchase(await stripe.checkout.sessions.retrieve(sessionId));
+      purchase = verifiedPurchase(await stripe.checkout.sessions.retrieve(sessionId), visitorId);
     } catch { /* An analytics failure must not hide the confirmation page. */ }
   }
   return (

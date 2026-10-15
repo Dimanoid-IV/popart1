@@ -2,6 +2,17 @@ const BASE = 'https://www.popart.ee';
 const LANDING_KEY = 'popart.landing.v1';
 const sentPurchases = new Set();
 
+/** Campaign labels are explicitly allowed; arbitrary URL values never enter GA. */
+export function safeCampaignParameters(search) {
+  const query = new URLSearchParams(search);
+  const result = {};
+  for (const [key, field] of [['utm_source', 'campaign_source'], ['utm_medium', 'campaign_medium'], ['utm_campaign', 'campaign_name']]) {
+    const value = query.get(key);
+    if (value && /^[\p{L}\p{N} _.-]{1,100}$/u.test(value)) result[field] = value;
+  }
+  return result;
+}
+
 /** Only route paths are stored or sent; never query strings or fragments. */
 export function safePagePath(value) {
   if (typeof value !== 'string' || (!value.startsWith('/') && !/^https?:\/\//.test(value))) return '/';
@@ -31,34 +42,54 @@ export function getLandingPage() {
 }
 
 export function sendAnalyticsCommand(...args) {
-  if (typeof window === 'undefined') return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push((function () { return arguments; })(...args));
+  if (typeof window === 'undefined') return false;
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push((function () { return arguments; })(...args));
+    return true;
+  } catch { return false; }
 }
 
 export function sendAnalyticsEvent(name, parameters) {
-  sendAnalyticsCommand('event', name, parameters);
+  return sendAnalyticsCommand('event', name, parameters);
 }
 
-export function trackFunnelEvent(name, language) {
+export function trackFunnelEvent(name, language, onProcessed) {
   if (!['upload_start', 'checkout_start'].includes(name) || typeof window === 'undefined') return;
   const parameters = funnelParameters({ pathname: window.location.pathname, landingPage: getLandingPage(), language });
   if (name === 'checkout_start') {
     try { window.sessionStorage.setItem('popart.checkout-context.v1', JSON.stringify(parameters)); } catch {}
   }
-  sendAnalyticsEvent(name, parameters);
+  if (typeof onProcessed !== 'function') return sendAnalyticsEvent(name, parameters);
+  let done = false;
+  let timer;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    onProcessed();
+  };
+  // Redirect even if GA is blocked, slow, or its tag throws.
+  timer = setTimeout(finish, 1200);
+  if (!sendAnalyticsEvent(name, { ...parameters, event_callback: finish, event_timeout: 1000 })) finish();
 }
 
 export function trackPurchase(purchase) {
   if (!purchase || typeof window === 'undefined' || sentPurchases.has(purchase.transaction_id)) return;
   const key = `popart.purchase.v1.${purchase.transaction_id}`;
-  let context = { landingPage: getLandingPage(), language: 'en' };
+  let context = { page_path: '/success' };
   try {
     if (window.localStorage.getItem(key)) return;
     const stored = JSON.parse(window.sessionStorage.getItem('popart.checkout-context.v1') || 'null');
-    if (stored) context = { landingPage: stored.landing_page, language: stored.language };
+    if (stored && typeof stored.landing_page === 'string' && ['et', 'ru', 'en'].includes(stored.language)) {
+      context = funnelParameters({ pathname: '/success', landingPage: stored.landing_page, language: stored.language });
+    }
   } catch { /* Blocked storage must not interrupt the success page. */ }
   sentPurchases.add(purchase.transaction_id);
-  sendAnalyticsEvent('purchase', { ...funnelParameters({ pathname: '/success', ...context }), ...purchase });
-  try { window.localStorage.setItem(key, '1'); } catch {}
+  const processed = () => {
+    try { window.localStorage.setItem(key, '1'); } catch {}
+  };
+  if (!sendAnalyticsEvent('purchase', { ...context, ...purchase, event_callback: processed })) {
+    sentPurchases.delete(purchase.transaction_id);
+  }
 }
