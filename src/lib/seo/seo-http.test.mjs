@@ -95,6 +95,48 @@ async function assertAlternatesResolve(pathname) {
   return alternates;
 }
 
+test("commercial pages render the offer in server HTML with reciprocal real translations", async () => {
+  for (const [pathname, lang, heading, cta] of [
+    ['/et/portree-fotost', 'et', 'Portree fotost – loo isikupärane kunstiteos oma pildist', '/et#order-now'],
+    ['/ru/portret-po-foto', 'ru', 'Портрет по фотографии на заказ', '/ru#order-now'],
+  ]) {
+    const { response, html } = await page(pathname);
+    assert.equal(response.status, 200);
+    assert.equal((html.match(/<h1(?:\s|>)/g) ?? []).length, 1);
+    assert.ok(html.includes(heading));
+    assert.match(html, new RegExp(`<html[^>]+lang="${lang}"`));
+    assert.deepEqual(linkTags(html, 'canonical').map(v => v.href), [`https://www.popart.ee${pathname}`]);
+    const alternates = await assertAlternatesResolve(pathname);
+    assert.deepEqual(Object.fromEntries(alternates.map(v => [v.hreflang, new URL(v.href).pathname])), {
+      et: '/et/portree-fotost', ru: '/ru/portret-po-foto', 'x-default': '/et/portree-fotost',
+    });
+    assert.ok(html.includes(`href="${cta}"`));
+    for (const price of ['45', '55', '68', '75']) assert.match(html, new RegExp(`${price}.*?€`));
+    assert.match(html, /<meta[^>]+property="og:url"[^>]+content="https:\/\/www.popart.ee\/(et\/portree-fotost|ru\/portret-po-foto)"/);
+    assert.doesNotMatch(html, /"@type":"(?:AggregateRating|Review|FAQPage|Product)"/);
+  }
+});
+
+test("commercial pages are linked from home, articles and sitemap without invented English URLs", async () => {
+  const xml = await (await request(`${origin}/sitemap.xml`)).text();
+  for (const [locale, slug, articles] of [
+    ['et', 'portree-fotost', ['pilt-louendil', 'kingitus-sobrannale-portree-fotost']],
+    ['ru', 'portret-po-foto', ['portree-tellimine-eesti-linnades', 'portree-fotost-tallinn']],
+  ]) {
+    const target = `/${locale}/${slug}`;
+    assert.ok(xml.includes(`<loc>https://www.popart.ee${target}</loc>`));
+    for (const pathname of [`/${locale}`, ...articles.map(s => `/${locale}/blog/${s}`)]) {
+      const { html } = await page(pathname);
+      assert.ok(html.includes(`href="${target}"`), `${pathname} must link to ${target}`);
+    }
+    const { html: home } = await page(`/${locale}`);
+    assert.ok(home.includes('id="order-now"'));
+  }
+  assert.equal((await request(`${origin}/en/portree-fotost`)).status, 404);
+  assert.equal((await request(`${origin}/ru/portree-fotost`)).status, 404);
+  assert.equal((await request(`${origin}/et/portret-po-foto`)).status, 404);
+});
+
 test("article hreflang uses only real translations and remains reciprocal", async () => {
   const sourcePath = "/ru/blog/personalnyy-podarok-zhenshchine-estonia";
   const alternates = await assertAlternatesResolve(sourcePath);

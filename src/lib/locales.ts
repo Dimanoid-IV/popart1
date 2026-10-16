@@ -2,6 +2,15 @@ import type { Language } from "./translations";
 
 export const STOREFRONT_LOCALES: Language[] = ["en", "et", "ru"];
 
+export const PORTRAIT_PATHS = {
+  et: "/et/portree-fotost",
+  ru: "/ru/portret-po-foto",
+} as const;
+
+export function portraitPath(locale: Language): string | undefined {
+  return locale === "en" ? undefined : PORTRAIT_PATHS[locale];
+}
+
 export function isStorefrontLocale(value: string): value is Language {
   return value === "en" || value === "et" || value === "ru";
 }
@@ -21,6 +30,9 @@ export function stripLocalePrefix(pathname: string): string {
 
 /** Localized storefront href. English stays unprefixed (`/`, `/privacy`). */
 export function localizePath(pathname: string, locale: Language): string {
+  if (Object.values(PORTRAIT_PATHS).some((path) => path === pathname.replace(/\/$/, ""))) {
+    return portraitPath(locale) ?? homePath(locale);
+  }
   const rest = stripLocalePrefix(pathname);
   if (locale === "en") return rest;
   return rest === "/" ? `/${locale}` : `/${locale}${rest}`;

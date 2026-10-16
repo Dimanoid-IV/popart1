@@ -1,0 +1,58 @@
+import type { Language } from "./translations";
+
+export const cookieCopy = {
+  en: {
+    title: "Your photo. Your cookie choice.",
+    message: "Necessary cookies keep the generator and checkout working. With your permission, Google Analytics helps us understand visits and orders. You can order without analytics.",
+    accept: "Accept all", reject: "Reject optional", settings: "Cookie settings", configure: "Customize", save: "Save choices", close: "Close settings",
+    necessary: "Necessary cookies", always: "Always active", necessaryText: "Remember your cookie choice and protect the generator, generation credits and payment flow.",
+    analytics: "Analytics cookies", analyticsText: "Allow Google Analytics 4 to measure page visits, photo upload starts, checkout starts and verified purchases. No photos or checkout contact details are included.",
+    details: "Your choice is stored for 180 days. You can change it using Cookie settings in the footer. Advertising permissions remain off.",
+    policy: "Privacy & cookies", storageNote: "If your browser cannot save the choice, it applies only to this page visit.",
+    policyHeading: "Cookies and your choice",
+    policyParagraphs: [
+      "Necessary storage: popart_consent remembers your categories, policy version, choice time and expiry for 180 days. popart_visitor is a first-party HttpOnly cookie used for generation credits, abuse protection and linking the payment flow to the visitor; the server sets it for up to one year. Declining analytics does not disable these necessary functions.",
+      "Optional analytics: Google Analytics 4, provided by Google, measures page visits, photo upload starts, checkout starts and verified canvas purchases only after you allow analytics. Before consent or after refusal we do not load the Google tag or send analytics events or cookieless pings. There are no advertising trackers in this implementation and advertising consent stays denied.",
+      "After consent, Google Analytics may set _ga and _ga_H52TSV34MX cookies. The site configures their lifetime to up to 400 days; browser limits and Google tag behaviour may shorten this. This is a cookie lifetime, not a claim about Google's server-side data retention. Analytics receives cleaned page paths and selected campaign labels, not your photo, checkout contact fields or original Stripe session ID.",
+      "Only after consent, sessionStorage keys popart.landing.v1 and popart.checkout-context.v1 keep page and language context for the tab session. localStorage keys beginning popart.purchase.v1. suppress duplicate purchase events. These analytics values are removed on withdrawal or when an expired choice is detected.",
+      "Use Accept all, Reject optional or Customize on the banner. Cookie settings in the footer lets you change or withdraw consent at any time. Withdrawal immediately stops new analytics events and attempts to delete first-party Google Analytics cookies. It does not delete orders, generation credits or data already received by Google. If browser storage is unavailable, your explicit choice applies only to the current document and analytics is off on the next visit until you consent again.",
+      "Payment takes place on Stripe's hosted checkout, which has its own cookie and privacy information. You can also clear cookies in your browser. Questions about data or earlier analytics records can be sent to the contact address on this page.",
+    ],
+  },
+  et: {
+    title: "Sinu foto. Sinu küpsisevalik.",
+    message: "Vajalikud küpsised tagavad generaatori ja maksmise toimimise. Sinu loal aitab Google Analytics meil mõista külastusi ja tellimusi. Tellida saad ka analüütikata.",
+    accept: "Nõustu kõigiga", reject: "Keeldu valikulistest", settings: "Küpsiste seaded", configure: "Kohanda", save: "Salvesta valikud", close: "Sulge seaded",
+    necessary: "Vajalikud küpsised", always: "Alati aktiivsed", necessaryText: "Salvestavad sinu küpsisevaliku ning tagavad generaatori, genereerimiskrediitide ja maksmise toimimise ja turvalisuse.",
+    analytics: "Analüütilised küpsised", analyticsText: "Luba Google Analytics 4-l mõõta lehekülastusi, foto üleslaadimise ja ostu vormistamise alustamist ning kinnitatud oste. Fotosid ega tellimuse kontaktandmeid ei edastata.",
+    details: "Sinu valik salvestatakse 180 päevaks. Saad seda muuta jaluse lingi „Küpsiste seaded” kaudu. Reklaamiga seotud load jäävad välja lülitatuks.",
+    policy: "Privaatsus ja küpsised", storageNote: "Kui brauser ei saa valikut salvestada, kehtib see ainult selle lehekülastuse ajal.",
+    policyHeading: "Küpsised ja sinu valik",
+    policyParagraphs: [
+      "Vajalik salvestus: popart_consent jätab 180 päevaks meelde sinu kategooriate valiku, poliitika versiooni ning valiku aja ja aegumise. popart_visitor on esimese osapoole HttpOnly-küpsis genereerimiskrediitide, kuritarvituste vältimise ja maksevoo külastajaga sidumise jaoks; server määrab selle kuni üheks aastaks. Analüütikast keeldumine neid vajalikke funktsioone ei keela.",
+      "Valikuline analüütika: Google'i pakutav Google Analytics 4 mõõdab lehekülastusi, foto üleslaadimise ja ostu vormistamise alustamist ning kinnitatud lõuendioste ainult sinu nõusolekul. Enne nõusolekut või pärast keeldumist ei laadita Google'i märgendit ega saadeta analüütikasündmusi või küpsisteta mõõtmispäringuid. Selles lahenduses reklaamijälgijaid ei kasutata ja reklaamiload jäävad keelatuks.",
+      "Pärast nõusolekut võib Google Analytics seada küpsised _ga ja _ga_H52TSV34MX. Sait määrab nende kestuseks kuni 400 päeva; brauseri piirangud ja Google'i märgendi käitumine võivad seda lühendada. See on küpsiste kestus, mitte väide Google'i serverites andmete säilitamise aja kohta. Analüütikasse edastatakse puhastatud lehetee ja valitud kampaaniatähised, mitte sinu foto, tellimuse kontaktandmed ega algne Stripe'i seansi ID.",
+      "Ainult pärast nõusolekut hoiavad sessionStorage'i võtmed popart.landing.v1 ja popart.checkout-context.v1 lehe ja keele konteksti vahekaardi seansi vältel. localStorage'i võtmed algusega popart.purchase.v1. väldivad ostusündmuse kordamist. Need analüütikaandmed eemaldatakse nõusoleku tagasivõtmisel või aegunud valiku tuvastamisel.",
+      "Kasuta bänneri nuppe „Nõustu kõigiga”, „Keeldu valikulistest” või „Kohanda”. Jaluse „Küpsiste seaded” võimaldab nõusolekut igal ajal muuta või tagasi võtta. Tagasivõtmine peatab kohe uued analüütikasündmused ja üritab kustutada esimese osapoole Google Analyticsi küpsised. See ei kustuta tellimusi, genereerimiskrediite ega Google'ile varem edastatud andmeid. Kui brauseris ei saa valikut salvestada, kehtib selgesõnaline valik ainult praeguses dokumendis; järgmisel külastusel on analüütika uue nõusolekuni välja lülitatud.",
+      "Maksmine toimub Stripe'i hallatavas kassas, millel on oma küpsiste ja privaatsuse teave. Küpsised saad kustutada ka brauseris. Andmete või varasema analüütika kohta saad küsida sellel lehel toodud kontaktaadressilt.",
+    ],
+  },
+  ru: {
+    title: "Ваше фото. Ваш выбор cookies.",
+    message: "Необходимые cookies обеспечивают работу генератора и оплаты. С вашего разрешения Google Analytics помогает нам изучать посещения и заказы. Заказать можно и без аналитики.",
+    accept: "Принять все", reject: "Отклонить необязательные", settings: "Настройки cookies", configure: "Настроить", save: "Сохранить выбор", close: "Закрыть настройки",
+    necessary: "Необходимые cookies", always: "Всегда активны", necessaryText: "Сохраняют ваш выбор cookies и обеспечивают работу и защиту генератора, кредитов генерации и оплаты.",
+    analytics: "Аналитические cookies", analyticsText: "Разрешить Google Analytics 4 измерять посещения страниц, начало загрузки фото, начало оплаты и подтверждённые покупки. Фотографии и контактные данные заказа не передаются.",
+    details: "Выбор сохраняется на 180 дней. Изменить его можно через «Настройки cookies» внизу сайта. Разрешения на рекламу остаются выключенными.",
+    policy: "Конфиденциальность и cookies", storageNote: "Если браузер не может сохранить выбор, он действует только в рамках текущего посещения страницы.",
+    policyHeading: "Cookies и ваш выбор",
+    policyParagraphs: [
+      "Необходимое хранение: popart_consent на 180 дней запоминает выбранные категории, версию политики, время выбора и срок действия. popart_visitor — собственный HttpOnly cookie для кредитов генерации, защиты от злоупотреблений и привязки оплаты к посетителю; сервер устанавливает его на срок до года. Отказ от аналитики не отключает эти необходимые функции.",
+      "Необязательная аналитика: Google Analytics 4 от Google измеряет посещения страниц, начало загрузки фото, начало оформления оплаты и подтверждённые покупки холстов только после вашего согласия. До согласия и после отказа мы не загружаем Google tag и не отправляем события аналитики или запросы измерения без cookies. Рекламных трекеров в этой реализации нет; рекламные разрешения остаются запрещёнными.",
+      "После согласия Google Analytics может установить cookies _ga и _ga_H52TSV34MX. Сайт задаёт срок до 400 дней; ограничения браузера и поведение Google tag могут его сократить. Это срок cookies, а не утверждение о хранении данных на серверах Google. Аналитика получает очищенные пути страниц и выбранные метки кампаний, но не фото, контактные поля заказа или исходный Stripe session ID.",
+      "Только после согласия ключи sessionStorage popart.landing.v1 и popart.checkout-context.v1 сохраняют страницу и язык на время сеанса вкладки. Ключи localStorage с началом popart.purchase.v1. предотвращают повторную отправку покупки. Эти данные аналитики удаляются при отзыве согласия или обнаружении истёкшего выбора.",
+      "Выберите «Принять все», «Отклонить необязательные» или «Настроить» в баннере. Ссылка «Настройки cookies» внизу сайта позволяет в любое время изменить или отозвать согласие. Отзыв немедленно прекращает новые события аналитики и по возможности удаляет собственные cookies Google Analytics. Он не удаляет заказы, кредиты генерации или данные, ранее полученные Google. Если браузер не позволяет сохранить выбор, явное согласие действует только в текущем документе; при следующем посещении аналитика выключена до нового согласия.",
+      "Оплата проходит на странице Stripe со своей информацией о cookies и конфиденциальности. Вы также можете очистить cookies в браузере. Вопросы о данных или ранее собранной аналитике можно отправить по контактному адресу на этой странице.",
+    ],
+  },
+} satisfies Record<Language, object>;
