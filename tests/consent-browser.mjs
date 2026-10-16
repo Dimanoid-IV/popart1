@@ -121,11 +121,15 @@ async function addChoice(context, allowed, visitor) {
       await page.locator('a[href="/et/blog/pilt-louendil"]').first().click();
       await until(() => hitCount(data, 'page_view') >= 2, 'SPA view');
       await page.waitForTimeout(700); assert.equal(hitCount(data, 'page_view'), 2);
-      await page.reload(); await until(() => hitCount(data, 'page_view') >= 3, 'restored consent view');
-      await page.waitForTimeout(500); assert.equal(hitCount(data, 'page_view'), 3);
+      await page.goBack(); await until(() => hitCount(data, 'page_view') >= 3, 'Back view');
+      await page.waitForTimeout(700); assert.equal(hitCount(data, 'page_view'), 3);
+      await page.goForward(); await until(() => hitCount(data, 'page_view') >= 4, 'Forward view');
+      await page.waitForTimeout(700); assert.equal(hitCount(data, 'page_view'), 4);
+      await page.reload(); await until(() => hitCount(data, 'page_view') >= 5, 'restored consent view');
+      await page.waitForTimeout(500); assert.equal(hitCount(data, 'page_view'), 5);
       const other = await context.newPage(); await other.goto(origin + '/et');
-      await until(() => hitCount(data, 'page_view') >= 4, 'new tab restored consent');
-      await page.waitForTimeout(500); assert.equal(hitCount(data, 'page_view'), 4);
+      await until(() => hitCount(data, 'page_view') >= 6, 'new tab restored consent');
+      await page.waitForTimeout(500); assert.equal(hitCount(data, 'page_view'), 6);
       await context.addCookies([{ name: 'popart_visitor', value: 'preserve-fixture', url: origin, httpOnly: true }]);
       await page.getByRole('button', { name: labels.settings, exact: true }).click();
       const beforeRevoke = data.collects.length;
@@ -141,7 +145,7 @@ async function addChoice(context, allowed, visitor) {
       await page.getByRole('button', { name: labels.settings, exact: true }).click();
       await page.getByRole('dialog').getByRole('checkbox').check();
       await page.getByRole('dialog').getByRole('button', { name: labels.save, exact: true }).click();
-      await until(() => hitCount(data, 'page_view') === 5, 'same-document re-consent');
+      await until(() => hitCount(data, 'page_view') === 7, 'same-document re-consent');
       await page.getByRole('button', { name: labels.settings, exact: true }).click();
       await page.getByRole('dialog').getByRole('button', { name: labels.reject, exact: true }).click();
       await page.reload(); await page.waitForTimeout(300);
@@ -149,9 +153,9 @@ async function addChoice(context, allowed, visitor) {
       await page.getByRole('button', { name: labels.settings, exact: true }).click();
       await page.getByRole('dialog').getByRole('checkbox').check();
       await page.getByRole('dialog').getByRole('button', { name: labels.save, exact: true }).click();
-      await until(() => hitCount(data, 'page_view') === 6, 're-consent current page');
+      await until(() => hitCount(data, 'page_view') === 8, 're-consent current page');
       assert.deepEqual(data.errors, []);
-      console.log('PASS', results.length + 1); results.push({ case: 'real tag: acceptance, UTM, SPA, refresh, new tab, revoke across tabs, re-consent', collectedRequestsAborted: data.collects.length });
+      console.log('PASS', results.length + 1); results.push({ case: 'real tag: acceptance, UTM, SPA, Back, Forward, refresh, new tab, revoke across tabs, re-consent', collectedRequestsAborted: data.collects.length });
       await context.close();
     }
 
